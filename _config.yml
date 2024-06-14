@@ -118,3 +118,6 @@ deploy:
   repo: git@github.com:NtoStudy/NtoStudy.github.io.git
   branch: master
 
+markdown: redcarpet
+redcarpet:
+    extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]

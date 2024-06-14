@@ -96,14 +96,16 @@ open_graph:
 # Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
 # External url should start with http:// or https://
 menu:
-  #home: / || fa fa-home
-  #about: /about/ || fa fa-user
-  #tags: /tags/ || fa fa-tags
-  #categories: /categories/ || fa fa-th
-  #archives: /archives/ || fa fa-archive
-  #schedule: /schedule/ || fa fa-calendar
-  #sitemap: /sitemap.xml || fa fa-sitemap
-  #commonweal: /404/ || fa fa-heartbeat
+  home: / || fa fa-home
+  about: /about/ || fa fa-user
+  tags: /tags/ || fa fa-tags
+  categories: /categories/ || fa fa-th
+  archives: /archives/ || fa fa-archive
+  links: /links/|| link
+
+  # schedule: /schedule/ || fa fa-calendar
+  # sitemap: /sitemap.xml || fa fa-sitemap
+  # commonweal: /404/ || fa fa-heartbeat
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
@@ -362,8 +364,13 @@ body_scrollbar:
   stable: false
 
 codeblock:
+  # 语法高亮主题
   # Code Highlight theme
-  # All available themes: https://theme-next.js.org/highlight/
+  # Available value:
+  #    normal | night | night eighties | night blue | night bright
+  # https://github.com/chriskempson/tomorrow-theme
+  highlight_theme: night eighties
+
   theme:
     light: default
     dark: stackoverflow-dark
@@ -635,6 +642,7 @@ motion:
     post_header: fadeInDown
     post_body: fadeInDown
     coll_header: fadeInLeft
+  
     # Only for Pisces | Gemini.
     sidebar: fadeInUp
 
@@ -925,3 +933,11 @@ vendors:
 css: css
 js: js
 images: images
+
+
+mylinks:
+
+- nickname: 牛牛's blog
+  avatar: https://dustca.xyz/image/avatar.jpeg
+  site: https://norg.asia
+  info: 一个搞项目的咸鱼
