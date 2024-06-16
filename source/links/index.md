@@ -1,4 +1,5 @@
 ---
-title: 友链
-date: 2024-06-13 12:34:27
+title: links
+date: 2024-06-16 10:52:57
+type: "links"
 ---
