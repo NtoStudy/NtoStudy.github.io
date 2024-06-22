@@ -19,24 +19,41 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ntostudy.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="欢迎来到牛牛的世界">
-<meta property="og:url" content="https://ntostudy.github.io/index.html">
+    <meta name="description" content="day01一、为什么要学习Vue1.前端必备技能 2.岗位多，绝大互联网公司都在使用Vue 3.提高开发效率 4.高薪必备技能（Vue2+Vue3） 二、什么是Vue概念：Vue (读音 &#x2F;vjuː&#x2F;，类似于 view) 是一套 **构建用户界面 ** 的 渐进式 框架 Vue2官网：https:&#x2F;&#x2F;v2.cn.vuejs.org&#x2F; 1.什么是构建用户界面基于数据渲染出用户可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue基础知识1">
+<meta property="og:url" content="https://ntostudy.github.io/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/index.html">
 <meta property="og:site_name" content="欢迎来到牛牛的世界">
+<meta property="og:description" content="day01一、为什么要学习Vue1.前端必备技能 2.岗位多，绝大互联网公司都在使用Vue 3.提高开发效率 4.高薪必备技能（Vue2+Vue3） 二、什么是Vue概念：Vue (读音 &#x2F;vjuː&#x2F;，类似于 view) 是一套 **构建用户界面 ** 的 渐进式 框架 Vue2官网：https:&#x2F;&#x2F;v2.cn.vuejs.org&#x2F; 1.什么是构建用户界面基于数据渲染出用户可以">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681875887026.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681876620277.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681877190137.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681877405007.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681886494417.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681888539340.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681889302166.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681889390406.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681891228284.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681891237750.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681896632672.png">
+<meta property="og:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681913125738.png">
+<meta property="article:published_time" content="2024-06-22T01:23:13.000Z">
+<meta property="article:modified_time" content="2024-06-22T02:25:02.120Z">
 <meta property="article:author" content="NtoStudy">
-<meta property="article:tag" content="记录日常学习">
+<meta property="article:tag" content="vue基础知识">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ntostudy.github.io/images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681875887026.png">
 
 
-<link rel="canonical" href="https://ntostudy.github.io/">
+<link rel="canonical" href="https://ntostudy.github.io/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ntostudy.github.io/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/","path":"2024/06/22/vue基础知识1/","title":"vue基础知识1"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>欢迎来到牛牛的世界</title>
+<title>vue基础知识1 | 欢迎来到牛牛的世界</title>
   
 
 
@@ -70,7 +87,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">欢迎来到牛牛的世界</h1>
+      <p class="site-title">欢迎来到牛牛的世界</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Do you love me</p>
@@ -124,7 +141,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -137,6 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#day01"><span class="nav-number">1.</span> <span class="nav-text">day01</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0Vue"><span class="nav-number">1.1.</span> <span class="nav-text">一、为什么要学习Vue</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFVue"><span class="nav-number">1.2.</span> <span class="nav-text">二、什么是Vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%9E%84%E5%BB%BA%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.什么是构建用户界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%90%E8%BF%9B%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.什么是渐进式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BC%80%E5%8F%91%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Vue的两种开发方式：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BB%80%E4%B9%88%E6%98%AF%E6%A1%86%E6%9E%B6"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.什么是框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AFVue%EF%BC%9F"><span class="nav-number">1.2.4.</span> <span class="nav-text">总结：什么是Vue？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%88%9B%E5%BB%BAVue%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text">三、创建Vue实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">四、插值表达式 { { } }</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BD%9C%E7%94%A8%EF%BC%9A%E5%88%A9%E7%94%A8%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%80%BC%EF%BC%8C%E6%B8%B2%E6%9F%93%E5%88%B0%E9%A1%B5%E9%9D%A2%E4%B8%AD"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.作用：利用表达式进行插值，渲染到页面中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%AF%AD%E6%B3%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%94%99%E8%AF%AF%E7%94%A8%E6%B3%95"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.错误用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%93%8D%E5%BA%94%E5%BC%8F%E7%89%B9%E6%80%A7"><span class="nav-number">1.5.</span> <span class="nav-text">五、响应式特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%93%8D%E5%BA%94%E5%BC%8F%EF%BC%9F"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.什么是响应式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A6%82%E4%BD%95%E8%AE%BF%E9%97%AE-%E5%92%8C-%E4%BF%AE%E6%94%B9-data%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%88%E5%93%8D%E5%BA%94%E5%BC%8F%E6%BC%94%E7%A4%BA%EF%BC%89"><span class="nav-number">1.5.2.</span> <span class="nav-text">2.如何访问 和 修改 data中的数据（响应式演示）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.3.</span> <span class="nav-text">3.总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81Vue%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="nav-number">1.6.</span> <span class="nav-text">六、Vue开发者工具安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81Vue%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">1.7.</span> <span class="nav-text">七、Vue中的常用指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%86%85%E5%AE%B9%E6%B8%B2%E6%9F%93%E6%8C%87%E4%BB%A4"><span class="nav-number">1.8.</span> <span class="nav-text">八、内容渲染指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93%E6%8C%87%E4%BB%A4"><span class="nav-number">1.9.</span> <span class="nav-text">九、条件渲染指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E6%8C%87%E4%BB%A4"><span class="nav-number">1.10.</span> <span class="nav-text">十、事件绑定指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%B1%9E%E6%80%A7%E7%BB%91%E5%AE%9A%E6%8C%87%E4%BB%A4"><span class="nav-number">1.11.</span> <span class="nav-text">十一、属性绑定指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E5%B0%8F%E6%A1%88%E4%BE%8B-%E6%B3%A2%E4%BB%94%E7%9A%84%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%97%85"><span class="nav-number">1.12.</span> <span class="nav-text">十二、小案例-波仔的学习之旅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93%E6%8C%87%E4%BB%A4"><span class="nav-number">1.13.</span> <span class="nav-text">十三、列表渲染指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E5%B0%8F%E6%A1%88%E4%BE%8B-%E5%B0%8F%E9%BB%91%E7%9A%84%E4%B9%A6%E6%9E%B6"><span class="nav-number">1.14.</span> <span class="nav-text">十四、小案例-小黑的书架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81v-for%E4%B8%AD%E7%9A%84key"><span class="nav-number">1.15.</span> <span class="nav-text">十五、v-for中的key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E6%8C%87%E4%BB%A4"><span class="nav-number">1.16.</span> <span class="nav-text">十六、双向绑定指令</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,16 +196,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://ntostudy.github.io/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -201,13 +220,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 欢迎来到牛牛的世界">
+      <meta itemprop="name" content="vue基础知识1 | 欢迎来到牛牛的世界">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/" class="post-title-link" itemprop="url">vue基础知识1</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          vue基础知识1
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -239,8 +258,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h1><h2 id="一、为什么要学习Vue"><a href="#一、为什么要学习Vue" class="headerlink" title="一、为什么要学习Vue"></a>一、为什么要学习Vue</h2><p>1.前端必备技能</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h1><h2 id="一、为什么要学习Vue"><a href="#一、为什么要学习Vue" class="headerlink" title="一、为什么要学习Vue"></a>一、为什么要学习Vue</h2><p>1.前端必备技能</p>
 <p>2.岗位多，绝大互联网公司都在使用Vue</p>
 <p>3.提高开发效率</p>
 <p>4.高薪必备技能（Vue2+Vue3）</p>
@@ -518,7 +536,6 @@
 
 
 
-      
     </div>
 
     
@@ -526,11 +543,16 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="tag"># vue基础知识</a>
+          </div>
+
+        
+
     </footer>
   </article>
 </div>
+
 
 
 
