@@ -3,7 +3,9 @@
   <entry>
     <title>vue基础知识1</title>
     <url>/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/</url>
-    <content><![CDATA[<h1 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h1><h2 id="一、为什么要学习Vue"><a href="#一、为什么要学习Vue" class="headerlink" title="一、为什么要学习Vue"></a>一、为什么要学习Vue</h2><p>1.前端必备技能</p>
+    <content><![CDATA[<span id="more"></span>    
+
+<h1 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h1><h2 id="一、为什么要学习Vue"><a href="#一、为什么要学习Vue" class="headerlink" title="一、为什么要学习Vue"></a>一、为什么要学习Vue</h2><p>1.前端必备技能</p>
 <p>2.岗位多，绝大互联网公司都在使用Vue</p>
 <p>3.提高开发效率</p>
 <p>4.高薪必备技能（Vue2+Vue3）</p>
@@ -292,6 +294,8 @@
     <title>DFS算法</title>
     <url>/2024/07/15/DFS%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<p>深度优先搜索是图的一种搜索方式，以深度为优先级去进行搜索，通俗地说就是”不撞南墙不回头”，对于当前正在搜索的路径而言，只有把当前路径给搜索完了，即走到无路可走时，才回返回进而搜索另一条路。</p>
+<span id="more"></span>  
+
 <p>假设我们有一个二叉树，共有10个节点，以下是DFS的简单示范：<img src="/../images/DFS%E7%AE%97%E6%B3%95/1.png" alt="在这里插入图片描述"></p>
 <p>从根节点开始向下搜索<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/2.png" alt="在这里插入图片描述"></p>
 <p>然后搜索到2号节点<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/3.png" alt="在这里插入图片描述"></p>
