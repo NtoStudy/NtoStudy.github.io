@@ -5,6 +5,10 @@ tags: vue基础知识
 category: 前端
 ---
 
+这里是vue学习过程中第一天的知识点
+
+<!--more-->    
+
 # day01
 
 ## 一、为什么要学习Vue
