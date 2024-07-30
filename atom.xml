@@ -6,7 +6,7 @@
   <link href="https://ntostudy.github.io/atom.xml" rel="self"/>
   
   <link href="https://ntostudy.github.io/"/>
-  <updated>2024-07-19T08:01:11.816Z</updated>
+  <updated>2024-07-30T15:02:35.911Z</updated>
   <id>https://ntostudy.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tomcat-startup</title>
+    <link href="https://ntostudy.github.io/2024/07/30/tomcat-startup/"/>
+    <id>https://ntostudy.github.io/2024/07/30/tomcat-startup/</id>
+    <published>2024-07-30T14:58:52.000Z</published>
+    <updated>2024-07-30T15:02:35.911Z</updated>
+    
+    <content type="html"><![CDATA[<p>Tomcat服务器安装后，点击startup.bat 无法打开，就是闪一下，失败的原因有两个</p><span id="more"></span><p>(一) 环境变量有误<br>1.右键 此电脑 </p><p><img src="/../images/Tomcat-startup/1.png"></p><p>2.选择 高级系统设置</p><p><img src="/../images/Tomcat-startup/2.png"></p><p> 3.点击环境变量，配置JAVA_HOME</p><p><img src="/../images/Tomcat-startup/3.png"></p><p>然后一直点击确定，最后重新启动 startup.bat 就可以啦~~~</p><p>（二）端口被占用<br>解决方法：① 修改端口号：Tomcat根目录—&gt;cofn目录—&gt;server.xml—&gt;Connector标签—&gt;修改port属性为所需要的端口号。注意：端口号范围：165535,11023为知名端口，102449151为用户端口，4915265535为动态端口。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Tomcat服务器安装后，点击startup.bat 无法打开，就是闪一下，失败的原因有两个&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="debug" scheme="https://ntostudy.github.io/tags/debug/"/>
+    
+  </entry>
   
   <entry>
     <title>BFS算法</title>
