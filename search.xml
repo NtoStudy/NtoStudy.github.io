@@ -1286,7 +1286,7 @@ main.js： 程序入口文件，最先执行的文件
 
 
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221130095316032.png" alt="image-20221130095316032"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221130095316032.png"></p>
 <p>下面我们将进入SpringBoot基础阶段的学习。</p>
 <p>在没有正式的学习SpringBoot之前，我们要先来了解下什么是Spring。</p>
 <p>我们可以打开Spring的官网(<a href="https://spring.io)，去看一下Spring的简介：Spring">https://spring.io)，去看一下Spring的简介：Spring</a> makes Java simple。</p>
