@@ -1824,6 +1824,7 @@ main.js： 程序入口文件，最先执行的文件
 <p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825194553137.png"> </p>
 <p>当我们运行SpringBoot的引导类时(运行main方法)，就会看到命令行输出的日志，其中占用8080端口的就是Tomcat。</p>
 <p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825195359993.png" alt="image-20220825195359993"></p>
+<p>123</p>
 ]]></content>
       <tags>
         <tag>springboot</tag>
