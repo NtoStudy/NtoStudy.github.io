@@ -1268,11 +1268,11 @@ main.js： 程序入口文件，最先执行的文件
       </tags>
   </entry>
   <entry>
-    <title>springboot入门</title>
+    <title>Springboot入门</title>
     <url>/2024/07/31/springboot%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<h1 id="SpringBoot基础"><a href="#SpringBoot基础" class="headerlink" title="SpringBoot基础"></a>SpringBoot基础</h1><h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><blockquote>
+    <content><![CDATA[<h1 id="Springboot基础"><a href="#Springboot基础" class="headerlink" title="Springboot基础"></a>Springboot基础</h1><h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><blockquote>
 <ol>
-<li><p>SpringBootWeb入门</p>
+<li><p>SpringbootWeb入门</p>
 </li>
 <li><p>HTTP协议</p>
 </li>
@@ -1286,55 +1286,55 @@ main.js： 程序入口文件，最先执行的文件
 
 
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221130095316032.png"></p>
-<p>下面我们将进入SpringBoot基础阶段的学习。</p>
-<p>在没有正式的学习SpringBoot之前，我们要先来了解下什么是Spring。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221130095316032.png"></p>
+<p>下面我们将进入Springboot基础阶段的学习。</p>
+<p>在没有正式的学习Springboot之前，我们要先来了解下什么是Spring。</p>
 <p>我们可以打开Spring的官网(<a href="https://spring.io)，去看一下Spring的简介：Spring">https://spring.io)，去看一下Spring的简介：Spring</a> makes Java simple。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220617222738668.png"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220617222738668.png"></p>
 <p>Spring的官方提供很多开源的项目，我们可以点击上面的projects，看到spring家族旗下的项目，按照流行程度排序为：</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220617222925923.png"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220617222925923.png"></p>
 <p>Spring发展到今天已经形成了一种开发生态圈，Spring提供了若干个子项目，每个项目用于完成特定的功能。而我们在项目开发时，一般会偏向于选择这一套spring家族的技术，来解决对应领域的问题，那我们称这一套技术为<strong>spring全家桶</strong>。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220617222609699.png"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220617222609699.png"></p>
 <p>而Spring家族旗下这么多的技术，最基础、最核心的是 SpringFramework。其他的spring家族的技术，都是基于SpringFramework的，SpringFramework中提供很多实用功能，如：依赖注入、事务管理、web开发支持、数据访问、消息服务等等。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220617224427947.png"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220617224427947.png"></p>
 <p>而如果我们在项目中，直接基于SpringFramework进行开发，存在两个问题：配置繁琐、入门难度大。 </p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823185227296.png"></p>
-<p>所以基于此呢，spring官方推荐我们从另外一个项目开始学习，那就是目前最火爆的SpringBoot。 </p>
-<p>通过springboot就可以快速的帮我们构建应用程序，所以springboot呢，最大的特点有两个 ：</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220823185227296.png"></p>
+<p>所以基于此呢，spring官方推荐我们从另外一个项目开始学习，那就是目前最火爆的Springboot。 </p>
+<p>通过Springboot就可以快速的帮我们构建应用程序，所以Springboot呢，最大的特点有两个 ：</p>
 <ul>
 <li>简化配置</li>
 <li>快速开发</li>
 </ul>
 <p><strong>Spring Boot 可以帮助我们非常快速的构建应用程序、简化开发、提高效率 。</strong></p>
-<p>接下来，我们就直接通过一个SpringBoot的web入门程序，让大家快速感受一下，基于SpringBoot进行Web开发的便捷性。</p>
-<h2 id="1-SpringBootWeb快速入门"><a href="#1-SpringBootWeb快速入门" class="headerlink" title="1. SpringBootWeb快速入门"></a>1. SpringBootWeb快速入门</h2><h3 id="1-1-需求"><a href="#1-1-需求" class="headerlink" title="1.1 需求"></a>1.1 需求</h3><p>需求：基于SpringBoot的方式开发一个web应用，浏览器发起请求&#x2F;hello后，给浏览器返回字符串 “Hello World ~”。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823191003444.png"></p>
-<h3 id="1-2-开发步骤"><a href="#1-2-开发步骤" class="headerlink" title="1.2 开发步骤"></a>1.2 开发步骤</h3><p>第1步：创建SpringBoot工程项目</p>
+<p>接下来，我们就直接通过一个Springboot的web入门程序，让大家快速感受一下，基于Springboot进行Web开发的便捷性。</p>
+<h2 id="1-SpringbootWeb快速入门"><a href="#1-SpringbootWeb快速入门" class="headerlink" title="1. SpringbootWeb快速入门"></a>1. SpringbootWeb快速入门</h2><h3 id="1-1-需求"><a href="#1-1-需求" class="headerlink" title="1.1 需求"></a>1.1 需求</h3><p>需求：基于Springboot的方式开发一个web应用，浏览器发起请求&#x2F;hello后，给浏览器返回字符串 “Hello World ~”。</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220823191003444.png"></p>
+<h3 id="1-2-开发步骤"><a href="#1-2-开发步骤" class="headerlink" title="1.2 开发步骤"></a>1.2 开发步骤</h3><p>第1步：创建Springboot工程项目</p>
 <p>第2步：定义HelloController类，添加方法hello，并添加注解</p>
 <p>第3步：测试运行</p>
-<h4 id="1-2-1-创建SpringBoot工程（需要联网）"><a href="#1-2-1-创建SpringBoot工程（需要联网）" class="headerlink" title="1.2.1 创建SpringBoot工程（需要联网）"></a>1.2.1 创建SpringBoot工程（需要联网）</h4><p>基于Spring官方骨架，创建SpringBoot工程。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201184702136.png" alt="image-20221201184702136"></p>
+<h4 id="1-2-1-创建Springboot工程（需要联网）"><a href="#1-2-1-创建Springboot工程（需要联网）" class="headerlink" title="1.2.1 创建Springboot工程（需要联网）"></a>1.2.1 创建Springboot工程（需要联网）</h4><p>基于Spring官方骨架，创建Springboot工程。</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221201184702136.png" alt="image-20221201184702136"></p>
 <p>基本信息描述完毕之后，勾选web开发相关依赖。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201184850248.png" alt="image-20221201184850248"></p>
-<p>点击Finish之后，就会联网创建这个SpringBoot工程，创建好之后，结构如下：</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221201184850248.png" alt="image-20221201184850248"></p>
+<p>点击Finish之后，就会联网创建这个Springboot工程，创建好之后，结构如下：</p>
 <ul>
 <li>&#x3D;&#x3D;注意：在联网创建过程中，会下载相关资源(请耐心等待)&#x3D;&#x3D;</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201185910596.png" alt="image-20221201185910596"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221201185910596.png" alt="image-20221201185910596"> </p>
 <h4 id="1-2-2-定义请求处理类"><a href="#1-2-2-定义请求处理类" class="headerlink" title="1.2.2 定义请求处理类"></a>1.2.2 定义请求处理类</h4><p>在com.itheima这个包下创建一个子包controller</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201190541295.png" alt="image-20221201190541295"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221201190541295.png" alt="image-20221201190541295"></p>
 <p>然后在controller包下新建一个类：HelloController</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201190825439.png" alt="image-20221201190825439"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221201190825439.png" alt="image-20221201190825439"></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World ~&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World ~&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="1-2-3-运行测试"><a href="#1-2-3-运行测试" class="headerlink" title="1.2.3 运行测试"></a>1.2.3 运行测试</h4><p>运行SpringBoot自动生成的引导类</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201191028124.png" alt="image-20221201191028124"> </p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201191348924.png" alt="image-20221201191348924"> </p>
+<h4 id="1-2-3-运行测试"><a href="#1-2-3-运行测试" class="headerlink" title="1.2.3 运行测试"></a>1.2.3 运行测试</h4><p>运行Springboot自动生成的引导类</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221201191028124.png" alt="image-20221201191028124"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221201191348924.png" alt="image-20221201191348924"> </p>
 <p>打开浏览器，输入 <code>http://localhost:8080/hello</code></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823195048415.png"></p>
-<h3 id="1-3-Web分析"><a href="#1-3-Web分析" class="headerlink" title="1.3 Web分析"></a>1.3 Web分析</h3><p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201224603497.png" alt="image-20221201224603497"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220823195048415.png"></p>
+<h3 id="1-3-Web分析"><a href="#1-3-Web分析" class="headerlink" title="1.3 Web分析"></a>1.3 Web分析</h3><p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221201224603497.png" alt="image-20221201224603497"></p>
 <p>浏览器：</p>
 <ul>
 <li><p>输入网址：<code>http://192.168.100.11:8080/hello</code></p>
@@ -1382,24 +1382,24 @@ main.js： 程序入口文件，最先执行的文件
 <p><strong>问题：浏览器和服务器两端进行数据交互，使用什么协议？</strong></p>
 <p><strong>答案：http协议</strong></p>
 </blockquote>
-<h2 id="2-HTTP协议"><a href="#2-HTTP协议" class="headerlink" title="2. HTTP协议"></a>2. HTTP协议</h2><h3 id="2-1-HTTP-概述"><a href="#2-1-HTTP-概述" class="headerlink" title="2.1 HTTP-概述"></a>2.1 HTTP-概述</h3><h4 id="2-1-1-介绍"><a href="#2-1-1-介绍" class="headerlink" title="2.1.1 介绍"></a>2.1.1 介绍</h4><p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823200024507.png"></p>
+<h2 id="2-HTTP协议"><a href="#2-HTTP协议" class="headerlink" title="2. HTTP协议"></a>2. HTTP协议</h2><h3 id="2-1-HTTP-概述"><a href="#2-1-HTTP-概述" class="headerlink" title="2.1 HTTP-概述"></a>2.1 HTTP-概述</h3><h4 id="2-1-1-介绍"><a href="#2-1-1-介绍" class="headerlink" title="2.1.1 介绍"></a>2.1.1 介绍</h4><p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220823200024507.png"></p>
 <p>HTTP：Hyper Text Transfer Protocol(超文本传输协议)，规定了浏览器与服务器之间数据传输的规则。</p>
 <ul>
 <li>http是互联网上应用最为广泛的一种网络协议 </li>
 <li>http协议要求：浏览器在向服务器发送请求数据时，或是服务器在向浏览器发送响应数据时，都必须按照固定的格式进行数据传输</li>
 </ul>
 <p>如果想知道http协议的数据传输格式有哪些，可以打开浏览器，点击<code>F12</code>打开开发者工具，点击<code>Network</code>来查看</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202105735230.png" alt="image-20221202105735230"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202105735230.png" alt="image-20221202105735230"></p>
 <p>浏览器向服务器进行请求时：</p>
 <ul>
 <li>服务器按照固定的格式进行解析</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202111044434.png" alt="image-20221202111044434"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202111044434.png" alt="image-20221202111044434"></p>
 <p>服务器向浏览器进行响应时：</p>
 <ul>
 <li>浏览器按照固定的格式进行解析</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202111307819.png" alt="image-20221202111307819"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202111307819.png" alt="image-20221202111307819"></p>
 <p><strong>所以，我们学习HTTP主要就是学习请求和响应数据的具体格式内容。</strong></p>
 <h4 id="2-2-2-特点"><a href="#2-2-2-特点" class="headerlink" title="2.2.2 特点"></a>2.2.2 特点</h4><p>我们刚才初步认识了HTTP协议，那么我们在看看HTTP协议有哪些特点：</p>
 <ul>
@@ -1486,7 +1486,7 @@ main.js： 程序入口文件，最先执行的文件
 </tbody></table>
 <p>在我们实际应用中常用的也就是 ：<strong>GET、POST</strong></p>
 <p><strong>GET方式的请求协议：</strong></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823200708026.png"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220823200708026.png"> </p>
 <ul>
 <li><p>请求行 ：HTTP请求中的第一行数据。由：<code>请求方式</code>、<code>资源路径</code>、<code>协议/版本</code>组成（之间使用空格分隔）</p>
 <ul>
@@ -1527,7 +1527,7 @@ main.js： 程序入口文件，最先执行的文件
 </li>
 </ul>
 <p><strong>POST方式的请求协议：</strong>	</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823201303601.png"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220823201303601.png"></p>
 <ul>
 <li>请求行(以上图中红色部分)：包含请求方式、资源路径、协议&#x2F;版本<ul>
 <li>请求方式：POST</li>
@@ -1567,7 +1567,7 @@ main.js： 程序入口文件，最先执行的文件
 </tr>
 </tbody></table>
 <h3 id="2-3-HTTP-响应协议"><a href="#2-3-HTTP-响应协议" class="headerlink" title="2.3 HTTP-响应协议"></a>2.3 HTTP-响应协议</h3><h4 id="2-3-1-格式介绍"><a href="#2-3-1-格式介绍" class="headerlink" title="2.3.1 格式介绍"></a>2.3.1 格式介绍</h4><p>与HTTP的请求一样，HTTP响应的数据也分为3部分：<strong>响应行</strong>、<strong>响应头</strong> 、<strong>响应体</strong> </p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823202344149.png"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220823202344149.png"> </p>
 <ul>
 <li><p>响应行(以上图中红色部分)：响应数据的第一行。响应行由<code>协议及版本</code>、<code>响应状态码</code>、<code>状态码描述</code>组成</p>
 <ul>
@@ -1631,20 +1631,20 @@ main.js： 程序入口文件，最先执行的文件
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.ServerSocket;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 自定义web服务器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Server</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">ss</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8080</span>); <span class="comment">// 监听指定端口</span></span><br><span class="line">        System.out.println(<span class="string">&quot;server is running...&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="type">Socket</span> <span class="variable">sock</span> <span class="operator">=</span> ss.accept();</span><br><span class="line">            System.out.println(<span class="string">&quot;connected from &quot;</span> + sock.getRemoteSocketAddress());</span><br><span class="line">            <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Handler</span>(sock);</span><br><span class="line">            t.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Handler</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line">    Socket sock;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Handler</span><span class="params">(Socket sock)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.sock = sock;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">InputStream</span> <span class="variable">input</span> <span class="operator">=</span> <span class="built_in">this</span>.sock.getInputStream();</span><br><span class="line">             <span class="type">OutputStream</span> <span class="variable">output</span> <span class="operator">=</span> <span class="built_in">this</span>.sock.getOutputStream()) &#123;</span><br><span class="line">                handle(input, output);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="built_in">this</span>.sock.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException ioe) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;client disconnected.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">handle</span><span class="params">(InputStream input, OutputStream output)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(input, StandardCharsets.UTF_8));</span><br><span class="line">        <span class="type">BufferedWriter</span> <span class="variable">writer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(<span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(output, StandardCharsets.UTF_8));</span><br><span class="line">        <span class="comment">// 读取HTTP请求:</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">requestOk</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">first</span> <span class="operator">=</span> reader.readLine();</span><br><span class="line">        <span class="keyword">if</span> (first.startsWith(<span class="string">&quot;GET / HTTP/1.&quot;</span>)) &#123;</span><br><span class="line">            requestOk = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">header</span> <span class="operator">=</span> reader.readLine();</span><br><span class="line">            <span class="keyword">if</span> (header.isEmpty()) &#123; <span class="comment">// 读取到空行时, HTTP Header读取完毕</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(header);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(requestOk ? <span class="string">&quot;Response OK&quot;</span> : <span class="string">&quot;Response Error&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!requestOk) &#123;<span class="comment">// 发送错误响应:</span></span><br><span class="line">            writer.write(<span class="string">&quot;HTTP/1.0 404 Not Found\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;Content-Length: 0\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">            writer.flush();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;<span class="comment">// 发送成功响应:</span></span><br><span class="line">            <span class="comment">//读取html文件，转换为字符串</span></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> Server.class.getClassLoader().getResourceAsStream(<span class="string">&quot;html/a.html&quot;</span>);</span><br><span class="line">            <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(is));</span><br><span class="line">            <span class="type">StringBuilder</span> <span class="variable">data</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">            <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>)&#123;</span><br><span class="line">                data.append(line);</span><br><span class="line">            &#125;</span><br><span class="line">            br.close();</span><br><span class="line">            <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> data.toString().getBytes(StandardCharsets.UTF_8).length;</span><br><span class="line"></span><br><span class="line">            writer.write(<span class="string">&quot;HTTP/1.1 200 OK\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;Connection: keep-alive\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;Content-Type: text/html\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;Content-Length: &quot;</span> + length + <span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;\r\n&quot;</span>); <span class="comment">// 空行标识Header和Body的分隔</span></span><br><span class="line">            writer.write(data.toString());</span><br><span class="line">            writer.flush();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>启动ServerSocket程序：</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202170430928.png" alt="image-20221202170430928"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202170430928.png" alt="image-20221202170430928"></p>
 <p>浏览器输入：<code>http://localhost:8080</code>  就会访问到ServerSocket程序 </p>
 <ul>
 <li>ServerSocket程序，会读取服务器上<code>html/a.html</code>文件，并把文件数据发送给浏览器</li>
 <li>浏览器接收到a.html文件中的数据后进行解析，显示以下内容</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202171204705.png" alt="image-20221202171204705"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202171204705.png" alt="image-20221202171204705"> </p>
 <p>现在大家知道了服务器是可以使用java完成编写，是可以接受页面发送的请求和响应数据给前端浏览器的，而在开发中真正用到的Web服务器，我们不会自己写的，都是使用目前比较流行的web服务器。如：<strong>Tomcat</strong></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824233452167.png"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220824233452167.png"> </p>
 <h2 id="3-WEB服务器-Tomcat"><a href="#3-WEB服务器-Tomcat" class="headerlink" title="3. WEB服务器-Tomcat"></a>3. WEB服务器-Tomcat</h2><h3 id="3-1-简介"><a href="#3-1-简介" class="headerlink" title="3.1 简介"></a>3.1 简介</h3><h4 id="3-1-1-服务器概述"><a href="#3-1-1-服务器概述" class="headerlink" title="3.1.1 服务器概述"></a>3.1.1 服务器概述</h4><p><strong>服务器硬件</strong></p>
 <ul>
 <li>指的也是计算机，只不过服务器要比我们日常使用的计算机大很多。</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202173148317.png" alt="image-20221202173148317"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202173148317.png" alt="image-20221202173148317"> </p>
 <p>服务器，也称伺服器。是提供计算服务的设备。由于服务器需要响应服务请求，并进行处理，因此一般来说服务器应具备承担服务并且保障服务的能力。</p>
 <p>服务器的构成包括处理器、硬盘、内存、系统总线等，和通用的计算机架构类似，但是由于需要提供高可靠的服务，因此在处理能力、稳定性、可靠性、安全性、可扩展性、可管理性等方面要求较高。</p>
 <p>在网络环境下，根据服务器提供的服务类型不同，可分为：文件服务器，数据库服务器，应用程序服务器，WEB服务器等。</p>
@@ -1655,9 +1655,9 @@ main.js： 程序入口文件，最先执行的文件
 <li>服务器软件本质是一个运行在服务器设备上的应用程序</li>
 <li>能够接收客户端请求，并根据请求给客户端响应数据</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/1530625192392.png" alt="1530625192392"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/1530625192392.png" alt="1530625192392"></p>
 <h4 id="3-1-2-Web服务器"><a href="#3-1-2-Web服务器" class="headerlink" title="3.1.2 Web服务器"></a>3.1.2 Web服务器</h4><p>Web服务器是一个应用程序(软件)，对HTTP协议的操作进行封装，使得程序员不必直接对协议进行操作(不用程序员自己写代码去解析http协议规则)，让Web开发更加便捷。主要功能是”提供网上信息浏览服务”。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824233614686.png"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220824233614686.png"></p>
 <p>Web服务器是安装在服务器端的一款软件，将来我们把自己写的Web项目部署到Tomcat服务器软件中，当Web服务器软件启动后，部署在Web服务器软件中的页面就可以直接通过浏览器来访问了。</p>
 <p><strong>Web服务器软件使用步骤</strong></p>
 <ul>
@@ -1670,17 +1670,17 @@ main.js： 程序入口文件，最先执行的文件
 <ul>
 <li>在提供的资料中找到静态资源文件</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202180119859.png" alt="image-20221202180119859"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202180119859.png" alt="image-20221202180119859"> </p>
 <p>第2步：下载安装Web服务器软件</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202181110555.png" alt="image-20221202181110555"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202181110555.png" alt="image-20221202181110555"></p>
 <p>第3步：将静态资源部署到Web服务器上</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202180805686.png" alt="image-20221202180805686"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202180805686.png" alt="image-20221202180805686"></p>
 <p>第4步：启动Web服务器使用浏览器访问对应的资源</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202181346327.png" alt="image-20221202181346327"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202181346327.png" alt="image-20221202181346327"></p>
 <p>浏览器输入：<code>http://localhost:8080/demo/index.html</code></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202181651469.png" alt="image-20221202181651469"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202181651469.png" alt="image-20221202181651469"></p>
 <p>上述内容在演示的时候，使用的是Apache下的Tomcat软件，至于Tomcat软件如何使用，后面会详细的讲到。而对于Web服务器来说，实现的方案有很多，Tomcat只是其中的一种，而除了Tomcat以外，还有很多优秀的Web服务器，比如:</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824233728524.png" alt="image-20220824233728524"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220824233728524.png" alt="image-20220824233728524"> </p>
 <p>Tomcat就是一款软件，我们主要是以学习如何去使用为主。具体我们会从以下这些方向去学习:</p>
 <ol>
 <li><p>简介：初步认识下Tomcat</p>
@@ -1701,9 +1701,9 @@ main.js： 程序入口文件，最先执行的文件
 </blockquote>
 <p>因为Tomcat支持Servlet&#x2F;JSP规范，所以Tomcat也被称为Web容器、Servlet容器。JavaWeb程序需要依赖Tomcat才能运行。</p>
 <p>Tomcat的官网: <a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a> </p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824233903517.png" alt="image-20220824233903517"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220824233903517.png" alt="image-20220824233903517"> </p>
 <h3 id="3-2-基本使用"><a href="#3-2-基本使用" class="headerlink" title="3.2 基本使用"></a>3.2 基本使用</h3><h4 id="3-2-1-下载"><a href="#3-2-1-下载" class="headerlink" title="3.2.1 下载"></a>3.2.1 下载</h4><p>直接从官方网站下载：<a href="https://tomcat.apache.org/download-90.cgi">https://tomcat.apache.org/download-90.cgi</a></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824234407828.png"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220824234407828.png"></p>
 <blockquote>
 <p>Tomcat软件类型说明：</p>
 <ul>
@@ -1713,15 +1713,15 @@ main.js： 程序入口文件，最先执行的文件
 </blockquote>
 <p>大家可以自行下载，也可以直接使用资料中已经下载好的资源，</p>
 <p>Tomcat的软件程序  ：&#x2F;资料&#x2F;SpringbootWeb&#x2F;apache-tomcat-9.0.27-windows-x64.zip</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824234527743.png"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220824234527743.png"> </p>
 <h4 id="3-2-2-安装与卸载"><a href="#3-2-2-安装与卸载" class="headerlink" title="3.2.2 安装与卸载"></a>3.2.2 安装与卸载</h4><p><strong>安装:</strong> Tomcat是绿色版，直接解压即安装</p>
 <blockquote>
 <p>在E盘的develop目录下，将<code>apache-tomcat-9.0.27-windows-x64.zip</code>进行解压缩，会得到一个<code>apache-tomcat-9.0.27</code>的目录，Tomcat就已经安装成功。</p>
 </blockquote>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202184545321.png" alt="image-20221202184545321"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202184545321.png" alt="image-20221202184545321"></p>
 <p>&#x3D;&#x3D;注意，Tomcat在解压缩的时候，解压所在的目录可以任意，但最好解压到一个不包含中文和空格的目录，因为后期在部署项目的时候，如果路径有中文或者空格可能会导致程序部署失败。&#x3D;&#x3D;</p>
 <p>打开<code>apache-tomcat-9.0.27</code>目录就能看到如下目录结构，每个目录中包含的内容需要认识下</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824234652173.png">  </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220824234652173.png">  </p>
 <p>bin：目录下有两类文件，一种是以<code>.bat</code>结尾的，是Windows系统的可执行文件，一种是以<code>.sh</code>结尾的，是Linux系统的可执行文件。</p>
 <p>webapps：就是以后项目部署的目录</p>
 <p><strong>卸载：</strong>卸载比较简单，可以直接删除目录即可</p>
@@ -1729,24 +1729,24 @@ main.js： 程序入口文件，最先执行的文件
 <ul>
 <li>双击tomcat解压目录&#x2F;bin&#x2F;<strong>startup.bat</strong>文件即可启动tomcat</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202183201663.png" alt="image-20221202183201663"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202183201663.png" alt="image-20221202183201663"></p>
 <p>&#x3D;&#x3D;注意: tomcat服务器启动后,黑窗口不会关闭,只要黑窗口不关闭,就证明tomcat服务器正在运行&#x3D;&#x3D;</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202183409304.png" alt="image-20221202183409304"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202183409304.png" alt="image-20221202183409304"></p>
 <p>Tomcat的默认端口为8080，所以在浏览器的地址栏输入：<code>http://127.0.0.1:8080</code> 即可访问tomcat服务器</p>
 <blockquote>
 <p>127.0.0.1 也可以使用localhost代替。如：<code>http://localhost:8080</code></p>
 </blockquote>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202183550682.png" alt="image-20221202183550682"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202183550682.png" alt="image-20221202183550682"></p>
 <ul>
 <li>能看到以上图片中Apache Tomcat的内容就说明Tomcat已经启动成功</li>
 </ul>
 <p>&#x3D;&#x3D;注意事项&#x3D;&#x3D; ：Tomcat启动的过程中，遇到控制台有中文乱码时，可以通常修改conf&#x2F;logging.prooperties文件解决</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825083848086.png" alt="image-20220825083848086"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220825083848086.png" alt="image-20220825083848086"> </p>
 <p><strong>关闭:</strong>  关闭有三种方式 </p>
 <p>1、强制关闭：直接x掉Tomcat窗口（不建议）</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202184753808.png" alt="image-20221202184753808"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202184753808.png" alt="image-20221202184753808"></p>
 <p>2、正常关闭：bin\shutdown.bat</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202185103941.png" alt="image-20221202185103941"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202185103941.png" alt="image-20221202185103941"></p>
 <p>3、正常关闭：在Tomcat启动窗口中按下 Ctrl+C</p>
 <ul>
 <li>说明：如果按下Ctrl+C没有反映，可以多按几次</li>
@@ -1755,9 +1755,9 @@ main.js： 程序入口文件，最先执行的文件
 <ul>
 <li>检查JAVA_HOME环境变量是否正确配置</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202190033167.png" alt="image-20221202190033167"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202190033167.png" alt="image-20221202190033167"></p>
 <p><strong>问题2：端口号冲突</strong></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825084104447.png" alt="image-20220825084104447"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220825084104447.png" alt="image-20220825084104447"></p>
 <ul>
 <li><p>发生问题的原因：Tomcat使用的端口被占用了。</p>
 </li>
@@ -1767,34 +1767,34 @@ main.js： 程序入口文件，最先执行的文件
 </ul>
 </li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825084017185.png" alt="image-20220825084017185"> </p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220825084017185.png" alt="image-20220825084017185"> </p>
 <blockquote>
 <p>注: HTTP协议默认端口号为80，如果将Tomcat端口号改为80，则将来访问Tomcat时，将不用输入端口号。</p>
 </blockquote>
-<h3 id="3-3-入门程序解析"><a href="#3-3-入门程序解析" class="headerlink" title="3.3 入门程序解析"></a>3.3 入门程序解析</h3><p>关于web开发的基础知识，我们可以告一段落了。下面呢，我们在基于今天的核心技术点SpringBoot快速入门案例进行分析。</p>
-<h4 id="3-3-1-Spring官方骨架"><a href="#3-3-1-Spring官方骨架" class="headerlink" title="3.3.1 Spring官方骨架"></a>3.3.1 Spring官方骨架</h4><p>之前我们创建的SpringBoot入门案例，是基于Spring官方提供的骨架实现的。</p>
+<h3 id="3-3-入门程序解析"><a href="#3-3-入门程序解析" class="headerlink" title="3.3 入门程序解析"></a>3.3 入门程序解析</h3><p>关于web开发的基础知识，我们可以告一段落了。下面呢，我们在基于今天的核心技术点Springboot快速入门案例进行分析。</p>
+<h4 id="3-3-1-Spring官方骨架"><a href="#3-3-1-Spring官方骨架" class="headerlink" title="3.3.1 Spring官方骨架"></a>3.3.1 Spring官方骨架</h4><p>之前我们创建的Springboot入门案例，是基于Spring官方提供的骨架实现的。</p>
 <p>Spring官方骨架，可以理解为Spring官方为程序员提供一个搭建项目的模板。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202195646621.png" alt="image-20221202195646621"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202195646621.png" alt="image-20221202195646621"></p>
 <p>我们可以通过访问：<a href="https://start.spring.io/">https://start.spring.io/</a> ，进入到官方骨架页面</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202201623424.png" alt="image-20221202201623424"></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202200356398.png" alt="image-20221202200356398"></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202200547676.png" alt="image-20221202200547676"></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202200708988.png" alt="image-20221202200708988"></p>
-<p>Spring官方生成的SpringBoot项目，怎么使用呢？</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202201623424.png" alt="image-20221202201623424"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202200356398.png" alt="image-20221202200356398"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202200547676.png" alt="image-20221202200547676"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202200708988.png" alt="image-20221202200708988"></p>
+<p>Spring官方生成的Springboot项目，怎么使用呢？</p>
 <ul>
-<li>解压缩后，就会得到一个SpringBoot项目工程</li>
+<li>解压缩后，就会得到一个Springboot项目工程</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202201042109.png" alt="image-20221202201042109"></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202201221136.png" alt="image-20221202201221136"></p>
-<p>打开pom.xml文件，我们可以看到springboot项目中引入了web依赖和test依赖</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202201826364.png" alt="image-20221202201826364"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202201042109.png" alt="image-20221202201042109"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202201221136.png" alt="image-20221202201221136"></p>
+<p>打开pom.xml文件，我们可以看到Springboot项目中引入了web依赖和test依赖</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202201826364.png" alt="image-20221202201826364"></p>
 <blockquote>
-<p><strong>结论：不论使用IDEA创建SpringBoot项目，还是直接在官方网站利用骨架生成SpringBoot项目，项目的结构和pom.xml文件中内容是相似的。</strong></p>
+<p><strong>结论：不论使用IDEA创建Springboot项目，还是直接在官方网站利用骨架生成Springboot项目，项目的结构和pom.xml文件中内容是相似的。</strong></p>
 </blockquote>
-<h4 id="3-3-2-起步依赖"><a href="#3-3-2-起步依赖" class="headerlink" title="3.3.2 起步依赖"></a>3.3.2 起步依赖</h4><p>在我们之前讲解的SpringBoot快速入门案例中，同样也引用了：web依赖和test依赖</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202202305118.png" alt="image-20221202202305118"></p>
-<p>spring-boot-starter-web和spring-boot-starter-test，在SpringBoot中又称为：起步依赖</p>
-<p>而在SpringBoot的项目中，有很多的起步依赖，他们有一个共同的特征：就是以<code>spring-boot-starter-</code>作为开头。在以后大家遇到spring-boot-starter-xxx这类的依赖，都为起步依赖。</p>
+<h4 id="3-3-2-起步依赖"><a href="#3-3-2-起步依赖" class="headerlink" title="3.3.2 起步依赖"></a>3.3.2 起步依赖</h4><p>在我们之前讲解的Springboot快速入门案例中，同样也引用了：web依赖和test依赖</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202202305118.png" alt="image-20221202202305118"></p>
+<p>spring-boot-starter-web和spring-boot-starter-test，在Springboot中又称为：起步依赖</p>
+<p>而在Springboot的项目中，有很多的起步依赖，他们有一个共同的特征：就是以<code>spring-boot-starter-</code>作为开头。在以后大家遇到spring-boot-starter-xxx这类的依赖，都为起步依赖。</p>
 <p>起步依赖有什么特殊之处呢，这里我们以入门案例中引入的起步依赖做为讲解：</p>
 <ul>
 <li>spring-boot-starter-web：包含了web应用开发所需要的常见依赖</li>
@@ -1802,32 +1802,31 @@ main.js： 程序入口文件，最先执行的文件
 </ul>
 <blockquote>
 <p><strong>spring-boot-starter-web</strong>内部把关于Web开发所有的依赖都已经导入并且指定了版本，只需引入 <code>spring-boot-starter-web</code> 依赖就可以实现Web开发的需要的功能</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202204013113.png" alt="image-20221202204013113"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202204013113.png" alt="image-20221202204013113"></p>
 </blockquote>
 <p>Spring的官方提供了很多现成的starter(起步依赖)，我们在开发相关应用时，只需要引入对应的starter即可。</p>
 <p>官方地址：<a href="https://docs.spring.io/spring-boot/docs/2.7.2/reference/htmlsingle/#using.build-systems.starters">https://docs.spring.io/spring-boot/docs/2.7.2/reference/htmlsingle/#using.build-systems.starters</a></p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202204536647.png" alt="image-20221202204536647"></p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202204536647.png" alt="image-20221202204536647"></p>
 <p>每一个起步依赖，都用于开发一个特定的功能。</p>
 <blockquote>
-<p>举例：当我们开发中需要使用redis数据库时，只需要在SpringBoot项目中，引入：spring-boot-starter-redis ，即可导入redis开发所需要的依赖。</p>
+<p>举例：当我们开发中需要使用redis数据库时，只需要在Springboot项目中，引入：spring-boot-starter-redis ，即可导入redis开发所需要的依赖。</p>
 </blockquote>
-<h4 id="3-3-2-SpringBoot父工程"><a href="#3-3-2-SpringBoot父工程" class="headerlink" title="3.3.2 SpringBoot父工程"></a>3.3.2 SpringBoot父工程</h4><p>在我们之前开发的SpringBoot入门案例中，我们通过maven引入的依赖，是没有指定具体的依赖版本号的。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202205103486.png" alt="image-20221202205103486"></p>
+<h4 id="3-3-2-Springboot父工程"><a href="#3-3-2-Springboot父工程" class="headerlink" title="3.3.2 Springboot父工程"></a>3.3.2 Springboot父工程</h4><p>在我们之前开发的Springboot入门案例中，我们通过maven引入的依赖，是没有指定具体的依赖版本号的。</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202205103486.png" alt="image-20221202205103486"></p>
 <p>为什么没有指定<version>版本号，可以正常使用呢？</p>
 <ul>
-<li>因为每一个SpringBoot工程，都有一个父工程。依赖的版本号，在父工程中统一管理。</li>
+<li>因为每一个Springboot工程，都有一个父工程。依赖的版本号，在父工程中统一管理。</li>
 </ul>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202205318778.png" alt="image-20221202205318778"></p>
-<h4 id="3-3-3-内嵌Tomcat"><a href="#3-3-3-内嵌Tomcat" class="headerlink" title="3.3.3 内嵌Tomcat"></a>3.3.3 内嵌Tomcat</h4><p>问题：为什么我们之前书写的SpringBoot入门程序中，并没有把程序部署到Tomcat的webapps目录下，也可以运行呢？</p>
-<p>原因呢，是因为在我们的SpringBoot中，引入了web运行环境(也就是引入spring-boot-starter-web起步依赖)，其内部已经集成了内置的Tomcat服务器。</p>
-<p>我们可以通过IDEA开发工具右侧的maven面板中，就可以看到当前工程引入的依赖。其中已经将Tomcat的相关依赖传递下来了，也就是说在SpringBoot中可以直接使用Tomcat服务器。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825194553137.png"> </p>
-<p>当我们运行SpringBoot的引导类时(运行main方法)，就会看到命令行输出的日志，其中占用8080端口的就是Tomcat。</p>
-<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825195359993.png" alt="image-20220825195359993"></p>
-<p>123</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20221202205318778.png" alt="image-20221202205318778"></p>
+<h4 id="3-3-3-内嵌Tomcat"><a href="#3-3-3-内嵌Tomcat" class="headerlink" title="3.3.3 内嵌Tomcat"></a>3.3.3 内嵌Tomcat</h4><p>问题：为什么我们之前书写的Springboot入门程序中，并没有把程序部署到Tomcat的webapps目录下，也可以运行呢？</p>
+<p>原因呢，是因为在我们的Springboot中，引入了web运行环境(也就是引入spring-boot-starter-web起步依赖)，其内部已经集成了内置的Tomcat服务器。</p>
+<p>我们可以通过IDEA开发工具右侧的maven面板中，就可以看到当前工程引入的依赖。其中已经将Tomcat的相关依赖传递下来了，也就是说在Springboot中可以直接使用Tomcat服务器。</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220825194553137.png"> </p>
+<p>当我们运行Springboot的引导类时(运行main方法)，就会看到命令行输出的日志，其中占用8080端口的就是Tomcat。</p>
+<p><img src="/../images/Springboot%E5%85%A5%E9%97%A8/image-20220825195359993.png" alt="image-20220825195359993"></p>
 ]]></content>
       <tags>
-        <tag>springboot</tag>
+        <tag>Springboot</tag>
       </tags>
   </entry>
   <entry>
