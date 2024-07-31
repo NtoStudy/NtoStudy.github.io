@@ -1311,4 +1311,1301 @@ main.js： 程序入口文件，最先执行的文件
         <tag>Maven</tag>
       </tags>
   </entry>
+  <entry>
+    <title>springboot入门</title>
+    <url>/2024/07/31/springboot%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h1 id="SpringBoot基础"><a href="#SpringBoot基础" class="headerlink" title="SpringBoot基础"></a>SpringBoot基础</h1><h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><blockquote>
+<ol>
+<li><p>SpringBootWeb入门</p>
+</li>
+<li><p>HTTP协议</p>
+</li>
+<li><p>Web服务器-Tomcat</p>
+</li>
+</ol>
+</blockquote>
+<span id="more"></span>
+
+
+
+
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221130095316032.png" alt="image-20221130095316032"></p>
+<p>下面我们将进入SpringBoot基础阶段的学习。</p>
+<p>在没有正式的学习SpringBoot之前，我们要先来了解下什么是Spring。</p>
+<p>我们可以打开Spring的官网(<a href="https://spring.io)，去看一下Spring的简介：Spring">https://spring.io)，去看一下Spring的简介：Spring</a> makes Java simple。</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220617222738668.png"></p>
+<p>Spring的官方提供很多开源的项目，我们可以点击上面的projects，看到spring家族旗下的项目，按照流行程度排序为：</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220617222925923.png"></p>
+<p>Spring发展到今天已经形成了一种开发生态圈，Spring提供了若干个子项目，每个项目用于完成特定的功能。而我们在项目开发时，一般会偏向于选择这一套spring家族的技术，来解决对应领域的问题，那我们称这一套技术为<strong>spring全家桶</strong>。</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220617222609699.png"></p>
+<p>而Spring家族旗下这么多的技术，最基础、最核心的是 SpringFramework。其他的spring家族的技术，都是基于SpringFramework的，SpringFramework中提供很多实用功能，如：依赖注入、事务管理、web开发支持、数据访问、消息服务等等。</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220617224427947.png"></p>
+<p>而如果我们在项目中，直接基于SpringFramework进行开发，存在两个问题：配置繁琐、入门难度大。 </p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823185227296.png"></p>
+<p>所以基于此呢，spring官方推荐我们从另外一个项目开始学习，那就是目前最火爆的SpringBoot。 </p>
+<p>通过springboot就可以快速的帮我们构建应用程序，所以springboot呢，最大的特点有两个 ：</p>
+<ul>
+<li>简化配置</li>
+<li>快速开发</li>
+</ul>
+<p><strong>Spring Boot 可以帮助我们非常快速的构建应用程序、简化开发、提高效率 。</strong></p>
+<p>接下来，我们就直接通过一个SpringBoot的web入门程序，让大家快速感受一下，基于SpringBoot进行Web开发的便捷性。</p>
+<h2 id="1-SpringBootWeb快速入门"><a href="#1-SpringBootWeb快速入门" class="headerlink" title="1. SpringBootWeb快速入门"></a>1. SpringBootWeb快速入门</h2><h3 id="1-1-需求"><a href="#1-1-需求" class="headerlink" title="1.1 需求"></a>1.1 需求</h3><p>需求：基于SpringBoot的方式开发一个web应用，浏览器发起请求&#x2F;hello后，给浏览器返回字符串 “Hello World ~”。</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823191003444.png"></p>
+<h3 id="1-2-开发步骤"><a href="#1-2-开发步骤" class="headerlink" title="1.2 开发步骤"></a>1.2 开发步骤</h3><p>第1步：创建SpringBoot工程项目</p>
+<p>第2步：定义HelloController类，添加方法hello，并添加注解</p>
+<p>第3步：测试运行</p>
+<h4 id="1-2-1-创建SpringBoot工程（需要联网）"><a href="#1-2-1-创建SpringBoot工程（需要联网）" class="headerlink" title="1.2.1 创建SpringBoot工程（需要联网）"></a>1.2.1 创建SpringBoot工程（需要联网）</h4><p>基于Spring官方骨架，创建SpringBoot工程。</p>
+<img src="../images/springboot入门/image-20221201184702136.png" alt="image-20221201184702136" style="zoom:80%;" />
+
+<p>基本信息描述完毕之后，勾选web开发相关依赖。</p>
+<img src="../images/springboot入门/image-20221201184850248.png" alt="image-20221201184850248" style="zoom:80%;" />
+
+<p>点击Finish之后，就会联网创建这个SpringBoot工程，创建好之后，结构如下：</p>
+<ul>
+<li>&#x3D;&#x3D;注意：在联网创建过程中，会下载相关资源(请耐心等待)&#x3D;&#x3D;</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201185910596.png" alt="image-20221201185910596"> </p>
+<h4 id="1-2-2-定义请求处理类"><a href="#1-2-2-定义请求处理类" class="headerlink" title="1.2.2 定义请求处理类"></a>1.2.2 定义请求处理类</h4><p>在com.itheima这个包下创建一个子包controller</p>
+<img src="../images/springboot入门/image-20221201190541295.png" alt="image-20221201190541295" style="zoom:80%;" />
+
+<p>然后在controller包下新建一个类：HelloController</p>
+<img src="../images/springboot入门/image-20221201190825439.png" alt="image-20221201190825439" style="zoom:80%;" />
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World ~&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World ~&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-2-3-运行测试"><a href="#1-2-3-运行测试" class="headerlink" title="1.2.3 运行测试"></a>1.2.3 运行测试</h4><p>运行SpringBoot自动生成的引导类</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201191028124.png" alt="image-20221201191028124"> </p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201191348924.png" alt="image-20221201191348924"> </p>
+<p>打开浏览器，输入 <code>http://localhost:8080/hello</code></p>
+<img src="../images/springboot入门/image-20220823195048415.png" style="zoom:80%;" />
+
+
+
+<h3 id="1-3-Web分析"><a href="#1-3-Web分析" class="headerlink" title="1.3 Web分析"></a>1.3 Web分析</h3><p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221201224603497.png" alt="image-20221201224603497"></p>
+<p>浏览器：</p>
+<ul>
+<li><p>输入网址：<code>http://192.168.100.11:8080/hello</code></p>
+<ul>
+<li><p>通过IP地址192.168.100.11定位到网络上的一台计算机</p>
+<blockquote>
+<p>我们之前在浏览器中输入的localhost，就是127.0.0.1（本机）</p>
+</blockquote>
+</li>
+<li><p>通过端口号8080找到计算机上运行的程序</p>
+<blockquote>
+<p><code>localhost:8080</code>  , 意思是在本地计算机中找到正在运行的8080端口的程序</p>
+</blockquote>
+</li>
+<li><p>&#x2F;hello是请求资源位置</p>
+<ul>
+<li>资源：对计算机而言资源就是数据<ul>
+<li>web资源：通过网络可以访问到的资源（通常是指存放在服务器上的数据）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><code>localhost:8080/hello</code> ，意思是向本地计算机中的8080端口程序，获取资源位置是&#x2F;hello的数据</p>
+<ul>
+<li>8080端口程序，在服务器找&#x2F;hello位置的资源数据，发给浏览器</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>服务器：（可以理解为ServerSocket）</p>
+<ul>
+<li>接收到浏览器发送的信息（如：&#x2F;hello）</li>
+<li>在服务器上找到&#x2F;hello的资源</li>
+<li>把资源发送给浏览器</li>
+</ul>
+<blockquote>
+<p>我们在JavaSE阶段学习网络编程时，有讲过网络三要素：</p>
+<ul>
+<li>IP  ：网络中计算机的唯一标识</li>
+<li>端口 ：计算机中运行程序的唯一标识</li>
+<li>协议 ：网络中计算机之间交互的规则</li>
+</ul>
+<p><strong>问题：浏览器和服务器两端进行数据交互，使用什么协议？</strong></p>
+<p><strong>答案：http协议</strong></p>
+</blockquote>
+<h2 id="2-HTTP协议"><a href="#2-HTTP协议" class="headerlink" title="2. HTTP协议"></a>2. HTTP协议</h2><h3 id="2-1-HTTP-概述"><a href="#2-1-HTTP-概述" class="headerlink" title="2.1 HTTP-概述"></a>2.1 HTTP-概述</h3><h4 id="2-1-1-介绍"><a href="#2-1-1-介绍" class="headerlink" title="2.1.1 介绍"></a>2.1.1 介绍</h4><p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823200024507.png"></p>
+<p>HTTP：Hyper Text Transfer Protocol(超文本传输协议)，规定了浏览器与服务器之间数据传输的规则。</p>
+<ul>
+<li>http是互联网上应用最为广泛的一种网络协议 </li>
+<li>http协议要求：浏览器在向服务器发送请求数据时，或是服务器在向浏览器发送响应数据时，都必须按照固定的格式进行数据传输</li>
+</ul>
+<p>如果想知道http协议的数据传输格式有哪些，可以打开浏览器，点击<code>F12</code>打开开发者工具，点击<code>Network</code>来查看</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202105735230.png" alt="image-20221202105735230"></p>
+<p>浏览器向服务器进行请求时：</p>
+<ul>
+<li>服务器按照固定的格式进行解析</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202111044434.png" alt="image-20221202111044434"></p>
+<p>服务器向浏览器进行响应时：</p>
+<ul>
+<li>浏览器按照固定的格式进行解析</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202111307819.png" alt="image-20221202111307819"></p>
+<p><strong>所以，我们学习HTTP主要就是学习请求和响应数据的具体格式内容。</strong></p>
+<h4 id="2-2-2-特点"><a href="#2-2-2-特点" class="headerlink" title="2.2.2 特点"></a>2.2.2 特点</h4><p>我们刚才初步认识了HTTP协议，那么我们在看看HTTP协议有哪些特点：</p>
+<ul>
+<li><p>**基于TCP协议: **   面向连接，安全</p>
+<blockquote>
+<p>TCP是一种面向连接的(建立连接之前是需要经过三次握手)、可靠的、基于字节流的传输层通信协议，在数据传输方面更安全</p>
+</blockquote>
+</li>
+<li><p><strong>基于请求-响应模型:</strong>   一次请求对应一次响应（先请求后响应）</p>
+<blockquote>
+<p>请求和响应是一一对应关系，没有请求，就没有响应</p>
+</blockquote>
+</li>
+<li><p><strong>HTTP协议是无状态协议:</strong>  对于数据没有记忆能力。每次请求-响应都是独立的</p>
+<blockquote>
+<p>无状态指的是客户端发送HTTP请求给服务端之后，服务端根据请求响应数据，响应完后，不会记录任何信息。</p>
+<ul>
+<li>缺点:  多次请求间不能共享数据</li>
+<li>优点:  速度快</li>
+</ul>
+<p>请求之间无法共享数据会引发的问题：</p>
+<ul>
+<li>如：京东购物。加入购物车和去购物车结算是两次请求</li>
+<li>由于HTTP协议的无状态特性，加入购物车请求响应结束后，并未记录加入购物车是何商品</li>
+<li>发起去购物车结算的请求后，因为无法获取哪些商品加入了购物车，会导致此次请求无法正确展示数据</li>
+</ul>
+<p>具体使用的时候，我们发现京东是可以正常展示数据的，原因是Java早已考虑到这个问题，并提出了使用会话技术(Cookie、Session)来解决这个问题。具体如何来做，我们后面课程中会讲到。</p>
+</blockquote>
+<p>刚才提到HTTP协议是规定了请求和响应数据的格式，那具体的格式是什么呢?</p>
+</li>
+</ul>
+<h3 id="2-2-HTTP-请求协议"><a href="#2-2-HTTP-请求协议" class="headerlink" title="2.2 HTTP-请求协议"></a>2.2 HTTP-请求协议</h3><p>浏览器和服务器是按照HTTP协议进行数据通信的。</p>
+<p>HTTP协议又分为：请求协议和响应协议</p>
+<ul>
+<li>请求协议：浏览器将数据以请求格式发送到服务器<ul>
+<li>包括：<strong>请求行</strong>、<strong>请求头</strong> 、<strong>请求体</strong></li>
+</ul>
+</li>
+<li>响应协议：服务器将数据以响应格式返回给浏览器<ul>
+<li>包括：<strong>响应行</strong> 、<strong>响应头</strong> 、<strong>响应体</strong></li>
+</ul>
+</li>
+</ul>
+<p>在HTTP1.1版本中，浏览器访问服务器的几种方式： </p>
+<table>
+<thead>
+<tr>
+<th align="center">请求方式</th>
+<th align="left">请求说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>GET</strong></td>
+<td align="left">获取资源。<br/>向特定的资源发出请求。例：<a href="http://www.baidu.com/s?wd=itheima">http://www.baidu.com/s?wd=itheima</a></td>
+</tr>
+<tr>
+<td align="center"><strong>POST</strong></td>
+<td align="left">传输实体主体。<br/>向指定资源提交数据进行处理请求（例：上传文件），数据被包含在请求体中。</td>
+</tr>
+<tr>
+<td align="center">OPTIONS</td>
+<td align="left">返回服务器针对特定资源所支持的HTTP请求方式。<br/>因为并不是所有的服务器都支持规定的方法，为了安全有些服务器可能会禁止掉一些方法，例如：DELETE、PUT等。那么OPTIONS就是用来询问服务器支持的方法。</td>
+</tr>
+<tr>
+<td align="center">HEAD</td>
+<td align="left">获得报文首部。<br/>HEAD方法类似GET方法，但是不同的是HEAD方法不要求返回数据。通常用于确认URI的有效性及资源更新时间等。</td>
+</tr>
+<tr>
+<td align="center">PUT</td>
+<td align="left">传输文件。<br/>PUT方法用来传输文件。类似FTP协议，文件内容包含在请求报文的实体中，然后请求保存到URL指定的服务器位置。</td>
+</tr>
+<tr>
+<td align="center">DELETE</td>
+<td align="left">删除文件。<br/>请求服务器删除Request-URI所标识的资源</td>
+</tr>
+<tr>
+<td align="center">TRACE</td>
+<td align="left">追踪路径。<br/>回显服务器收到的请求，主要用于测试或诊断</td>
+</tr>
+<tr>
+<td align="center">CONNECT</td>
+<td align="left">要求用隧道协议连接代理。<br/>HTTP&#x2F;1.1协议中预留给能够将连接改为管道方式的代理服务器</td>
+</tr>
+</tbody></table>
+<p>在我们实际应用中常用的也就是 ：<strong>GET、POST</strong></p>
+<p><strong>GET方式的请求协议：</strong></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823200708026.png"> </p>
+<ul>
+<li><p>请求行 ：HTTP请求中的第一行数据。由：<code>请求方式</code>、<code>资源路径</code>、<code>协议/版本</code>组成（之间使用空格分隔）</p>
+<ul>
+<li>请求方式：GET  </li>
+<li>资源路径：&#x2F;brand&#x2F;findAll?name&#x3D;OPPO&amp;status&#x3D;1<ul>
+<li>请求路径：&#x2F;brand&#x2F;findAll</li>
+<li>请求参数：name&#x3D;OPPO&amp;status&#x3D;1<ul>
+<li>请求参数是以key&#x3D;value形式出现</li>
+<li>多个请求参数之间使用<code>&amp;</code>连接</li>
+</ul>
+</li>
+<li>请求路径和请求参数之间使用<code>?</code>连接</li>
+</ul>
+<p> 			 </p>
+</li>
+<li>协议&#x2F;版本：HTTP&#x2F;1.1</li>
+</ul>
+</li>
+<li><p>请求头 ：第二行开始，上图黄色部分内容就是请求头。格式为key: value形式 </p>
+<ul>
+<li>http是个无状态的协议，所以在请求头设置浏览器的一些自身信息和想要响应的形式。这样服务器在收到信息后，就可以知道是谁，想干什么了</li>
+</ul>
+<p>常见的HTTP请求头有:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host: 表示请求的主机名</span><br><span class="line"></span><br><span class="line">User-Agent: 浏览器版本。 例如：Chrome浏览器的标识类似Mozilla/5.0 ...Chrome/79 ，IE浏览器的标识类似Mozilla/5.0 (Windows NT ...)like Gecko</span><br><span class="line"></span><br><span class="line">Accept：表示浏览器能接收的资源类型，如text/*，image/*或者*/*表示所有；</span><br><span class="line"></span><br><span class="line">Accept-Language：表示浏览器偏好的语言，服务器可以据此返回不同语言的网页；</span><br><span class="line"></span><br><span class="line">Accept-Encoding：表示浏览器可以支持的压缩类型，例如gzip, deflate等。</span><br><span class="line"></span><br><span class="line">Content-Type：请求主体的数据类型</span><br><span class="line"></span><br><span class="line">Content-Length：数据主体的大小（单位：字节）</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>举例说明：服务端可以根据请求头中的内容来获取客户端的相关信息，有了这些信息服务端就可以处理不同的业务需求。</p>
+<p>比如:</p>
+<ul>
+<li>不同浏览器解析HTML和CSS标签的结果会有不一致，所以就会导致相同的代码在不同的浏览器会出现不同的效果</li>
+<li>服务端根据客户端请求头中的数据获取到客户端的浏览器类型，就可以根据不同的浏览器设置不同的代码来达到一致的效果（这就是我们常说的浏览器兼容问题）</li>
+</ul>
+</blockquote>
+<ul>
+<li>请求体 ：存储请求参数<ul>
+<li>GET请求的请求参数在请求行中，故不需要设置请求体</li>
+</ul>
+</li>
+</ul>
+<p><strong>POST方式的请求协议：</strong>	</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823201303601.png"></p>
+<ul>
+<li>请求行(以上图中红色部分)：包含请求方式、资源路径、协议&#x2F;版本<ul>
+<li>请求方式：POST</li>
+<li>资源路径：&#x2F;brand</li>
+<li>协议&#x2F;版本：HTTP&#x2F;1.1</li>
+</ul>
+</li>
+<li>请求头(以上图中黄色部分)   </li>
+<li>请求体(以上图中绿色部分) ：存储请求参数 <ul>
+<li>请求体和请求头之间是有一个空行隔开（作用：用于标记请求头结束）</li>
+</ul>
+</li>
+</ul>
+<p>GET请求和POST请求的区别：</p>
+<table>
+<thead>
+<tr>
+<th>区别方式</th>
+<th>GET请求</th>
+<th>POST请求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>请求参数</td>
+<td>请求参数在请求行中。<br/>例：&#x2F;brand&#x2F;findAll?name&#x3D;OPPO&amp;status&#x3D;1</td>
+<td>请求参数在请求体中</td>
+</tr>
+<tr>
+<td>请求参数长度</td>
+<td>请求参数长度有限制(浏览器不同限制也不同)</td>
+<td>请求参数长度没有限制</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>安全性低。原因：请求参数暴露在浏览器地址栏中。</td>
+<td>安全性相对高</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-HTTP-响应协议"><a href="#2-3-HTTP-响应协议" class="headerlink" title="2.3 HTTP-响应协议"></a>2.3 HTTP-响应协议</h3><h4 id="2-3-1-格式介绍"><a href="#2-3-1-格式介绍" class="headerlink" title="2.3.1 格式介绍"></a>2.3.1 格式介绍</h4><p>与HTTP的请求一样，HTTP响应的数据也分为3部分：<strong>响应行</strong>、<strong>响应头</strong> 、<strong>响应体</strong> </p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220823202344149.png"> </p>
+<ul>
+<li><p>响应行(以上图中红色部分)：响应数据的第一行。响应行由<code>协议及版本</code>、<code>响应状态码</code>、<code>状态码描述</code>组成</p>
+<ul>
+<li>协议&#x2F;版本：HTTP&#x2F;1.1</li>
+<li>响应状态码：200</li>
+<li>状态码描述：OK</li>
+</ul>
+</li>
+<li><p>响应头(以上图中黄色部分)：响应数据的第二行开始。格式为key：value形式</p>
+<ul>
+<li>http是个无状态的协议，所以可以在请求头和响应头中设置一些信息和想要执行的动作，这样，对方在收到信息后，就可以知道你是谁，你想干什么</li>
+</ul>
+<p>常见的HTTP响应头有:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Content-Type：表示该响应内容的类型，例如text/html，image/jpeg ；</span><br><span class="line"></span><br><span class="line">Content-Length：表示该响应内容的长度（字节数）；</span><br><span class="line"></span><br><span class="line">Content-Encoding：表示该响应压缩算法，例如gzip ；</span><br><span class="line"></span><br><span class="line">Cache-Control：指示客户端应如何缓存，例如max-age=300表示可以最多缓存300秒 ;</span><br><span class="line"></span><br><span class="line">Set-Cookie: 告诉浏览器为当前页面所在的域设置cookie ;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li>响应体(以上图中绿色部分)： 响应数据的最后一部分。存储响应的数据<ul>
+<li>响应体和响应头之间有一个空行隔开（作用：用于标记响应头结束）</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-3-2-响应状态码"><a href="#2-3-2-响应状态码" class="headerlink" title="2.3.2 响应状态码"></a>2.3.2 响应状态码</h4><table>
+<thead>
+<tr>
+<th>状态码分类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1xx</td>
+<td><strong>响应中</strong> — 临时状态码。表示请求已经接受，告诉客户端应该继续请求或者如果已经完成则忽略</td>
+</tr>
+<tr>
+<td>2xx</td>
+<td><strong>成功</strong> — 表示请求已经被成功接收，处理已完成</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td><strong>重定向</strong> — 重定向到其它地方，让客户端再发起一个请求以完成整个处理</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td><strong>客户端错误</strong> — 处理发生错误，责任在客户端，如：客户端的请求一个不存在的资源，客户端未被授权，禁止访问等</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td><strong>服务器端错误</strong> — 处理发生错误，责任在服务端，如：服务端抛出异常，路由出错，HTTP版本不支持等</td>
+</tr>
+</tbody></table>
+<p>参考: 资料&#x2F;SpringbootWeb&#x2F;响应状态码.md</p>
+<p>关于响应状态码，我们先主要认识三个状态码，其余的等后期用到了再去掌握：</p>
+<ul>
+<li>200    ok   客户端请求成功</li>
+<li>404  Not Found  请求资源不存在</li>
+<li>500  Internal Server Error  服务端发生不可预期的错误</li>
+</ul>
+<h3 id="2-4-HTTP-协议解析"><a href="#2-4-HTTP-协议解析" class="headerlink" title="2.4 HTTP-协议解析"></a>2.4 HTTP-协议解析</h3><p>将资料中准备好的Demo工程，导入到我们的IDEA中，有一个Server.java类，这里面就是自定义的一个服务器代码，主要使用到的是<code>ServerSocket</code>和<code>Socket</code></p>
+<blockquote>
+<p>&#x3D;&#x3D;说明：以下代码大家不需要自己写，我们主要是通过代码，让大家了解到服务器针对HTTP协议的解析机制&#x3D;&#x3D;</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.ServerSocket;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 自定义web服务器</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Server</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">ServerSocket</span> <span class="variable">ss</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">8080</span>); <span class="comment">// 监听指定端口</span></span><br><span class="line">        System.out.println(<span class="string">&quot;server is running...&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="type">Socket</span> <span class="variable">sock</span> <span class="operator">=</span> ss.accept();</span><br><span class="line">            System.out.println(<span class="string">&quot;connected from &quot;</span> + sock.getRemoteSocketAddress());</span><br><span class="line">            <span class="type">Thread</span> <span class="variable">t</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Handler</span>(sock);</span><br><span class="line">            t.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Handler</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line">    Socket sock;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Handler</span><span class="params">(Socket sock)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.sock = sock;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">InputStream</span> <span class="variable">input</span> <span class="operator">=</span> <span class="built_in">this</span>.sock.getInputStream();</span><br><span class="line">             <span class="type">OutputStream</span> <span class="variable">output</span> <span class="operator">=</span> <span class="built_in">this</span>.sock.getOutputStream()) &#123;</span><br><span class="line">                handle(input, output);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="built_in">this</span>.sock.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException ioe) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;client disconnected.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">handle</span><span class="params">(InputStream input, OutputStream output)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(input, StandardCharsets.UTF_8));</span><br><span class="line">        <span class="type">BufferedWriter</span> <span class="variable">writer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(<span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(output, StandardCharsets.UTF_8));</span><br><span class="line">        <span class="comment">// 读取HTTP请求:</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">requestOk</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">first</span> <span class="operator">=</span> reader.readLine();</span><br><span class="line">        <span class="keyword">if</span> (first.startsWith(<span class="string">&quot;GET / HTTP/1.&quot;</span>)) &#123;</span><br><span class="line">            requestOk = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">header</span> <span class="operator">=</span> reader.readLine();</span><br><span class="line">            <span class="keyword">if</span> (header.isEmpty()) &#123; <span class="comment">// 读取到空行时, HTTP Header读取完毕</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(header);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(requestOk ? <span class="string">&quot;Response OK&quot;</span> : <span class="string">&quot;Response Error&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!requestOk) &#123;<span class="comment">// 发送错误响应:</span></span><br><span class="line">            writer.write(<span class="string">&quot;HTTP/1.0 404 Not Found\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;Content-Length: 0\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">            writer.flush();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;<span class="comment">// 发送成功响应:</span></span><br><span class="line">            <span class="comment">//读取html文件，转换为字符串</span></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> Server.class.getClassLoader().getResourceAsStream(<span class="string">&quot;html/a.html&quot;</span>);</span><br><span class="line">            <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(is));</span><br><span class="line">            <span class="type">StringBuilder</span> <span class="variable">data</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">            <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>)&#123;</span><br><span class="line">                data.append(line);</span><br><span class="line">            &#125;</span><br><span class="line">            br.close();</span><br><span class="line">            <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> data.toString().getBytes(StandardCharsets.UTF_8).length;</span><br><span class="line"></span><br><span class="line">            writer.write(<span class="string">&quot;HTTP/1.1 200 OK\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;Connection: keep-alive\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;Content-Type: text/html\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;Content-Length: &quot;</span> + length + <span class="string">&quot;\r\n&quot;</span>);</span><br><span class="line">            writer.write(<span class="string">&quot;\r\n&quot;</span>); <span class="comment">// 空行标识Header和Body的分隔</span></span><br><span class="line">            writer.write(data.toString());</span><br><span class="line">            writer.flush();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>启动ServerSocket程序：</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202170430928.png" alt="image-20221202170430928"></p>
+<p>浏览器输入：<code>http://localhost:8080</code>  就会访问到ServerSocket程序 </p>
+<ul>
+<li>ServerSocket程序，会读取服务器上<code>html/a.html</code>文件，并把文件数据发送给浏览器</li>
+<li>浏览器接收到a.html文件中的数据后进行解析，显示以下内容</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202171204705.png" alt="image-20221202171204705"> </p>
+<p>现在大家知道了服务器是可以使用java完成编写，是可以接受页面发送的请求和响应数据给前端浏览器的，而在开发中真正用到的Web服务器，我们不会自己写的，都是使用目前比较流行的web服务器。如：<strong>Tomcat</strong></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824233452167.png"> </p>
+<h2 id="3-WEB服务器-Tomcat"><a href="#3-WEB服务器-Tomcat" class="headerlink" title="3. WEB服务器-Tomcat"></a>3. WEB服务器-Tomcat</h2><h3 id="3-1-简介"><a href="#3-1-简介" class="headerlink" title="3.1 简介"></a>3.1 简介</h3><h4 id="3-1-1-服务器概述"><a href="#3-1-1-服务器概述" class="headerlink" title="3.1.1 服务器概述"></a>3.1.1 服务器概述</h4><p><strong>服务器硬件</strong></p>
+<ul>
+<li>指的也是计算机，只不过服务器要比我们日常使用的计算机大很多。</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202173148317.png" alt="image-20221202173148317"> </p>
+<p>服务器，也称伺服器。是提供计算服务的设备。由于服务器需要响应服务请求，并进行处理，因此一般来说服务器应具备承担服务并且保障服务的能力。</p>
+<p>服务器的构成包括处理器、硬盘、内存、系统总线等，和通用的计算机架构类似，但是由于需要提供高可靠的服务，因此在处理能力、稳定性、可靠性、安全性、可扩展性、可管理性等方面要求较高。</p>
+<p>在网络环境下，根据服务器提供的服务类型不同，可分为：文件服务器，数据库服务器，应用程序服务器，WEB服务器等。</p>
+<p>服务器只是一台设备，必须安装服务器软件才能提供相应的服务。</p>
+<p><strong>服务器软件</strong></p>
+<p>服务器软件：基于ServerSocket编写的程序</p>
+<ul>
+<li>服务器软件本质是一个运行在服务器设备上的应用程序</li>
+<li>能够接收客户端请求，并根据请求给客户端响应数据</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/1530625192392.png" alt="1530625192392"></p>
+<h4 id="3-1-2-Web服务器"><a href="#3-1-2-Web服务器" class="headerlink" title="3.1.2 Web服务器"></a>3.1.2 Web服务器</h4><p>Web服务器是一个应用程序(软件)，对HTTP协议的操作进行封装，使得程序员不必直接对协议进行操作(不用程序员自己写代码去解析http协议规则)，让Web开发更加便捷。主要功能是”提供网上信息浏览服务”。</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824233614686.png"></p>
+<p>Web服务器是安装在服务器端的一款软件，将来我们把自己写的Web项目部署到Tomcat服务器软件中，当Web服务器软件启动后，部署在Web服务器软件中的页面就可以直接通过浏览器来访问了。</p>
+<p><strong>Web服务器软件使用步骤</strong></p>
+<ul>
+<li>准备静态资源</li>
+<li>下载安装Web服务器软件</li>
+<li>将静态资源部署到Web服务器上</li>
+<li>启动Web服务器使用浏览器访问对应的资源</li>
+</ul>
+<p>第1步：准备静态资源</p>
+<ul>
+<li>在提供的资料中找到静态资源文件</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202180119859.png" alt="image-20221202180119859"> </p>
+<p>第2步：下载安装Web服务器软件</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202181110555.png" alt="image-20221202181110555"></p>
+<p>第3步：将静态资源部署到Web服务器上</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202180805686.png" alt="image-20221202180805686"></p>
+<p>第4步：启动Web服务器使用浏览器访问对应的资源</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202181346327.png" alt="image-20221202181346327"></p>
+<p>浏览器输入：<code>http://localhost:8080/demo/index.html</code></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202181651469.png" alt="image-20221202181651469"></p>
+<p>上述内容在演示的时候，使用的是Apache下的Tomcat软件，至于Tomcat软件如何使用，后面会详细的讲到。而对于Web服务器来说，实现的方案有很多，Tomcat只是其中的一种，而除了Tomcat以外，还有很多优秀的Web服务器，比如:</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824233728524.png" alt="image-20220824233728524"> </p>
+<p>Tomcat就是一款软件，我们主要是以学习如何去使用为主。具体我们会从以下这些方向去学习:</p>
+<ol>
+<li><p>简介：初步认识下Tomcat</p>
+</li>
+<li><p>基本使用: 安装、卸载、启动、关闭、配置和项目部署，这些都是对Tomcat的基本操作</p>
+</li>
+<li><p>IDEA中如何创建Maven Web项目</p>
+</li>
+<li><p>IDEA中如何使用Tomcat,后面这两个都是我们以后开发经常会用到的方式</p>
+</li>
+</ol>
+<p>首选我们来认识下Tomcat。</p>
+<h4 id="3-1-3-Tomcat"><a href="#3-1-3-Tomcat" class="headerlink" title="3.1.3 Tomcat"></a>3.1.3 Tomcat</h4><p>Tomcat服务器软件是一个免费的开源的web应用服务器。是Apache软件基金会的一个核心项目。由Apache，Sun和其他一些公司及个人共同开发而成。</p>
+<p>由于Tomcat只支持Servlet&#x2F;JSP少量JavaEE规范，所以是一个开源免费的轻量级Web服务器。</p>
+<blockquote>
+<p>JavaEE规范：   JavaEE &#x3D;&gt; Java Enterprise Edition(Java企业版)</p>
+<p>avaEE规范就是指Java企业级开发的技术规范总和。包含13项技术规范：JDBC、JNDI、EJB、RMI、JSP、Servlet、XML、JMS、Java IDL、JTS、JTA、JavaMail、JAF</p>
+</blockquote>
+<p>因为Tomcat支持Servlet&#x2F;JSP规范，所以Tomcat也被称为Web容器、Servlet容器。JavaWeb程序需要依赖Tomcat才能运行。</p>
+<p>Tomcat的官网: <a href="https://tomcat.apache.org/">https://tomcat.apache.org/</a> </p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824233903517.png" alt="image-20220824233903517"> </p>
+<h3 id="3-2-基本使用"><a href="#3-2-基本使用" class="headerlink" title="3.2 基本使用"></a>3.2 基本使用</h3><h4 id="3-2-1-下载"><a href="#3-2-1-下载" class="headerlink" title="3.2.1 下载"></a>3.2.1 下载</h4><p>直接从官方网站下载：<a href="https://tomcat.apache.org/download-90.cgi">https://tomcat.apache.org/download-90.cgi</a></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824234407828.png"></p>
+<blockquote>
+<p>Tomcat软件类型说明：</p>
+<ul>
+<li>tar.gz文件，是linux和mac操作系统下的压缩版本</li>
+<li>zip文件，是window操作系统下压缩版本（我们选择zip文件）</li>
+</ul>
+</blockquote>
+<p>大家可以自行下载，也可以直接使用资料中已经下载好的资源，</p>
+<p>Tomcat的软件程序  ：&#x2F;资料&#x2F;SpringbootWeb&#x2F;apache-tomcat-9.0.27-windows-x64.zip</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824234527743.png"> </p>
+<h4 id="3-2-2-安装与卸载"><a href="#3-2-2-安装与卸载" class="headerlink" title="3.2.2 安装与卸载"></a>3.2.2 安装与卸载</h4><p><strong>安装:</strong> Tomcat是绿色版，直接解压即安装</p>
+<blockquote>
+<p>在E盘的develop目录下，将<code>apache-tomcat-9.0.27-windows-x64.zip</code>进行解压缩，会得到一个<code>apache-tomcat-9.0.27</code>的目录，Tomcat就已经安装成功。</p>
+</blockquote>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202184545321.png" alt="image-20221202184545321"></p>
+<p>&#x3D;&#x3D;注意，Tomcat在解压缩的时候，解压所在的目录可以任意，但最好解压到一个不包含中文和空格的目录，因为后期在部署项目的时候，如果路径有中文或者空格可能会导致程序部署失败。&#x3D;&#x3D;</p>
+<p>打开<code>apache-tomcat-9.0.27</code>目录就能看到如下目录结构，每个目录中包含的内容需要认识下</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220824234652173.png">  </p>
+<p>bin：目录下有两类文件，一种是以<code>.bat</code>结尾的，是Windows系统的可执行文件，一种是以<code>.sh</code>结尾的，是Linux系统的可执行文件。</p>
+<p>webapps：就是以后项目部署的目录</p>
+<p><strong>卸载：</strong>卸载比较简单，可以直接删除目录即可</p>
+<h4 id="3-2-3-启动与关闭"><a href="#3-2-3-启动与关闭" class="headerlink" title="3.2.3 启动与关闭"></a>3.2.3 启动与关闭</h4><p><strong>启动Tomcat</strong> </p>
+<ul>
+<li>双击tomcat解压目录&#x2F;bin&#x2F;<strong>startup.bat</strong>文件即可启动tomcat</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202183201663.png" alt="image-20221202183201663"></p>
+<p>&#x3D;&#x3D;注意: tomcat服务器启动后,黑窗口不会关闭,只要黑窗口不关闭,就证明tomcat服务器正在运行&#x3D;&#x3D;</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202183409304.png" alt="image-20221202183409304"></p>
+<p>Tomcat的默认端口为8080，所以在浏览器的地址栏输入：<code>http://127.0.0.1:8080</code> 即可访问tomcat服务器</p>
+<blockquote>
+<p>127.0.0.1 也可以使用localhost代替。如：<code>http://localhost:8080</code></p>
+</blockquote>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202183550682.png" alt="image-20221202183550682"></p>
+<ul>
+<li>能看到以上图片中Apache Tomcat的内容就说明Tomcat已经启动成功</li>
+</ul>
+<p>&#x3D;&#x3D;注意事项&#x3D;&#x3D; ：Tomcat启动的过程中，遇到控制台有中文乱码时，可以通常修改conf&#x2F;logging.prooperties文件解决</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825083848086.png" alt="image-20220825083848086"> </p>
+<p><strong>关闭:</strong>  关闭有三种方式 </p>
+<p>1、强制关闭：直接x掉Tomcat窗口（不建议）</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202184753808.png" alt="image-20221202184753808"></p>
+<p>2、正常关闭：bin\shutdown.bat</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202185103941.png" alt="image-20221202185103941"></p>
+<p>3、正常关闭：在Tomcat启动窗口中按下 Ctrl+C</p>
+<ul>
+<li>说明：如果按下Ctrl+C没有反映，可以多按几次</li>
+</ul>
+<h4 id="3-2-4-常见问题"><a href="#3-2-4-常见问题" class="headerlink" title="3.2.4 常见问题"></a>3.2.4 常见问题</h4><p><strong>问题1：Tomcat启动时，窗口一闪而过</strong></p>
+<ul>
+<li>检查JAVA_HOME环境变量是否正确配置</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202190033167.png" alt="image-20221202190033167"></p>
+<p><strong>问题2：端口号冲突</strong></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825084104447.png" alt="image-20220825084104447"></p>
+<ul>
+<li><p>发生问题的原因：Tomcat使用的端口被占用了。</p>
+</li>
+<li><p>解决方案：换Tomcat端口号</p>
+<ul>
+<li>要想修改Tomcat启动的端口号，需要修改 conf&#x2F;server.xml文件</li>
+</ul>
+</li>
+</ul>
+<img src="../images/springboot入门/image-20220825084017185.png" alt="image-20220825084017185" style="zoom:80%;" /> 
+
+<blockquote>
+<p>注: HTTP协议默认端口号为80，如果将Tomcat端口号改为80，则将来访问Tomcat时，将不用输入端口号。</p>
+</blockquote>
+<h3 id="3-3-入门程序解析"><a href="#3-3-入门程序解析" class="headerlink" title="3.3 入门程序解析"></a>3.3 入门程序解析</h3><p>关于web开发的基础知识，我们可以告一段落了。下面呢，我们在基于今天的核心技术点SpringBoot快速入门案例进行分析。</p>
+<h4 id="3-3-1-Spring官方骨架"><a href="#3-3-1-Spring官方骨架" class="headerlink" title="3.3.1 Spring官方骨架"></a>3.3.1 Spring官方骨架</h4><p>之前我们创建的SpringBoot入门案例，是基于Spring官方提供的骨架实现的。</p>
+<p>Spring官方骨架，可以理解为Spring官方为程序员提供一个搭建项目的模板。</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202195646621.png" alt="image-20221202195646621"></p>
+<p>我们可以通过访问：<a href="https://start.spring.io/">https://start.spring.io/</a> ，进入到官方骨架页面</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202201623424.png" alt="image-20221202201623424"></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202200356398.png" alt="image-20221202200356398"></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202200547676.png" alt="image-20221202200547676"></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202200708988.png" alt="image-20221202200708988"></p>
+<p>Spring官方生成的SpringBoot项目，怎么使用呢？</p>
+<ul>
+<li>解压缩后，就会得到一个SpringBoot项目工程</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202201042109.png" alt="image-20221202201042109"></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202201221136.png" alt="image-20221202201221136"></p>
+<p>打开pom.xml文件，我们可以看到springboot项目中引入了web依赖和test依赖</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202201826364.png" alt="image-20221202201826364"></p>
+<blockquote>
+<p><strong>结论：不论使用IDEA创建SpringBoot项目，还是直接在官方网站利用骨架生成SpringBoot项目，项目的结构和pom.xml文件中内容是相似的。</strong></p>
+</blockquote>
+<h4 id="3-3-2-起步依赖"><a href="#3-3-2-起步依赖" class="headerlink" title="3.3.2 起步依赖"></a>3.3.2 起步依赖</h4><p>在我们之前讲解的SpringBoot快速入门案例中，同样也引用了：web依赖和test依赖</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202202305118.png" alt="image-20221202202305118"></p>
+<p>spring-boot-starter-web和spring-boot-starter-test，在SpringBoot中又称为：起步依赖</p>
+<p>而在SpringBoot的项目中，有很多的起步依赖，他们有一个共同的特征：就是以<code>spring-boot-starter-</code>作为开头。在以后大家遇到spring-boot-starter-xxx这类的依赖，都为起步依赖。</p>
+<p>起步依赖有什么特殊之处呢，这里我们以入门案例中引入的起步依赖做为讲解：</p>
+<ul>
+<li>spring-boot-starter-web：包含了web应用开发所需要的常见依赖</li>
+<li>spring-boot-starter-test：包含了单元测试所需要的常见依赖</li>
+</ul>
+<blockquote>
+<p><strong>spring-boot-starter-web</strong>内部把关于Web开发所有的依赖都已经导入并且指定了版本，只需引入 <code>spring-boot-starter-web</code> 依赖就可以实现Web开发的需要的功能</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202204013113.png" alt="image-20221202204013113"></p>
+</blockquote>
+<p>Spring的官方提供了很多现成的starter(起步依赖)，我们在开发相关应用时，只需要引入对应的starter即可。</p>
+<p>官方地址：<a href="https://docs.spring.io/spring-boot/docs/2.7.2/reference/htmlsingle/#using.build-systems.starters">https://docs.spring.io/spring-boot/docs/2.7.2/reference/htmlsingle/#using.build-systems.starters</a></p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202204536647.png" alt="image-20221202204536647"></p>
+<p>每一个起步依赖，都用于开发一个特定的功能。</p>
+<blockquote>
+<p>举例：当我们开发中需要使用redis数据库时，只需要在SpringBoot项目中，引入：spring-boot-starter-redis ，即可导入redis开发所需要的依赖。</p>
+</blockquote>
+<h4 id="3-3-2-SpringBoot父工程"><a href="#3-3-2-SpringBoot父工程" class="headerlink" title="3.3.2 SpringBoot父工程"></a>3.3.2 SpringBoot父工程</h4><p>在我们之前开发的SpringBoot入门案例中，我们通过maven引入的依赖，是没有指定具体的依赖版本号的。</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202205103486.png" alt="image-20221202205103486"></p>
+<p>为什么没有指定<version>版本号，可以正常使用呢？</p>
+<ul>
+<li>因为每一个SpringBoot工程，都有一个父工程。依赖的版本号，在父工程中统一管理。</li>
+</ul>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20221202205318778.png" alt="image-20221202205318778"></p>
+<h4 id="3-3-3-内嵌Tomcat"><a href="#3-3-3-内嵌Tomcat" class="headerlink" title="3.3.3 内嵌Tomcat"></a>3.3.3 内嵌Tomcat</h4><p>问题：为什么我们之前书写的SpringBoot入门程序中，并没有把程序部署到Tomcat的webapps目录下，也可以运行呢？</p>
+<p>原因呢，是因为在我们的SpringBoot中，引入了web运行环境(也就是引入spring-boot-starter-web起步依赖)，其内部已经集成了内置的Tomcat服务器。</p>
+<p>我们可以通过IDEA开发工具右侧的maven面板中，就可以看到当前工程引入的依赖。其中已经将Tomcat的相关依赖传递下来了，也就是说在SpringBoot中可以直接使用Tomcat服务器。</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825194553137.png"> </p>
+<p>当我们运行SpringBoot的引导类时(运行main方法)，就会看到命令行输出的日志，其中占用8080端口的就是Tomcat。</p>
+<p><img src="/../images/springboot%E5%85%A5%E9%97%A8/image-20220825195359993.png" alt="image-20220825195359993"></p>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot请求响应</title>
+    <url>/2024/07/31/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/</url>
+    <content><![CDATA[<h1 id="SpringBootWeb请求响应"><a href="#SpringBootWeb请求响应" class="headerlink" title="SpringBootWeb请求响应"></a>SpringBootWeb请求响应</h1><span id="more"></span>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在上一次的课程中，我们开发了springbootweb的入门程序。 基于SpringBoot的方式开发一个web应用，浏览器发起请求 &#x2F;hello 后 ，给浏览器返回字符串 “Hello World ~”。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826161735076.png" alt="image-20220826161735076"></p>
+<p>其实呢，是我们在浏览器发起请求，请求了我们的后端web服务器(也就是内置的Tomcat)。而我们在开发web程序时呢，定义了一个控制器类Controller，请求会被部署在Tomcat中的Controller接收，然后Controller再给浏览器一个响应，响应一个字符串 “Hello World”。 而在请求响应的过程中是遵循HTTP协议的。</p>
+<p>但是呢，这里要告诉大家的时，其实在Tomcat这类Web服务器中，是不识别我们自己定义的Controller的。但是我们前面讲到过Tomcat是一个Servlet容器，是支持Serlvet规范的，所以呢，在tomcat中是可以识别 Servlet程序的。 那我们所编写的XxxController 是如何处理请求的，又与Servlet之间有什么联系呢？</p>
+<p>其实呢，在SpringBoot进行web程序开发时，它内置了一个核心的Servlet程序 DispatcherServlet，称之为 核心控制器。 DispatcherServlet 负责接收页面发送的请求，然后根据执行的规则，将请求再转发给后面的请求处理器Controller，请求处理器处理完请求之后，最终再由DispatcherServlet给浏览器响应数据。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826165340157.png" alt="image-20220826165340157"></p>
+<p>那将来浏览器发送请求，会携带请求数据，包括：请求行、请求头；请求到达tomcat之后，tomcat会负责解析这些请求数据，然后呢将解析后的请求数据会传递给Servlet程序的HttpServletRequest对象，那也就意味着 HttpServletRequest 对象就可以获取到请求数据。 而Tomcat，还给Servlet程序传递了一个参数 HttpServletResponse，通过这个对象，我们就可以给浏览器设置响应数据 。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826171407354.png" alt="image-20220826171407354"> </p>
+<p>那上述所描述的这种浏览器&#x2F;服务器的架构模式呢，我们称之为：BS架构。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826171454775.png" alt="image-20220826171454775"> </p>
+<p>• BS架构：Browser&#x2F;Server，浏览器&#x2F;服务器架构模式。客户端只需要浏览器，应用程序的逻辑和数据都存储在服务端。</p>
+<p>那今天呢，我们的课程内容主要就围绕着：请求、响应进行。 今天课程内容，主要包含三个部分：</p>
+<blockquote>
+<ul>
+<li>请求</li>
+<li>响应</li>
+<li>分层解耦</li>
+</ul>
+</blockquote>
+<h2 id="1-请求"><a href="#1-请求" class="headerlink" title="1. 请求"></a>1. 请求</h2><p>在本章节呢，我们主要讲解，如何接收页面传递过来的请求数据。</p>
+<h3 id="1-1-Postman"><a href="#1-1-Postman" class="headerlink" title="1.1 Postman"></a>1.1 Postman</h3><p>之前我们课程中有提到当前最为主流的开发模式：前后端分离</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203095553048.png" alt="image-20221203095553048"></p>
+<p>在这种模式下，前端技术人员基于”接口文档”，开发前端程序；后端技术人员也基于”接口文档”，开发后端程序。</p>
+<p>由于前后端分离，对我们后端技术人员来讲，在开发过程中，是没有前端页面的，那我们怎么测试自己所开发的程序呢？</p>
+<p>方式1：像之前SpringBoot入门案例中一样，直接使用浏览器。在浏览器中输入地址，测试后端程序。</p>
+<ul>
+<li>弊端：在浏览器地址栏中输入地址这种方式都是GET请求，如何我们要用到POST请求怎么办呢？<ul>
+<li>要解决POST请求，需要程序员自己编写前端代码（比较麻烦）</li>
+</ul>
+</li>
+</ul>
+<p>方式2：使用专业的接口测试工具（课程中我们使用Postman工具）</p>
+<h4 id="1-1-1-介绍"><a href="#1-1-1-介绍" class="headerlink" title="1.1.1 介绍"></a>1.1.1 介绍</h4><p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826173003949.png" alt="image-20220826173003949"> </p>
+<ul>
+<li><p>Postman是一款功能强大的网页调试与发送网页HTTP请求的Chrome插件。</p>
+<blockquote>
+<p>Postman原是Chrome浏览器的插件，可以模拟浏览器向后端服务器发起任何形式(如:get、post)的HTTP请求</p>
+<p>使用Postman还可以在发起请求时，携带一些请求参数、请求头等信息</p>
+</blockquote>
+</li>
+<li><p>作用：常用于进行接口测试</p>
+</li>
+<li><p>特征</p>
+<ul>
+<li>简单</li>
+<li>实用</li>
+<li>美观</li>
+<li>大方</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-1-2-安装"><a href="#1-1-2-安装" class="headerlink" title="1.1.2 安装"></a>1.1.2 安装</h4><p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826173919556.png" alt="image-20220826173919556"> </p>
+<p>双击资料中提供的<code>Postman-win64-8.3.1-Setup.exe</code>即可自动安装。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826174601266.png" alt="image-20220826174601266"> </p>
+<p>安装完成之后，进入页面中会提示有新版本可以升级（无需升级）</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826174900779.png" alt="image-20220826174900779"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203112117979.png" alt="image-20221203112117979"></p>
+<p>界面介绍:</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826175306141.png" alt="image-20220826175306141"> </p>
+<p><strong>如果我们需要将测试的请求信息保存下来，就需要创建一个postman的账号，然后登录之后才可以。</strong></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203103623435.png" alt="image-20221203103623435"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203112252985.png" alt="image-20221203112252985"> </p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203112320687.png" alt="image-20221203112320687"> </p>
+<p>登录完成之后，可以创建工作空间：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203113552785.png" alt="image-20221203113552785"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203113925733.png" alt="image-20221203113925733"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203113847126.png" alt="image-20221203113847126"></p>
+<p>创建请求：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203114031824.png" alt="image-20221203114031824"></p>
+<p>点击”Save”，保存当前请求</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203114231572.png" alt="image-20221203114231572"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203114806665.png" alt="image-20221203114806665"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203114852752.png" alt="image-20221203114852752"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203115001098.png" alt="image-20221203115001098"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203115041949.png" alt="image-20221203115041949"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203115110440.png" alt="image-20221203115110440"></p>
+<h3 id="1-2-简单参数"><a href="#1-2-简单参数" class="headerlink" title="1.2 简单参数"></a>1.2 简单参数</h3><p>简单参数：在向服务器发起请求时，向服务器传递的是一些普通的请求数据。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826180550583.png" alt="image-20220826180550583"></p>
+<p>那么在后端程序中，如何接收传递过来的普通参数数据呢？</p>
+<p>我们在这里讲解两种方式：</p>
+<ol>
+<li>原始方式   </li>
+<li>SpringBoot方式</li>
+</ol>
+<h4 id="1-2-1-原始方式"><a href="#1-2-1-原始方式" class="headerlink" title="1.2.1 原始方式"></a>1.2.1 原始方式</h4><p>在原始的Web程序当中，需要通过Servlet中提供的API：HttpServletRequest（请求对象），获取请求的相关信息。比如获取请求参数：</p>
+<blockquote>
+<p>Tomcat接收到http请求时：把请求的相关信息封装到HttpServletRequest对象中</p>
+</blockquote>
+<p>在Controller中，我们要想获取Request对象，可以直接在方法的形参中声明 HttpServletRequest 对象。然后就可以通过该对象来获取请求信息：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">//根据指定的参数名获取请求参数的数据值</span></span><br><span class="line">String  request.getParameter(<span class="string">&quot;参数名&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">//原始方式</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/simpleParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">simpleParam</span><span class="params">(HttpServletRequest request)</span>&#123;</span><br><span class="line">        <span class="comment">// http://localhost:8080/simpleParam?name=Tom&amp;age=10</span></span><br><span class="line">        <span class="comment">// 请求参数： name=Tom&amp;age=10   （有2个请求参数）</span></span><br><span class="line">        <span class="comment">// 第1个请求参数： name=Tom   参数名:name，参数值:Tom</span></span><br><span class="line">        <span class="comment">// 第2个请求参数： age=10     参数名:age , 参数值:10</span></span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;name&quot;</span>);<span class="comment">//name就是请求参数名</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">ageStr</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;age&quot;</span>);<span class="comment">//age就是请求参数名</span></span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> Integer.parseInt(ageStr);<span class="comment">//需要手动进行类型转换</span></span><br><span class="line">        System.out.println(name+<span class="string">&quot;  :  &quot;</span>+age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上这种方式，我们仅做了解。（在以后的开发中不会使用到）</p>
+</blockquote>
+<h4 id="1-2-2-SpringBoot方式"><a href="#1-2-2-SpringBoot方式" class="headerlink" title="1.2.2 SpringBoot方式"></a>1.2.2 SpringBoot方式</h4><p>在Springboot的环境中，对原始的API进行了封装，接收参数的形式更加简单。 如果是简单参数，参数名与形参变量名相同，定义同名的形参即可接收参数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">// http://localhost:8080/simpleParam?name=Tom&amp;age=10</span></span><br><span class="line">    <span class="comment">// 第1个请求参数： name=Tom   参数名:name，参数值:Tom</span></span><br><span class="line">    <span class="comment">// 第2个请求参数： age=10     参数名:age , 参数值:10</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//springboot方式</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/simpleParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">simpleParam</span><span class="params">(String name , Integer age )</span>&#123;<span class="comment">//形参名和请求参数名保持一致</span></span><br><span class="line">        System.out.println(name+<span class="string">&quot;  :  &quot;</span>+age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>postman测试( GET 请求)：</strong></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203122405075.png" alt="image-20221203122405075"> </p>
+<p><strong>postman测试( POST请求 )：</strong></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826181117898.png" alt="image-20220826181117898"></p>
+<blockquote>
+<p><strong>结论：不论是GET请求还是POST请求，对于简单参数来讲，只要保证&#x3D;&#x3D;请求参数名和Controller方法中的形参名保持一致&#x3D;&#x3D;，就可以获取到请求参数中的数据值。</strong></p>
+</blockquote>
+<h4 id="1-2-3-参数名不一致"><a href="#1-2-3-参数名不一致" class="headerlink" title="1.2.3 参数名不一致"></a>1.2.3 参数名不一致</h4><p>如果方法形参名称与请求参数名称不一致，controller方法中的形参还能接收到请求参数值吗？</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">// http://localhost:8080/simpleParam?name=Tom&amp;age=20</span></span><br><span class="line">    <span class="comment">// 请求参数名：name</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//springboot方式</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/simpleParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">simpleParam</span><span class="params">(String username , Integer age )</span>&#123;<span class="comment">//请求参数名和形参名不相同</span></span><br><span class="line">        System.out.println(username+<span class="string">&quot;  :  &quot;</span>+age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>答案：运行没有报错。 controller方法中的username值为：null，age值为20</p>
+<ul>
+<li>结论：对于简单参数来讲，请求参数名和controller方法中的形参名不一致时，无法接收到请求数据</li>
+</ul>
+<p>那么如果我们开发中，遇到了这种请求参数名和controller方法中的形参名不相同，怎么办？</p>
+<p>解决方案：可以使用Spring提供的@RequestParam注解完成映射</p>
+<p>在方法形参前面加上 @RequestParam 然后通过value属性执行请求参数名，从而完成映射。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">// http://localhost:8080/simpleParam?name=Tom&amp;age=20</span></span><br><span class="line">    <span class="comment">// 请求参数名：name</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//springboot方式</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/simpleParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">simpleParam</span><span class="params">(<span class="meta">@RequestParam(&quot;name&quot;)</span> String username , Integer age )</span>&#123;</span><br><span class="line">        System.out.println(username+<span class="string">&quot;  :  &quot;</span>+age);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意事项：</strong></p>
+<p>@RequestParam中的required属性默认为true（默认值也是true），代表该请求参数必须传递，如果不传递将报错</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203130726310.png" alt="image-20221203130726310"></p>
+<p>如果该参数是可选的，可以将required属性设置为false</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/simpleParam&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">simpleParam</span><span class="params">(<span class="meta">@RequestParam(name = &quot;name&quot;, required = false)</span> String username, Integer age)</span>&#123;</span><br><span class="line">System.out.println(username+ <span class="string">&quot;:&quot;</span> + age);</span><br><span class="line"><span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="1-3-实体参数"><a href="#1-3-实体参数" class="headerlink" title="1.3 实体参数"></a>1.3 实体参数</h3><p>在使用简单参数做为数据传递方式时，前端传递了多少个请求参数，后端controller方法中的形参就要书写多少个。如果请求参数比较多，通过上述的方式一个参数一个参数的接收，会比较繁琐。 </p>
+<p>此时，我们可以考虑将请求参数封装到一个实体类对象中。 要想完成数据封装，需要遵守如下规则：<strong>请求参数名与实体类的属性名相同</strong></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203131954932.png" alt="image-20221203131954932"></p>
+<h4 id="1-3-1-简单实体对象"><a href="#1-3-1-简单实体对象" class="headerlink" title="1.3.1 简单实体对象"></a>1.3.1 简单实体对象</h4><p>定义POJO实体类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(Integer age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Controller方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">//实体参数：简单实体对象</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/simplePojo&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">simplePojo</span><span class="params">(User user)</span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Postman测试：</p>
+<ul>
+<li>参数名和实体类属性名一致时</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203161246168.png" alt="image-20221203161246168"> </p>
+<ul>
+<li>参数名和实体类属性名不一致时</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203161004349.png" alt="image-20221203161004349"></p>
+<h4 id="1-3-2-复杂实体对象"><a href="#1-3-2-复杂实体对象" class="headerlink" title="1.3.2 复杂实体对象"></a>1.3.2 复杂实体对象</h4><p>上面我们讲的呢是简单的实体对象，下面我们在来学习下复杂的实体对象。</p>
+<p>复杂实体对象指的是，在实体类中有一个或多个属性，也是实体对象类型的。如下：</p>
+<ul>
+<li>User类中有一个Address类型的属性（Address是一个实体类）</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203160447953.png" alt="image-20221203160447953"></p>
+<p>复杂实体对象的封装，需要遵守如下规则：</p>
+<ul>
+<li><strong>请求参数名与形参对象属性名相同，按照对象层次结构关系即可接收嵌套实体类属性参数。</strong></li>
+</ul>
+<p>定义POJO实体类：</p>
+<ul>
+<li>Address实体类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Address</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String province;</span><br><span class="line">    <span class="keyword">private</span> String city;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getProvince</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> province;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setProvince</span><span class="params">(String province)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.province = province;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getCity</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> city;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCity</span><span class="params">(String city)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.city = city;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Address&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;province=&#x27;&quot;</span> + province + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, city=&#x27;&quot;</span> + city + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>User实体类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> Address address; <span class="comment">//地址对象</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getAge</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(Integer age)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Address <span class="title function_">getAddress</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAddress</span><span class="params">(Address address)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.address = address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, age=&quot;</span> + age +</span><br><span class="line">                <span class="string">&quot;, address=&quot;</span> + address +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Controller方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">//实体参数：复杂实体对象</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/complexPojo&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">complexPojo</span><span class="params">(User user)</span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Postman测试：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203162706175.png" alt="image-20221203162706175"> </p>
+<h3 id="1-4-数组集合参数"><a href="#1-4-数组集合参数" class="headerlink" title="1.4 数组集合参数"></a>1.4 数组集合参数</h3><p>数组集合参数的使用场景：在HTML的表单中，有一个表单项是支持多选的(复选框)，可以提交选择的多个值。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203164114083.png" alt="image-20221203164114083"> </p>
+<p>多个值是怎么提交的呢？其实多个值也是一个一个的提交。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203164944144.png" alt="image-20221203164944144"> </p>
+<p>后端程序接收上述多个值的方式有两种：</p>
+<ol>
+<li>数组</li>
+<li>集合</li>
+</ol>
+<h4 id="1-4-1-数组"><a href="#1-4-1-数组" class="headerlink" title="1.4.1 数组"></a>1.4.1 数组</h4><p>数组参数：<strong>请求参数名与形参数组名称相同且请求参数为多个，定义数组类型形参即可接收参数</strong></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203190218468.png" alt="image-20221203190218468"></p>
+<p>Controller方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">//数组集合参数</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/arrayParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">arrayParam</span><span class="params">(String[] hobby)</span>&#123;</span><br><span class="line">        System.out.println(Arrays.toString(hobby));</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Postman测试：</p>
+<p>在前端请求时，有两种传递形式：</p>
+<p>方式一： xxxxxxxxxx?hobby&#x3D;game&amp;hobby&#x3D;java</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203191732601.png" alt="image-20221203191732601"> </p>
+<p>方式二：xxxxxxxxxxxxx?hobby&#x3D;game,java</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203191822996.png" alt="image-20221203191822996"></p>
+<h4 id="1-4-2-集合"><a href="#1-4-2-集合" class="headerlink" title="1.4.2 集合"></a>1.4.2 集合</h4><p>集合参数：<strong>请求参数名与形参集合对象名相同且请求参数为多个，@RequestParam 绑定参数关系</strong></p>
+<blockquote>
+<p>默认情况下，请求中参数名相同的多个值，是封装到数组。如果要封装到集合，要使用@RequestParam绑定参数关系</p>
+</blockquote>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203211640646.png" alt="image-20221203211640646"></p>
+<p>Controller方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">//数组集合参数</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/listParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">listParam</span><span class="params">(<span class="meta">@RequestParam</span> List&lt;String&gt; hobby)</span>&#123;</span><br><span class="line">        System.out.println(hobby);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Postman测试：</p>
+<p>方式一： xxxxxxxxxx?hobby&#x3D;game&amp;hobby&#x3D;java</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203212221939.png" alt="image-20221203212221939"> </p>
+<p>方式二：xxxxxxxxxxxxx?hobby&#x3D;game,java</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203212024679.png" alt="image-20221203212024679"></p>
+<h3 id="1-5-日期参数"><a href="#1-5-日期参数" class="headerlink" title="1.5 日期参数"></a>1.5 日期参数</h3><p>上述演示的都是一些普通的参数，在一些特殊的需求中，可能会涉及到日期类型数据的封装。比如，如下需求：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220826194159343.png" alt="image-20220826194159343"> </p>
+<p>因为日期的格式多种多样（如：2022-12-12 10:05:45 、2022&#x2F;12&#x2F;12 10:05:45），那么对于日期类型的参数在进行封装的时候，需要通过@DateTimeFormat注解，以及其pattern属性来设置日期的格式。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203213120692.png" alt="image-20221203213120692"></p>
+<ul>
+<li>@DateTimeFormat注解的pattern属性中指定了哪种日期格式，前端的日期参数就必须按照指定的格式传递。</li>
+<li>后端controller方法中，需要使用Date类型或LocalDateTime类型，来封装传递的参数。</li>
+</ul>
+<p>Controller方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">//日期时间参数</span></span><br><span class="line">   <span class="meta">@RequestMapping(&quot;/dateParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">dateParam</span><span class="params">(<span class="meta">@DateTimeFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)</span> LocalDateTime updateTime)</span>&#123;</span><br><span class="line">        System.out.println(updateTime);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Postman测试：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203214600716.png" alt="image-20221203214600716"></p>
+<h3 id="1-6-JSON参数"><a href="#1-6-JSON参数" class="headerlink" title="1.6 JSON参数"></a>1.6 JSON参数</h3><p>在学习前端技术时，我们有讲到过JSON，而在前后端进行交互时，如果是比较复杂的参数，前后端通过会使用JSON格式的数据进行传输。 （JSON是开发中最常用的前后端数据交互方式）</p>
+<p>我们学习JSON格式参数，主要从以下两个方面着手：</p>
+<ol>
+<li>Postman在发送请求时，如何传递json格式的请求参数</li>
+<li>在服务端的controller方法中，如何接收json格式的请求参数</li>
+</ol>
+<p>Postman发送JSON格式数据：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203225623337.png" alt="image-20221203225623337"></p>
+<p>服务端Controller方法接收JSON格式数据：</p>
+<ul>
+<li>传递json格式的参数，在Controller中会使用实体类进行封装。 </li>
+<li>封装规则：<strong>JSON数据键名与形参对象属性名相同，定义POJO类型形参即可接收参数。需要使用 @RequestBody标识。</strong></li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203230457901.png" alt="image-20221203230457901"></p>
+<ul>
+<li>@RequestBody注解：将JSON数据映射到形参的实体类对象中（JSON中的key和实体类中的属性名保持一致）</li>
+</ul>
+<p>实体类：Address</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Address</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String province;</span><br><span class="line">    <span class="keyword">private</span> String city;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//省略GET , SET 方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实体类：User</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="keyword">private</span> Address address;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//省略GET , SET 方法</span></span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+<p>Controller方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">//JSON参数</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/jsonParam&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">jsonParam</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span>&#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Postman测试：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203231803000.png" alt="image-20221203231803000"> </p>
+<h3 id="1-7-路径参数"><a href="#1-7-路径参数" class="headerlink" title="1.7 路径参数"></a>1.7 路径参数</h3><p>传统的开发中请求参数是放在请求体(POST请求)传递或跟在URL后面通过?key&#x3D;value的形式传递(GET请求)。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221203235715804.png" alt="image-20221203235715804"></p>
+<p>在现在的开发中，经常还会直接在请求的URL中传递参数。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/user/1		</span><br><span class="line">http://localhost:880/user/1/0</span><br></pre></td></tr></table></figure>
+
+<p>上述的这种传递请求参数的形式呢，我们称之为：路径参数。</p>
+<p>学习路径参数呢，主要掌握在后端的controller方法中，如何接收路径参数。</p>
+<p>路径参数：</p>
+<ul>
+<li>前端：通过请求URL直接传递参数</li>
+<li>后端：使用{…}来标识该路径参数，需要使用@PathVariable获取路径参数</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204001520756.png" alt="image-20221204001520756"></p>
+<p>Controller方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">//路径参数</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/path/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">pathParam</span><span class="params">(<span class="meta">@PathVariable</span> Integer id)</span>&#123;</span><br><span class="line">        System.out.println(id);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Postman测试：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204002040184.png" alt="image-20221204002040184"></p>
+<p><strong>传递多个路径参数：</strong></p>
+<p>Postman：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204002306288.png" alt="image-20221204002306288"></p>
+<p>Controller方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RequestController</span> &#123;</span><br><span class="line">    <span class="comment">//路径参数</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/path/&#123;id&#125;/&#123;name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">pathParam2</span><span class="params">(<span class="meta">@PathVariable</span> Integer id, <span class="meta">@PathVariable</span> String name)</span>&#123;</span><br><span class="line">        System.out.println(id+ <span class="string">&quot; : &quot;</span> +name);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;OK&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-响应"><a href="#2-响应" class="headerlink" title="2. 响应"></a>2. 响应</h2><p>前面我们学习过HTTL协议的交互方式：请求响应模式（有请求就有响应）</p>
+<p>那么Controller程序呢，除了接收请求外，还可以进行响应。</p>
+<h3 id="2-1-ResponseBody"><a href="#2-1-ResponseBody" class="headerlink" title="2.1 @ResponseBody"></a>2.1 @ResponseBody</h3><p>在我们前面所编写的controller方法中，都已经设置了响应数据。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204100656376.png" alt="image-20221204100656376"></p>
+<p>controller方法中的return的结果，怎么就可以响应给浏览器呢？</p>
+<p>答案：使用@ResponseBody注解</p>
+<p><strong>@ResponseBody注解：</strong></p>
+<ul>
+<li>类型：方法注解、类注解</li>
+<li>位置：书写在Controller方法上或类上</li>
+<li>作用：将方法返回值直接响应给浏览器<ul>
+<li>如果返回值类型是实体对象&#x2F;集合，将会转换为JSON格式后在响应给浏览器</li>
+</ul>
+</li>
+</ul>
+<p>但是在我们所书写的Controller中，只在类上添加了@RestController注解、方法添加了@RequestMapping注解，并没有使用@ResponseBody注解，怎么给浏览器响应呢？</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World ~&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World ~&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原因：在类上添加的@RestController注解，是一个组合注解。</p>
+<ul>
+<li>@RestController &#x3D; @Controller + @ResponseBody</li>
+</ul>
+<p>@RestController源码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE&#125;)</span>   <span class="comment">//元注解（修饰注解的注解）</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span>  <span class="comment">//元注解</span></span><br><span class="line"><span class="meta">@Documented</span>    <span class="comment">//元注解</span></span><br><span class="line"><span class="meta">@Controller</span>   </span><br><span class="line"><span class="meta">@ResponseBody</span> </span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RestController &#123;</span><br><span class="line">    <span class="meta">@AliasFor(</span></span><br><span class="line"><span class="meta">        annotation = Controller.class</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    String <span class="title function_">value</span><span class="params">()</span> <span class="keyword">default</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结论：在类上添加@RestController就相当于添加了@ResponseBody注解。</p>
+<ul>
+<li>类上有@RestController注解或@ResponseBody注解时：表示当前类下所有的方法返回值做为响应数据<ul>
+<li>方法的返回值，如果是一个POJO对象或集合时，会先转换为JSON格式，在响应给浏览器</li>
+</ul>
+</li>
+</ul>
+<p>下面我们来测试下响应数据：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ResponseController</span> &#123;</span><br><span class="line">    <span class="comment">//响应字符串</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World ~&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World ~&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//响应实体对象</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/getAddr&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Address <span class="title function_">getAddr</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Address</span> <span class="variable">addr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Address</span>();<span class="comment">//创建实体类对象</span></span><br><span class="line">        addr.setProvince(<span class="string">&quot;广东&quot;</span>);</span><br><span class="line">        addr.setCity(<span class="string">&quot;深圳&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> addr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//响应集合数据</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/listAddr&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Address&gt; <span class="title function_">listAddr</span><span class="params">()</span>&#123;</span><br><span class="line">        List&lt;Address&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();<span class="comment">//集合对象</span></span><br><span class="line">        </span><br><span class="line">        <span class="type">Address</span> <span class="variable">addr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Address</span>();</span><br><span class="line">        addr.setProvince(<span class="string">&quot;广东&quot;</span>);</span><br><span class="line">        addr.setCity(<span class="string">&quot;深圳&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Address</span> <span class="variable">addr2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Address</span>();</span><br><span class="line">        addr2.setProvince(<span class="string">&quot;陕西&quot;</span>);</span><br><span class="line">        addr2.setCity(<span class="string">&quot;西安&quot;</span>);</span><br><span class="line"></span><br><span class="line">        list.add(addr);</span><br><span class="line">        list.add(addr2);</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在服务端响应了一个对象或者集合，那私前端获取到的数据是什么样子的呢？我们使用postman发送请求来测试下。测试效果如下：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204172339375.png" alt="image-20221204172339375"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204172705426.png" alt="image-20221204172705426"></p>
+<h3 id="2-2-统一响应结果"><a href="#2-2-统一响应结果" class="headerlink" title="2.2 统一响应结果"></a>2.2 统一响应结果</h3><p>大家有没有发现一个问题，我们在前面所编写的这些Controller方法中，返回值各种各样，没有任何的规范。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204174052622.png" alt="image-20221204174052622"></p>
+<p>如果我们开发一个大型项目，项目中controller方法将成千上万，使用上述方式将造成整个项目难以维护。那在真实的项目开发中是什么样子的呢？</p>
+<p>在真实的项目开发中，无论是哪种方法，我们都会定义一个统一的返回结果。方案如下：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204174537686.png" alt="image-20221204174537686"></p>
+<blockquote>
+<p>前端：只需要按照统一格式的返回结果进行解析(仅一种解析方案)，就可以拿到数据。</p>
+</blockquote>
+<p>统一的返回结果使用类来描述，在这个结果中包含：</p>
+<ul>
+<li><p>响应状态码：当前请求是成功，还是失败</p>
+</li>
+<li><p>状态码信息：给页面的提示信息</p>
+</li>
+<li><p>返回的数据：给前端响应的数据（字符串、对象、集合）</p>
+</li>
+</ul>
+<p>定义在一个实体类Result来包含以上信息。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer code;<span class="comment">//响应码，1 代表成功; 0 代表失败</span></span><br><span class="line">    <span class="keyword">private</span> String msg;  <span class="comment">//响应码 描述字符串</span></span><br><span class="line">    <span class="keyword">private</span> Object data; <span class="comment">//返回的数据</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Result</span><span class="params">()</span> &#123; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Result</span><span class="params">(Integer code, String msg, Object data)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">        <span class="built_in">this</span>.msg = msg;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCode</span><span class="params">(Integer code)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getMsg</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setMsg</span><span class="params">(String msg)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getData</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setData</span><span class="params">(Object data)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//增删改 成功响应(不需要给前端返回数据)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">success</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">1</span>,<span class="string">&quot;success&quot;</span>,<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//查询 成功响应(把查询结果做为返回数据响应给前端)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">success</span><span class="params">(Object data)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">1</span>,<span class="string">&quot;success&quot;</span>,data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//失败响应</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">error</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">0</span>,msg,<span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>改造Controller：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ResponseController</span> &#123; </span><br><span class="line">    <span class="comment">//响应统一格式的结果</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">hello</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World ~&quot;</span>);</span><br><span class="line">        <span class="comment">//return new Result(1,&quot;success&quot;,&quot;Hello World ~&quot;);</span></span><br><span class="line">        <span class="keyword">return</span> Result.success(<span class="string">&quot;Hello World ~&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//响应统一格式的结果</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/getAddr&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">getAddr</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Address</span> <span class="variable">addr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Address</span>();</span><br><span class="line">        addr.setProvince(<span class="string">&quot;广东&quot;</span>);</span><br><span class="line">        addr.setCity(<span class="string">&quot;深圳&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> Result.success(addr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//响应统一格式的结果</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/listAddr&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">listAddr</span><span class="params">()</span>&#123;</span><br><span class="line">        List&lt;Address&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="type">Address</span> <span class="variable">addr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Address</span>();</span><br><span class="line">        addr.setProvince(<span class="string">&quot;广东&quot;</span>);</span><br><span class="line">        addr.setCity(<span class="string">&quot;深圳&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">Address</span> <span class="variable">addr2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Address</span>();</span><br><span class="line">        addr2.setProvince(<span class="string">&quot;陕西&quot;</span>);</span><br><span class="line">        addr2.setCity(<span class="string">&quot;西安&quot;</span>);</span><br><span class="line"></span><br><span class="line">        list.add(addr);</span><br><span class="line">        list.add(addr2);</span><br><span class="line">        <span class="keyword">return</span> Result.success(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用Postman测试：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204180946963.png" alt="image-20221204180946963"></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204180744084.png" alt="image-20221204180744084"></p>
+<h3 id="2-3-案例"><a href="#2-3-案例" class="headerlink" title="2.3 案例"></a>2.3 案例</h3><p>下面我们通过一个案例，来加强对请求响应的学习。</p>
+<h4 id="2-3-1-需求说明"><a href="#2-3-1-需求说明" class="headerlink" title="2.3.1 需求说明"></a>2.3.1 需求说明</h4><p>需求：加载并解析xml文件中的数据，完成数据处理，并在页面展示</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204185928260.png" alt="image-20221204185928260">  </p>
+<ul>
+<li>获取员工数据，返回统一响应结果，在页面渲染展示</li>
+</ul>
+<h4 id="2-3-2-准备工作"><a href="#2-3-2-准备工作" class="headerlink" title="2.3.2 准备工作"></a>2.3.2 准备工作</h4><p>案例准备：</p>
+<ol>
+<li><p>XML文件</p>
+<ul>
+<li>已经准备好(emp.xml)，直接导入进来，放在 src&#x2F;main&#x2F;resources目录下</li>
+</ul>
+</li>
+<li><p>工具类</p>
+<ul>
+<li>已经准备好解析XML文件的工具类，无需自己实现</li>
+<li>直接在创建一个包 com.itheima.utils ，然后将工具类拷贝进来</li>
+</ul>
+</li>
+<li><p>前端页面资源</p>
+<ul>
+<li>已经准备好，直接拷贝进来，放在src&#x2F;main&#x2F;resources下的static目录下</li>
+</ul>
+</li>
+</ol>
+<p>Springboot项目的静态资源(html，css，js等前端资源)默认存放目录为：classpath:&#x2F;static 、 classpath:&#x2F;public、 classpath:&#x2F;resources</p>
+<blockquote>
+<p>在SpringBoot项目中，静态资源默认可以存放的目录：</p>
+<ul>
+<li>classpath:&#x2F;static&#x2F;</li>
+<li>classpath:&#x2F;public&#x2F;</li>
+<li>classpath:&#x2F;resources&#x2F;</li>
+<li>classpath:&#x2F;META-INF&#x2F;resources&#x2F;</li>
+</ul>
+<p>classpath：</p>
+<ul>
+<li>代表的是类路径，在maven的项目中，其实指的就是 src&#x2F;main&#x2F;resources 或者 src&#x2F;main&#x2F;java，但是java目录是存放java代码的，所以相关的配置文件及静态资源文档，就放在 src&#x2F;main&#x2F;resources下。</li>
+</ul>
+</blockquote>
+<h4 id="2-3-3-实现步骤"><a href="#2-3-3-实现步骤" class="headerlink" title="2.3.3 实现步骤"></a>2.3.3 实现步骤</h4><ol>
+<li><p>在pom.xml文件中引入dom4j的依赖，用于解析XML文件</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.dom4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dom4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引入资料中提供的：解析XML的工具类XMLParserUtils、实体类Emp、XML文件emp.xml</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204182828547.png" alt="image-20221204182828547"> </p>
+</li>
+<li><p>引入资料中提供的静态页面文件，放在resources下的static目录下</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204183044848.png" alt="image-20221204183044848"> </p>
+</li>
+<li><p>创建EmpController类，编写Controller程序，处理请求，响应数据</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204184313822.png" alt="image-20221204184313822"></p>
+</li>
+</ol>
+<h4 id="2-3-4-代码实现"><a href="#2-3-4-代码实现" class="headerlink" title="2.3.4 代码实现"></a>2.3.4 代码实现</h4><p>Contriller代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpController</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/listEmp&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">list</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//1. 加载并解析emp.xml</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">file</span> <span class="operator">=</span> <span class="built_in">this</span>.getClass().getClassLoader().getResource(<span class="string">&quot;emp.xml&quot;</span>).getFile();</span><br><span class="line">        <span class="comment">//System.out.println(file);</span></span><br><span class="line">        List&lt;Emp&gt; empList = XmlParserUtils.parse(file, Emp.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 对数据进行转换处理 - gender, job</span></span><br><span class="line">        empList.stream().forEach(emp -&gt; &#123;</span><br><span class="line">            <span class="comment">//处理 gender 1: 男, 2: 女</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">gender</span> <span class="operator">=</span> emp.getGender();</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&quot;1&quot;</span>.equals(gender))&#123;</span><br><span class="line">                emp.setGender(<span class="string">&quot;男&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;2&quot;</span>.equals(gender))&#123;</span><br><span class="line">                emp.setGender(<span class="string">&quot;女&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//处理job - 1: 讲师, 2: 班主任 , 3: 就业指导</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">job</span> <span class="operator">=</span> emp.getJob();</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&quot;1&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;讲师&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;2&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;班主任&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;3&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;就业指导&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//3. 响应数据</span></span><br><span class="line">        <span class="keyword">return</span> Result.success(empList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>统一返回结果实体类：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer code ;<span class="comment">//1 成功 , 0 失败</span></span><br><span class="line">    <span class="keyword">private</span> String msg; <span class="comment">//提示信息</span></span><br><span class="line">    <span class="keyword">private</span> Object data; <span class="comment">//数据 date</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Result</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Result</span><span class="params">(Integer code, String msg, Object data)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">        <span class="built_in">this</span>.msg = msg;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setCode</span><span class="params">(Integer code)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getMsg</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setMsg</span><span class="params">(String msg)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">getData</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> data;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setData</span><span class="params">(Object data)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">success</span><span class="params">(Object data)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">1</span>, <span class="string">&quot;success&quot;</span>, data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">success</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">1</span>, <span class="string">&quot;success&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Result <span class="title function_">error</span><span class="params">(String msg)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Result</span>(<span class="number">0</span>, msg, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-3-5-测试"><a href="#2-3-5-测试" class="headerlink" title="2.3.5 测试"></a>2.3.5 测试</h4><p>代码编写完毕之后，我们就可以运行引导类，启动服务进行测试了。 </p>
+<p>使用Postman测试：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204190341389.png" alt="image-20221204190341389"></p>
+<p>打开浏览器，在浏览器地址栏输入： <a href="http://localhost:8080/emp.html">http://localhost:8080/emp.html</a></p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204185455556.png" alt="image-20221204185455556"> </p>
+<h4 id="2-3-6-问题分析"><a href="#2-3-6-问题分析" class="headerlink" title="2.3.6 问题分析"></a>2.3.6 问题分析</h4><p>上述案例的功能，我们虽然已经实现，但是呢，我们会发现案例中：解析XML数据，获取数据的代码，处理数据的逻辑的代码，给页面响应的代码全部都堆积在一起了，全部都写在controller方法中了。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204190712411.png" alt="image-20221204190712411"></p>
+<p>当前程序的这个业务逻辑还是比较简单的，如果业务逻辑再稍微复杂一点，我们会看到Controller方法的代码量就很大了。</p>
+<ul>
+<li><p>当我们要修改操作数据部分的代码，需要改动Controller</p>
+</li>
+<li><p>当我们要完善逻辑处理部分的代码，需要改动Controller</p>
+</li>
+<li><p>当我们需要修改数据响应的代码，还是需要改动Controller</p>
+</li>
+</ul>
+<p>这样呢，就会造成我们整个工程代码的复用性比较差，而且代码难以维护。 那如何解决这个问题呢？其实在现在的开发中，有非常成熟的解决思路，那就是分层开发。</p>
+<h2 id="3-分层解耦"><a href="#3-分层解耦" class="headerlink" title="3. 分层解耦"></a>3. 分层解耦</h2><h3 id="3-1-三层架构"><a href="#3-1-三层架构" class="headerlink" title="3.1 三层架构"></a>3.1 三层架构</h3><h4 id="3-1-1-介绍"><a href="#3-1-1-介绍" class="headerlink" title="3.1.1 介绍"></a>3.1.1 介绍</h4><p>在我们进行程序设计以及程序开发时，尽可能让每一个接口、类、方法的职责更单一些（单一职责原则）。</p>
+<blockquote>
+<p>单一职责原则：一个类或一个方法，就只做一件事情，只管一块功能。</p>
+<p>这样就可以让类、接口、方法的复杂度更低，可读性更强，扩展性更好，也更利用后期的维护。</p>
+</blockquote>
+<p>我们之前开发的程序呢，并不满足单一职责原则。下面我们来分析下之前的程序：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204191650390.png" alt="image-20221204191650390"> </p>
+<p>那其实我们上述案例的处理逻辑呢，从组成上看可以分为三个部分：</p>
+<ul>
+<li>数据访问：负责业务数据的维护操作，包括增、删、改、查等操作。</li>
+<li>逻辑处理：负责业务逻辑处理的代码。</li>
+<li>请求处理、响应数据：负责，接收页面的请求，给页面响应数据。</li>
+</ul>
+<p>按照上述的三个组成部分，在我们项目开发中呢，可以将代码分为三层：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204193837678.png" alt="image-20221204193837678"></p>
+<ul>
+<li>Controller：控制层。接收前端发送的请求，对请求进行处理，并响应数据。</li>
+<li>Service：业务逻辑层。处理具体的业务逻辑。</li>
+<li>Dao：数据访问层(Data Access Object)，也称为持久层。负责数据访问操作，包括数据的增、删、改、查。</li>
+</ul>
+<p>基于三层架构的程序执行流程：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204194207812.png" alt="image-20221204194207812"></p>
+<ul>
+<li>前端发起的请求，由Controller层接收（Controller响应数据给前端）</li>
+<li>Controller层调用Service层来进行逻辑处理（Service层处理完后，把处理结果返回给Controller层）</li>
+<li>Serivce层调用Dao层（逻辑处理过程中需要用到的一些数据要从Dao层获取）</li>
+<li>Dao层操作文件中的数据（Dao拿到的数据会返回给Service层）</li>
+</ul>
+<blockquote>
+<p>思考：按照三层架构的思想，如何要对业务逻辑(Service层)进行变更，会影响到Controller层和Dao层吗？ </p>
+<p>答案：不会影响。 （程序的扩展性、维护性变得更好了）</p>
+</blockquote>
+<h4 id="3-1-2-代码拆分"><a href="#3-1-2-代码拆分" class="headerlink" title="3.1.2 代码拆分"></a>3.1.2 代码拆分</h4><p>我们使用三层架构思想，来改造下之前的程序：</p>
+<ul>
+<li>控制层包名：xxxx.controller</li>
+<li>业务逻辑层包名：xxxx.service</li>
+<li>数据访问层包名：xxxx.dao</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204195812200.png" alt="image-20221204195812200"></p>
+<p><strong>控制层：</strong>接收前端发送的请求，对请求进行处理，并响应数据</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpController</span> &#123;</span><br><span class="line">    <span class="comment">//业务层对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">EmpService</span> <span class="variable">empService</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EmpServiceA</span>();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/listEmp&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">list</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//1. 调用service层, 获取数据</span></span><br><span class="line">        List&lt;Emp&gt; empList = empService.listEmp();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 响应数据</span></span><br><span class="line">        <span class="keyword">return</span> Result.success(empList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>业务逻辑层：</strong>处理具体的业务逻辑</p>
+<ul>
+<li>业务接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//业务逻辑接口（制定业务标准）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">EmpService</span> &#123;</span><br><span class="line">    <span class="comment">//获取员工列表</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Emp&gt; <span class="title function_">listEmp</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>业务实现类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//业务逻辑实现类（按照业务标准实现）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpServiceA</span> <span class="keyword">implements</span> <span class="title class_">EmpService</span> &#123;</span><br><span class="line">    <span class="comment">//dao层对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">EmpDao</span> <span class="variable">empDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EmpDaoA</span>();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Emp&gt; <span class="title function_">listEmp</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//1. 调用dao, 获取数据</span></span><br><span class="line">        List&lt;Emp&gt; empList = empDao.listEmp();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 对数据进行转换处理 - gender, job</span></span><br><span class="line">        empList.stream().forEach(emp -&gt; &#123;</span><br><span class="line">            <span class="comment">//处理 gender 1: 男, 2: 女</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">gender</span> <span class="operator">=</span> emp.getGender();</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&quot;1&quot;</span>.equals(gender))&#123;</span><br><span class="line">                emp.setGender(<span class="string">&quot;男&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;2&quot;</span>.equals(gender))&#123;</span><br><span class="line">                emp.setGender(<span class="string">&quot;女&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//处理job - 1: 讲师, 2: 班主任 , 3: 就业指导</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">job</span> <span class="operator">=</span> emp.getJob();</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&quot;1&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;讲师&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;2&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;班主任&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;3&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;就业指导&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> empList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>数据访问层：</strong>负责数据的访问操作，包含数据的增、删、改、查</p>
+<ul>
+<li>数据访问接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//数据访问层接口（制定标准）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">EmpDao</span> &#123;</span><br><span class="line">    <span class="comment">//获取员工列表数据</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Emp&gt; <span class="title function_">listEmp</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>数据访问实现类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//数据访问实现类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpDaoA</span> <span class="keyword">implements</span> <span class="title class_">EmpDao</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Emp&gt; <span class="title function_">listEmp</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//1. 加载并解析emp.xml</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">file</span> <span class="operator">=</span> <span class="built_in">this</span>.getClass().getClassLoader().getResource(<span class="string">&quot;emp.xml&quot;</span>).getFile();</span><br><span class="line">        System.out.println(file);</span><br><span class="line">        List&lt;Emp&gt; empList = XmlParserUtils.parse(file, Emp.class);</span><br><span class="line">        <span class="keyword">return</span> empList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204201342490.png" alt="image-20221204201342490"></p>
+<p>三层架构的好处：</p>
+<ol>
+<li>复用性强</li>
+<li>便于维护</li>
+<li>利用扩展</li>
+</ol>
+<h3 id="3-2-分层解耦"><a href="#3-2-分层解耦" class="headerlink" title="3.2 分层解耦"></a>3.2 分层解耦</h3><p>刚才我们学习过程序分层思想了，接下来呢，我们来学习下程序的解耦思想。</p>
+<p>解耦：解除耦合。</p>
+<h4 id="3-2-1-耦合问题"><a href="#3-2-1-耦合问题" class="headerlink" title="3.2.1 耦合问题"></a>3.2.1 耦合问题</h4><p>首先需要了解软件开发涉及到的两个概念：内聚和耦合。</p>
+<ul>
+<li><p>内聚：软件中各个功能模块内部的功能联系。</p>
+</li>
+<li><p>耦合：衡量软件中各个层&#x2F;模块之间的依赖、关联的程度。</p>
+</li>
+</ul>
+<p><strong>软件设计原则：高内聚低耦合。</strong></p>
+<blockquote>
+<p>高内聚指的是：一个模块中各个元素之间的联系的紧密程度，如果各个元素(语句、程序段)之间的联系程度越高，则内聚性越高，即 “高内聚”。</p>
+<p>低耦合指的是：软件中各个层、模块之间的依赖关联程序越低越好。</p>
+</blockquote>
+<p>程序中高内聚的体现：</p>
+<ul>
+<li>EmpServiceA类中只编写了和员工相关的逻辑处理代码</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204202531571.png" alt="image-20221204202531571"> </p>
+<p>程序中耦合代码的体现：</p>
+<ul>
+<li>把业务类变为EmpServiceB时，需要修改controller层中的代码</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204203904900.png" alt="image-20221204203904900"></p>
+<p>高内聚、低耦合的目的是使程序模块的可重用性、移植性大大增强。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20220828215549593.png"></p>
+<h4 id="3-2-2-解耦思路"><a href="#3-2-2-解耦思路" class="headerlink" title="3.2.2  解耦思路"></a>3.2.2  解耦思路</h4><p>之前我们在编写代码时，需要什么对象，就直接new一个就可以了。 这种做法呢，层与层之间代码就耦合了，当service层的实现变了之后， 我们还需要修改controller层的代码。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204204916033.png" alt="image-20221204204916033"></p>
+<p> 那应该怎么解耦呢？</p>
+<ul>
+<li>首先不能在EmpController中使用new对象。代码如下：</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204205328069.png" alt="image-20221204205328069"></p>
+<ul>
+<li>此时，就存在另一个问题了，不能new，就意味着没有业务层对象（程序运行就报错），怎么办呢？<ul>
+<li>我们的解决思路是：<ul>
+<li>提供一个容器，容器中存储一些对象(例：EmpService对象)</li>
+<li>controller程序从容器中获取EmpService类型的对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>我们想要实现上述解耦操作，就涉及到Spring中的两个核心概念：</p>
+<ul>
+<li><p><strong>控制反转：</strong> Inversion Of Control，简称IOC。对象的创建控制权由程序自身转移到外部（容器），这种思想称为控制反转。</p>
+<blockquote>
+<p>对象的创建权由程序员主动创建转移到容器(由容器创建、管理对象)。这个容器称为：IOC容器或Spring容器</p>
+</blockquote>
+</li>
+<li><p><strong>依赖注入：</strong> Dependency Injection，简称DI。容器为应用程序提供运行时，所依赖的资源，称之为依赖注入。</p>
+<blockquote>
+<p>程序运行时需要某个资源，此时容器就为其提供这个资源。</p>
+<p>例：EmpController程序运行时需要EmpService对象，Spring容器就为其提供并注入EmpService对象</p>
+</blockquote>
+</li>
+</ul>
+<p>IOC容器中创建、管理的对象，称之为：bean对象</p>
+<h3 id="3-3-IOC-DI"><a href="#3-3-IOC-DI" class="headerlink" title="3.3 IOC&amp;DI"></a>3.3 IOC&amp;DI</h3><p>上面我们引出了Spring中IOC和DI的基本概念，下面我们就来具体学习下IOC和DI的代码实现。</p>
+<h4 id="3-3-1-IOC-DI入门"><a href="#3-3-1-IOC-DI入门" class="headerlink" title="3.3.1 IOC&amp;DI入门"></a>3.3.1 IOC&amp;DI入门</h4><p>任务：完成Controller层、Service层、Dao层的代码解耦</p>
+<ul>
+<li>思路：<ol>
+<li>删除Controller层、Service层中new对象的代码</li>
+<li>Service层及Dao层的实现类，交给IOC容器管理</li>
+<li>为Controller及Service注入运行时依赖的对象<ul>
+<li>Controller程序中注入依赖的Service层对象</li>
+<li>Service程序中注入依赖的Dao层对象</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p>第1步：删除Controller层、Service层中new对象的代码</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204212807207.png" alt="image-20221204212807207"></p>
+<p>第2步：Service层及Dao层的实现类，交给IOC容器管理</p>
+<ul>
+<li>使用Spring提供的注解：@Component ，就可以实现类交给IOC容器管理</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204213328034.png" alt="image-20221204213328034"></p>
+<p>第3步：为Controller及Service注入运行时依赖的对象</p>
+<ul>
+<li>使用Spring提供的注解：@Autowired ，就可以实现程序运行时IOC容器自动注入需要的依赖对象</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204213859112.png" alt="image-20221204213859112"></p>
+<p>完整的三层代码：</p>
+<ul>
+<li><strong>Controller层：</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span> <span class="comment">//运行时,从IOC容器中获取该类型对象,赋值给该变量</span></span><br><span class="line">    <span class="keyword">private</span> EmpService empService ;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/listEmp&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">list</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//1. 调用service, 获取数据</span></span><br><span class="line">        List&lt;Emp&gt; empList = empService.listEmp();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 响应数据</span></span><br><span class="line">        <span class="keyword">return</span> Result.success(empList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Service层：</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span> <span class="comment">//将当前对象交给IOC容器管理,成为IOC容器的bean</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpServiceA</span> <span class="keyword">implements</span> <span class="title class_">EmpService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span> <span class="comment">//运行时,从IOC容器中获取该类型对象,赋值给该变量</span></span><br><span class="line">    <span class="keyword">private</span> EmpDao empDao ;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Emp&gt; <span class="title function_">listEmp</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//1. 调用dao, 获取数据</span></span><br><span class="line">        List&lt;Emp&gt; empList = empDao.listEmp();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 对数据进行转换处理 - gender, job</span></span><br><span class="line">        empList.stream().forEach(emp -&gt; &#123;</span><br><span class="line">            <span class="comment">//处理 gender 1: 男, 2: 女</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">gender</span> <span class="operator">=</span> emp.getGender();</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&quot;1&quot;</span>.equals(gender))&#123;</span><br><span class="line">                emp.setGender(<span class="string">&quot;男&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;2&quot;</span>.equals(gender))&#123;</span><br><span class="line">                emp.setGender(<span class="string">&quot;女&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//处理job - 1: 讲师, 2: 班主任 , 3: 就业指导</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">job</span> <span class="operator">=</span> emp.getJob();</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&quot;1&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;讲师&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;2&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;班主任&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;3&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;就业指导&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> empList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Dao层：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span> <span class="comment">//将当前对象交给IOC容器管理,成为IOC容器的bean</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpDaoA</span> <span class="keyword">implements</span> <span class="title class_">EmpDao</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Emp&gt; <span class="title function_">listEmp</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//1. 加载并解析emp.xml</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">file</span> <span class="operator">=</span> <span class="built_in">this</span>.getClass().getClassLoader().getResource(<span class="string">&quot;emp.xml&quot;</span>).getFile();</span><br><span class="line">        System.out.println(file);</span><br><span class="line">        List&lt;Emp&gt; empList = XmlParserUtils.parse(file, Emp.class);</span><br><span class="line">        <span class="keyword">return</span> empList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>运行测试：</p>
+<ul>
+<li>启动SpringBoot引导类，打开浏览器，输入：<a href="http://localhost:8080/emp.html">http://localhost:8080/emp.html</a></li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204185455556.png" alt="image-20221204185455556"></p>
+<h4 id="3-3-2-IOC详解"><a href="#3-3-2-IOC详解" class="headerlink" title="3.3.2 IOC详解"></a>3.3.2 IOC详解</h4><p>通过IOC和DI的入门程序呢，我们已经基本了解了IOC和DI的基础操作。接下来呢，我们学习下IOC控制反转和DI依赖注入的细节。</p>
+<h5 id="3-3-2-1-bean的声明"><a href="#3-3-2-1-bean的声明" class="headerlink" title="3.3.2.1 bean的声明"></a>3.3.2.1 bean的声明</h5><p>前面我们提到IOC控制反转，就是将对象的控制权交给Spring的IOC容器，由IOC容器创建及管理对象。IOC容器创建的对象称为bean对象。</p>
+<p>在之前的入门案例中，要把某个对象交给IOC容器管理，需要在类上添加一个注解：@Component </p>
+<p>而Spring框架为了更好的标识web应用程序开发当中，bean对象到底归属于哪一层，又提供了@Component的衍生注解：</p>
+<ul>
+<li>@Controller    （标注在控制层类上）</li>
+<li>@Service          （标注在业务层类上）</li>
+<li>@Repository    （标注在数据访问层类上）</li>
+</ul>
+<p>修改入门案例代码：</p>
+<ul>
+<li><strong>Controller层：</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  <span class="comment">//@RestController = @Controller + @ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span> <span class="comment">//运行时,从IOC容器中获取该类型对象,赋值给该变量</span></span><br><span class="line">    <span class="keyword">private</span> EmpService empService ;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/listEmp&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Result <span class="title function_">list</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">//1. 调用service, 获取数据</span></span><br><span class="line">        List&lt;Emp&gt; empList = empService.listEmp();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 响应数据</span></span><br><span class="line">        <span class="keyword">return</span> Result.success(empList);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Service层：</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpServiceA</span> <span class="keyword">implements</span> <span class="title class_">EmpService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span> <span class="comment">//运行时,从IOC容器中获取该类型对象,赋值给该变量</span></span><br><span class="line">    <span class="keyword">private</span> EmpDao empDao ;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Emp&gt; <span class="title function_">listEmp</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//1. 调用dao, 获取数据</span></span><br><span class="line">        List&lt;Emp&gt; empList = empDao.listEmp();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 对数据进行转换处理 - gender, job</span></span><br><span class="line">        empList.stream().forEach(emp -&gt; &#123;</span><br><span class="line">            <span class="comment">//处理 gender 1: 男, 2: 女</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">gender</span> <span class="operator">=</span> emp.getGender();</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&quot;1&quot;</span>.equals(gender))&#123;</span><br><span class="line">                emp.setGender(<span class="string">&quot;男&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;2&quot;</span>.equals(gender))&#123;</span><br><span class="line">                emp.setGender(<span class="string">&quot;女&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//处理job - 1: 讲师, 2: 班主任 , 3: 就业指导</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">job</span> <span class="operator">=</span> emp.getJob();</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&quot;1&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;讲师&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;2&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;班主任&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">&quot;3&quot;</span>.equals(job))&#123;</span><br><span class="line">                emp.setJob(<span class="string">&quot;就业指导&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> empList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Dao层：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EmpDaoA</span> <span class="keyword">implements</span> <span class="title class_">EmpDao</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Emp&gt; <span class="title function_">listEmp</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//1. 加载并解析emp.xml</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">file</span> <span class="operator">=</span> <span class="built_in">this</span>.getClass().getClassLoader().getResource(<span class="string">&quot;emp.xml&quot;</span>).getFile();</span><br><span class="line">        System.out.println(file);</span><br><span class="line">        List&lt;Emp&gt; empList = XmlParserUtils.parse(file, Emp.class);</span><br><span class="line">        <span class="keyword">return</span> empList;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>要把某个对象交给IOC容器管理，需要在对应的类上加上如下注解之一：</p>
+<table>
+<thead>
+<tr>
+<th align="left">注解</th>
+<th>说明</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">@Controller</td>
+<td>@Component的衍生注解</td>
+<td>标注在控制器类上</td>
+</tr>
+<tr>
+<td align="left">@Service</td>
+<td>@Component的衍生注解</td>
+<td>标注在业务类上</td>
+</tr>
+<tr>
+<td align="left">@Repository</td>
+<td>@Component的衍生注解</td>
+<td>标注在数据访问类上（由于与mybatis整合，用的少）</td>
+</tr>
+<tr>
+<td align="left">@Component</td>
+<td>声明bean的基础注解</td>
+<td>不属于以上三类时，用此注解</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>查看源码：<img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204221320230.png" alt="image-20221204221320230"></p>
+</blockquote>
+<p>在IOC容器中，每一个Bean都有一个属于自己的名字，可以通过注解的value属性指定bean的名字。如果没有指定，默认为类名首字母小写。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204222650873.png" alt="image-20221204222650873"></p>
+<blockquote>
+<p>注意事项: </p>
+<ul>
+<li>声明bean的时候，可以通过value属性指定bean的名字，如果没有指定，默认为类名首字母小写。</li>
+<li>使用以上四个注解都可以声明bean，但是在springboot集成web开发中，声明控制器bean只能用@Controller。</li>
+</ul>
+</blockquote>
+<h5 id="3-3-2-2-组件扫描"><a href="#3-3-2-2-组件扫描" class="headerlink" title="3.3.2.2 组件扫描"></a>3.3.2.2 组件扫描</h5><p>问题：使用前面学习的四个注解声明的bean，一定会生效吗？</p>
+<p>答案：不一定。（原因：bean想要生效，还需要被组件扫描）</p>
+<p> 下面我们通过修改项目工程的目录结构，来测试bean对象是否生效：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204223602694.png" alt="image-20221204223602694"></p>
+<p>运行程序后，报错：</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204223815554.png" alt="image-20221204223815554"></p>
+<p>为什么没有找到bean对象呢？</p>
+<ul>
+<li>使用四大注解声明的bean，要想生效，还需要被组件扫描注解@ComponentScan扫描</li>
+</ul>
+<blockquote>
+<p>@ComponentScan注解虽然没有显式配置，但是实际上已经包含在了引导类声明注解 @SpringBootApplication 中，&#x3D;&#x3D;<strong>默认扫描的范围是SpringBoot启动类所在包及其子包</strong>&#x3D;&#x3D;。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204224643683.png" alt="image-20221204224643683"> </p>
+</blockquote>
+<ul>
+<li>解决方案：手动添加@ComponentScan注解，指定要扫描的包   （&#x3D;&#x3D;仅做了解，不推荐&#x3D;&#x3D;）</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204225437297.png" alt="image-20221204225437297"></p>
+<p>推荐做法（如下图）：</p>
+<ul>
+<li>将我们定义的controller，service，dao这些包呢，都放在引导类所在包com.itheima的子包下，这样我们定义的bean就会被自动的扫描到</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204225815624.png" alt="image-20221204225815624"></p>
+<h4 id="3-3-3-DI详解"><a href="#3-3-3-DI详解" class="headerlink" title="3.3.3 DI详解"></a>3.3.3 DI详解</h4><p>上一小节我们讲解了控制反转IOC的细节，接下来呢，我们学习依赖注解DI的细节。</p>
+<p>依赖注入，是指IOC容器要为应用程序去提供运行时所依赖的资源，而资源指的就是对象。</p>
+<p>在入门程序案例中，我们使用了@Autowired这个注解，完成了依赖注入的操作，而这个Autowired翻译过来叫：自动装配。</p>
+<p>@Autowired注解，默认是按照<strong>类型</strong>进行自动装配的（去IOC容器中找某个类型的对象，然后完成注入操作）</p>
+<blockquote>
+<p>入门程序举例：在EmpController运行的时候，就要到IOC容器当中去查找EmpService这个类型的对象，而我们的IOC容器中刚好有一个EmpService这个类型的对象，所以就找到了这个类型的对象完成注入操作。</p>
+</blockquote>
+<p>那如果在IOC容器中，存在多个相同类型的bean对象，会出现什么情况呢？</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204232154445.png" alt="image-20221204232154445"></p>
+<ul>
+<li>程序运行会报错</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204231616724.png" alt="image-20221204231616724"></p>
+<p>如何解决上述问题呢？Spring提供了以下几种解决方案：</p>
+<ul>
+<li><p>@Primary</p>
+</li>
+<li><p>@Qualifier</p>
+</li>
+<li><p>@Resource</p>
+</li>
+</ul>
+<p>使用@Primary注解：当存在多个相同类型的Bean注入时，加上@Primary注解，来确定默认的实现。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204232501679.png" alt="image-20221204232501679"> </p>
+<p>使用@Qualifier注解：指定当前要注入的bean对象。 在@Qualifier的value属性中，指定注入的bean的名称。</p>
+<ul>
+<li>@Qualifier注解不能单独使用，必须配合@Autowired使用</li>
+</ul>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204233333606.png" alt="image-20221204233333606"></p>
+<p>使用@Resource注解：是按照bean的名称进行注入。通过name属性指定要注入的bean的名称。</p>
+<p><img src="/../images/springboot%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94/image-20221204233637735.png" alt="image-20221204233637735"></p>
+<blockquote>
+<p>面试题 ： @Autowird 与 @Resource的区别</p>
+<ul>
+<li>@Autowired 是spring框架提供的注解，而@Resource是JDK提供的注解</li>
+<li>@Autowired 默认是按照类型注入，而@Resource是按照名称注入</li>
+</ul>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
 </search>
