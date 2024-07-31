@@ -74,11 +74,11 @@ Maven是Apache旗下的一个开源项目，是一款用于管理和构建java�
 
 若我们创建的是一个maven工程，是可以帮我们自动生成统一、标准的项目目录结构：
 
-![image-20221130220539444](../images/Maven基础/image-20221130220539444.png)
+![](../images/Maven基础/image-20221130220539444.png)
 
 具体的统一结构如下：
 
-<img src="../images/Maven基础/image-20221130140132209.png"/>
+![](../images/Maven基础/image-20221130140132209.png)
 
 > 目录说明： 
 >
@@ -93,7 +93,7 @@ Maven是Apache旗下的一个开源项目，是一款用于管理和构建java�
 
 - maven提供了标准的、跨平台(Linux、Windows、MacOS) 的自动化项目构建方式
 
-<img src="../images/Maven基础/image-20221130140247524.png" alt="image-20221130140247524" style="zoom:67%;" />
+![image-20221130140247524](../images/Maven基础/image-20221130140247524.png)
 
 如上图所示我们开发了一套系统，代码需要进行编译、测试、打包、发布，这些操作如果需要反复进行就显得特别麻烦，而Maven提供了一套简单的命令来完成项目构建。
 
@@ -253,7 +253,7 @@ Maven安装配置步骤：
 
 3). 复制之前新建的用来存储jar包的路径，替换掉<localRepository>标签体内容
 
-<img src="../images/Maven基础/2.gif" style="zoom:80%;" />
+![](../images/Maven基础/2.gif)
 
 
 
@@ -294,7 +294,7 @@ Maven安装配置步骤：
 
 - MAVEN_HOME环境变量的值，设置为maven的解压安装目录
 
-<img src="../images/Maven基础/image-20220616102344350.png" style="zoom:80%;" />
+![](../images/Maven基础/image-20220616102344350.png)
 
 
 
@@ -302,7 +302,7 @@ Maven安装配置步骤：
 
 - PATH环境变量的值，设置为：%MAVEN_HOME%\bin
 
-<img src="../images/Maven基础/image-20220616102435856.png" style="zoom:80%;" /> 
+![](../images/Maven基础/image-20220616102435856.png)
 
 
 
@@ -366,21 +366,21 @@ mvn -v
 
 - 选择 IDEA中 File  =>  close project
 
-<img src="../images/Maven基础/4.gif" style="zoom:80%;" />
+![](../images/Maven基础/4.gif)
 
-<img src="../images/Maven基础/image-20220616104338612.png" style="zoom:80%;" />
+![](../images/Maven基础/image-20220616104338612.png)
 
 
 
 2、打开 All settings , 选择 Build,Execution,Deployment  =>  Build Tools  =>  Maven
 
-<img src="../images/Maven基础/image-20220616104517726.png" style="zoom:80%;" />
+![](../images/Maven基础/image-20220616104517726.png)
 
 
 
 3、配置工程的编译版本为11
 
-<img src="../images/Maven基础/image-20221201093737128.png" alt="image-20221201093737128" style="zoom:80%;" />
+![image-20221201093737128](../images/Maven基础/image-20221201093737128.png)
 
 这里所设置的maven的环境信息，并未指定任何一个project，此时设置的信息就属于全局配置信息。 以后，我们再创建project，默认就是使用我们全局配置的信息。
 
@@ -392,31 +392,31 @@ mvn -v
 
 1、创建一个空项目 
 
-<img src="../images/Maven基础/image-20221201095621738.png" alt="image-20221201095621738" style="zoom:80%;" />
+![image-20221201095621738](../images/Maven基础/image-20221201095621738.png)
 
-<img src="../images/Maven基础/image-20221201095600057.png" alt="image-20221201095600057" style="zoom:80%;" />
+![image-20221201095600057](../images/Maven基础/image-20221201095600057.png)
 
 
 
 2、创建模块，选择Maven，点击Next
 
-<img src="../images/Maven基础/image-20221201095831320.png" alt="image-20221201095831320" style="zoom:80%;" />
+![image-20221201095831320](../images/Maven基础/image-20221201095831320.png)
 
-<img src="../images/Maven基础/image-20221201100011799.png" alt="image-20221201100011799" style="zoom:80%;" />
+![image-20221201100011799](../images/Maven基础/image-20221201100011799.png)
 
 
 
 3、填写模块名称，坐标信息，点击finish，创建完成
 
-<img src="../images/Maven基础/image-20221201100502234.png" alt="image-20221201100502234" style="zoom:80%;" /> 
+![image-20221201100502234](../images/Maven基础/image-20221201100502234.png) 
 
 
 
 4、在Maven工程下，创建HelloWorld类
 
-<img src="../images/Maven基础/image-20221201101603397.png" alt="image-20221201101603397" style="zoom:80%;" />
+![image-20221201101603397](../images/Maven基础/image-20221201101603397.png)
 
-<img src="../images/Maven基础/image-20221201101643427.png" alt="image-20221201101643427" style="zoom:80%;" />
+![image-20221201101643427](../images/Maven基础/image-20221201101643427.png)
 
 > - Maven项目的目录结构:
 >
@@ -518,7 +518,7 @@ Maven坐标主要组成
 
 ![image-20221201104320521](../images/Maven基础/image-20221201104320521.png)
 
-<img src="../images/Maven基础/image-20221201104906754.png" alt="image-20221201104906754" style="zoom:80%;" /> 
+![image-20221201104906754](../images/Maven基础/image-20221201104906754.png) 
 
 > 说明：如果没有Maven面板，选择 View  =>  Appearance  =>  Tool Window Bars
 >
@@ -530,13 +530,13 @@ Maven坐标主要组成
 
 File  =>  Project Structure  =>  Modules  =>  +  =>  Import Module
 
-<img src="../images/Maven基础/image-20220823161727718.png" style="zoom:80%;" />
+![](../images/Maven基础/image-20220823161727718.png)
 
 找到要导入工程的pom.xml
 
 ![image-20221201105532909](../images/Maven基础/image-20221201105532909.png)
 
-<img src="../images/Maven基础/image-20221201105845872.png" alt="image-20221201105845872" style="zoom:80%;" />
+![image-20221201105845872](../images/Maven基础/image-20221201105845872.png)
 
 
 
@@ -593,19 +593,19 @@ File  =>  Project Structure  =>  Modules  =>  +  =>  Import Module
 
 1. 利用中央仓库搜索的依赖坐标
 
-   <img src="../images/Maven基础/5.gif" style="zoom:80%;" />
+   ![](../images/Maven基础/5.gif)
 
 
 
 2. 利用IDEA工具搜索依赖
 
-   <img src="../images/Maven基础/6.gif" style="zoom:80%;" />
+   ![](../images/Maven基础/6.gif)
 
 
 
 3. 熟练上手maven后，快速导入依赖
 
-   <img src="../images/Maven基础/7.gif" style="zoom:80%;" />
+   ![](../images/Maven基础/7.gif)
 
 
 

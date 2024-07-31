@@ -97,11 +97,11 @@ Spring发展到今天已经形成了一种开发生态圈，Spring提供了若�
 
 基于Spring官方骨架，创建SpringBoot工程。
 
-<img src="../images/springboot入门/image-20221201184702136.png" alt="image-20221201184702136" style="zoom:80%;" />
+![image-20221201184702136](../images/springboot入门/image-20221201184702136.png)
 
 基本信息描述完毕之后，勾选web开发相关依赖。
 
-<img src="../images/springboot入门/image-20221201184850248.png" alt="image-20221201184850248" style="zoom:80%;" />
+![image-20221201184850248](../images/springboot入门/image-20221201184850248.png)
 
 点击Finish之后，就会联网创建这个SpringBoot工程，创建好之后，结构如下：
 
@@ -117,11 +117,11 @@ Spring发展到今天已经形成了一种开发生态圈，Spring提供了若�
 
 在com.itheima这个包下创建一个子包controller
 
-<img src="../images/springboot入门/image-20221201190541295.png" alt="image-20221201190541295" style="zoom:80%;" />
+![image-20221201190541295](../images/springboot入门/image-20221201190541295.png)
 
 然后在controller包下新建一个类：HelloController
 
-<img src="../images/springboot入门/image-20221201190825439.png" alt="image-20221201190825439" style="zoom:80%;" />
+![image-20221201190825439](../images/springboot入门/image-20221201190825439.png)
 
 ```java
 package com.itheima.controller;
@@ -151,7 +151,7 @@ public class HelloController {
 
 打开浏览器，输入 `http://localhost:8080/hello`
 
-<img src="../images/springboot入门/image-20220823195048415.png" style="zoom:80%;" />
+![](../images/springboot入门/image-20220823195048415.png)
 
 
 
@@ -792,7 +792,7 @@ Tomcat的默认端口为8080，所以在浏览器的地址栏输入：`http://12
 - 解决方案：换Tomcat端口号
   - 要想修改Tomcat启动的端口号，需要修改 conf/server.xml文件
 
-<img src="../images/springboot入门/image-20220825084017185.png" alt="image-20220825084017185" style="zoom:80%;" /> 
+![image-20220825084017185](../images/springboot入门/image-20220825084017185.png) 
 
 > 注: HTTP协议默认端口号为80，如果将Tomcat端口号改为80，则将来访问Tomcat时，将不用输入端口号。
 
