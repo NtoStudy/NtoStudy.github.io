@@ -159,7 +159,8 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  # GitHub: https://github.com/yourname || fab fa-github
+  Gitee: https://gitee.com/ntostudy || fab fa-gitee
+  CSDN: https://blog.csdn.net/readmancynn?spm=1000.2115.3001.5343 || fab fa-csdn
   # E-Mail: mailto:yourname@gmail.com || fa fa-envelope
   # Weibo: https://weibo.com/yourname || fab fa-weibo
   # Twitter: https://twitter.com/yourname || fab fa-twitter
@@ -183,6 +184,7 @@ links_settings:
 links:
   # Title: https://norg.asia.com
   # CSDN: https//www.csdn.com
+  小勺: www.gotozrm.top
 
 
 # Table of Contents in the Sidebar
@@ -940,4 +942,9 @@ css: css
 js: js
 images: images
 
+mylinks:
 
+- nickname: 小勺
+  avatar: https://dustca.xyz/image/avatar.jpeg
+  site: http://gotozrm.top/
+  info: 无敌曾哥
