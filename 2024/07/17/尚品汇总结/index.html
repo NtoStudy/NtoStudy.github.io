@@ -67,9 +67,9 @@
 <meta property="og:image" content="https://ntostudy.github.io/images/%E5%B0%9A%E5%93%81%E6%B1%87%E6%80%BB%E7%BB%93/32.png">
 <meta property="og:image" content="https://ntostudy.github.io/images/%E5%B0%9A%E5%93%81%E6%B1%87%E6%80%BB%E7%BB%93/33.png">
 <meta property="article:published_time" content="2024-07-17T14:51:04.000Z">
-<meta property="article:modified_time" content="2024-07-17T15:05:15.235Z">
+<meta property="article:modified_time" content="2024-08-22T03:35:24.839Z">
 <meta property="article:author" content="NtoStudy">
-<meta property="article:tag" content="前端">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://ntostudy.github.io/images/%E5%B0%9A%E5%93%81%E6%B1%87%E6%80%BB%E7%BB%93/1.png">
   
@@ -187,6 +187,8 @@
       <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
     
     
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
     
   </nav>
 </div>
@@ -230,6 +232,10 @@
 </div>
 
       
+  <div class="article-category wow slideInLeft">
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+  </div>
+
 
     </div>
     <div class="hr-line"></div>
@@ -645,7 +651,7 @@ main.js： 程序入口文件，最先执行的文件
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
 
 
     </footer>
@@ -724,11 +730,11 @@ main.js： 程序入口文件，最先执行的文件
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">6</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -847,11 +853,11 @@ main.js： 程序入口文件，最先执行的文件
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">6</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -966,6 +972,34 @@ main.js： 程序入口文件，最先执行的文件
 
 
 
+  
+<script src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"></script>
+
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"></script>
+
+  
+<script src="/js/algolia_search.js"></script>
+
+  <script>
+    var CONFIG = {
+      root: '/',
+      algolia: {
+        applicationID: "2K1UK7WERJ",
+        apiKey: "95c5041c7c22051bf1ad933b07ea1a76",
+        indexName: "Uied fovik",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": "搜索.....",
+          "hits_empty": "未发现与 「${query}」相关内容",
+          "hits_stats": "找到${hits}条结果（用时 ${time} ms）"
+        }
+      }
+    };
+  </script>
+
 
 
   
@@ -977,6 +1011,15 @@ main.js： 程序入口文件，最先执行的文件
 
 
 
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/MliKiowa/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/MliKiowa/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
 
 
 

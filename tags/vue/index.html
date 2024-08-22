@@ -14,7 +14,7 @@
   
   
   <title>
-    标签: vue基础知识 |
+    标签: vue |
     
     望远山而前行
   </title>
@@ -28,7 +28,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="望远山而前行">
-<meta property="og:url" content="https://ntostudy.github.io/tags/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:url" content="https://ntostudy.github.io/tags/vue/index.html">
 <meta property="og:site_name" content="望远山而前行">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="NtoStudy">
@@ -149,6 +149,8 @@
       <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
     
     
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索"></a>
+    
     
   </nav>
 </div>
@@ -174,7 +176,7 @@
         
         <h2 id="subtitle-wrap">
           
-            <a href="/" id="subtitle">vue基础知识</a>
+            <a href="/" id="subtitle">vue</a>
           
         </h2>
       
@@ -189,7 +191,7 @@
   <div class="tag-wrap">
     
       <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/算法/">算法</a>
+        <a class="archives-tag-list-link" href="/tags/图论/">图论</a>
       </div>
     
       <div class="archives-tag-list-item">
@@ -197,11 +199,7 @@
       </div>
     
       <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/Maven/">Maven</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/vue基础知识/">vue基础知识</a>
+        <a class="archives-tag-list-link" href="/tags/springboot/">springboot</a>
       </div>
     
       <div class="archives-tag-list-item">
@@ -209,11 +207,11 @@
       </div>
     
       <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/springboot/">springboot</a>
+        <a class="archives-tag-list-link" href="/tags/Maven/">Maven</a>
       </div>
     
       <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/前端/">前端</a>
+        <a class="archives-tag-list-link" href="/tags/vue/">vue</a>
       </div>
     
   </div>
@@ -221,6 +219,10 @@
     
       <div class="archives-category-list-item">
         <a class="archives-category-list-link" href="/categories/算法/">算法</a>
+      </div>
+    
+      <div class="archives-category-list-item">
+        <a class="archives-category-list-link" href="/categories/java/">java</a>
       </div>
     
       <div class="archives-category-list-item">
@@ -241,6 +243,24 @@
         <div class="archives">
           <ul>
             
+            <li class="archive-article">
+  <div class="archive-article-date-wrap">
+    <a href="/2024/07/17/%E5%B0%9A%E5%93%81%E6%B1%87%E6%80%BB%E7%BB%93/">
+      <time class="dt-published" datetime="2024-07-17T14:51:04.000Z" itemprop="datePublished">07-17</time>
+    </a>
+  </div>
+  <div class="archive-article-title-wrap">
+    
+      
+        <a class="archive-article-title" href="/2024/07/17/%E5%B0%9A%E5%93%81%E6%B1%87%E6%80%BB%E7%BB%93/">尚品汇总结</a>
+      
+    
+  </div>
+</li>
+
+            
+    
+    
             <li class="archive-article">
   <div class="archive-article-date-wrap">
     <a href="/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/">
@@ -283,11 +303,11 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">6</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -392,11 +412,11 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">2</div>
+    <div class="sidebar-state-number">3</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">6</div>
   </div>
 </div>
 <div class="sidebar-social">
@@ -506,6 +526,34 @@
 
 
 
+  
+<script src="https://npm.webcache.cn/algoliasearch@4.17.1/dist/algoliasearch-lite.umd.js"></script>
+
+  
+<script src="https://npm.webcache.cn/instantsearch.js@4.56.1/dist/instantsearch.production.min.js"></script>
+
+  
+<script src="/js/algolia_search.js"></script>
+
+  <script>
+    var CONFIG = {
+      root: '/',
+      algolia: {
+        applicationID: "2K1UK7WERJ",
+        apiKey: "95c5041c7c22051bf1ad933b07ea1a76",
+        indexName: "Uied fovik",
+        hits: {
+          "per_page": parseInt("10")
+        },
+        labels: {
+          "input_placeholder": "搜索.....",
+          "hits_empty": "未发现与 「${query}」相关内容",
+          "hits_stats": "找到${hits}条结果（用时 ${time} ms）"
+        }
+      }
+    };
+  </script>
+
 
 
   
@@ -517,6 +565,15 @@
 
 
 
+
+
+  <script>
+    function initLive2d() {
+      live2d.init("https://fastly.jsdelivr.net/gh/MliKiowa/plugin-live2d/", {themeTipsPath: ""});
+    }
+  </script>
+  
+<script src="https://fastly.jsdelivr.net/gh/MliKiowa/plugin-live2d/js/live2d-autoload.js" onload="initLive2d &amp;&amp; initLive2d()" async></script>
 
 
 
