@@ -21,6 +21,41 @@
       </tags>
   </entry>
   <entry>
+    <title>DFS算法</title>
+    <url>/2024/07/15/DFS%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>深度优先搜索是图的一种搜索方式，以深度为优先级去进行搜索，通俗地说就是”不撞南墙不回头”，对于当前正在搜索的路径而言，只有把当前路径给搜索完了，即走到无路可走时，才回返回进而搜索另一条路。</p>
+<span id="more"></span>  
+
+<p>假设我们有一个二叉树，共有10个节点，以下是DFS的简单示范：<img src="/../images/DFS%E7%AE%97%E6%B3%95/1.png" alt="在这里插入图片描述"></p>
+<p>从根节点开始向下搜索<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/2.png" alt="在这里插入图片描述"></p>
+<p>然后搜索到2号节点<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/3.png" alt="在这里插入图片描述"></p>
+<p>继续不断向深层处的节点搜索，搜索到4号节点<img src="/../images/DFS%E7%AE%97%E6%B3%95/4.png" alt="在这里插入图片描述"></p>
+<p>最后搜索到7号节点<img src="/../images/DFS%E7%AE%97%E6%B3%95/5.png" alt="在这里插入图片描述"></p>
+<p>当搜索到7号节点后，我们发现无路可走了，因为7号节点是当前这条路径下最深处的节点，因此，我们需要进行回溯操作<img src="/../images/DFS%E7%AE%97%E6%B3%95/6.png" alt="在这里插入图片描述"></p>
+<p>当回溯到4号节点时，我们发现4号节点并没有另一条路，也就是说从4号节点向下搜索的话，只能搜索到7号节点，但是可是刚刚才从7号节点回溯上来诶，我们总不可能又搜索到7号，然后又回溯到4号无限下去吧……所以，我们得再次回溯，也就是跳到2号节点上。<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/7.png" alt="在这里插入图片描述"></p>
+<p>当再次跳到2号节点上时，我们发现从2号节点开始，还有另一条路可以走。那我们就走下去！<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/8.png" alt="在这里插入图片描述"></p>
+<p>此时又有两条路可以走，我们先去往8号<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/9.png" alt="在这里插入图片描述"></p>
+<p>走到8号，我们发现又走到头了，那就再对它使用回溯吧！！！<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/10.png" alt="在这里插入图片描述"></p>
+<p>这次我们选择另一条路，走到9号<img src="/../images/DFS%E7%AE%97%E6%B3%95/11.png" alt="在这里插入图片描述"></p>
+<p>然后我们发现又双走到头了，因此，再次回溯，从9号跳到5号，再跳到2号，然后再跳到1号(因为5号，2号向下的路我们已经走过了，但我们发现1号节点向下的路还有一条是我们没走过滴)<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/12.png" alt="在这里插入图片描述"></p>
+<p>接下来搜索类似，我们走到3号，然后走到6号，然后走到10号<img src="/../images/DFS%E7%AE%97%E6%B3%95/13.png" alt="在这里插入图片描述"><br><img src="/../images/DFS%E7%AE%97%E6%B3%95/14.png" alt=" "></p>
+<p><img src="/../images/DFS%E7%AE%97%E6%B3%95/15.png" alt="在这里插入图片描述"></p>
+<p>当10号走完后，这颗树的每个节点都被搜索过了，最后回溯到根节点<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/16.png" alt="在这里插入图片描述"></p>
+<p>值得一提的是，深搜作为一种算法来说，并没有像二分等这些算法有固定的模板，我更愿意把它当作一种思想。如何实现DFS呢，我们通常用栈(递归来实现)。我们做题时通常会写一个dfs函数，然后在dfs函数内部，又会不断调用dfs函数，通常像下面看到的这样：</p>
+<p>以下是自我总结的模版</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> step)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(到达目的地)</span><br><span class="line">        输出</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=方案数;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(方案可行)</span><br><span class="line">        &#123;</span><br><span class="line">		  保存路径;</span><br><span class="line">           dfs(step+<span class="number">1</span>);</span><br><span class="line">           回溯</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例题1<img src="/../images/DFS%E7%AE%97%E6%B3%95/17.png" alt="请添加图片描述"><br>题解</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> ans[<span class="number">1000010</span>];<span class="comment">//记录值</span></span><br><span class="line"><span class="type">bool</span> st[<span class="number">1000010</span>];<span class="comment">//记录是否用过这个数值</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> step)</span><span class="comment">//当前所走的步数</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (step == n + <span class="number">1</span>)<span class="comment">//当前所走的步数为总步数加一 则说明已经走完了</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//输出走的每一步的值；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//如果走的这一步没有到总步数加一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="comment">//从1号位开始搜</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (st[i] == <span class="literal">false</span>)<span class="comment">//如果i这个数没有被查到过</span></span><br><span class="line">		&#123;</span><br><span class="line">			ans[step] = i;<span class="comment">//将i的值赋值给第step步数</span></span><br><span class="line">			st[i] = <span class="literal">true</span>;<span class="comment">//标记 i 这个值已经被用过;</span></span><br><span class="line">			dfs(step + <span class="number">1</span>);<span class="comment">//向 step的下一步走;</span></span><br><span class="line">			st[i] = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	dfs(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例题2<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/18.png" alt="请添加图片描述"><br>题解</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n, r;</span><br><span class="line"><span class="type">int</span> ans[<span class="number">1000010</span>];</span><br><span class="line"><span class="type">bool</span> st[<span class="number">1000010</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> step)</span><span class="comment">//num代表当前数字的值 step代表当前的步数</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (step == r + <span class="number">1</span>)<span class="comment">//当前所走的步数为总步数加一 则说明已经走完了</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++)</span><br><span class="line">		&#123; </span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span>; <span class="comment">//输出走的每一步的值；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//如果走的这一步没有到总步数加一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = num + <span class="number">1</span>; i &lt;= n; i++) <span class="comment">// 从 i 号位开始搜</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (st[i] == <span class="literal">false</span>) <span class="comment">//如果i这个数没有被查到过</span></span><br><span class="line">		&#123;</span><br><span class="line">			ans[step] = i; <span class="comment">//将i的值赋值给ans[step]</span></span><br><span class="line">			st[i] = <span class="literal">true</span>; <span class="comment">//标记</span></span><br><span class="line">			dfs(i, step + <span class="number">1</span>); <span class="comment">//搜索下一步</span></span><br><span class="line">			st[i] = <span class="literal">false</span>; <span class="comment">//清除标记</span></span><br><span class="line">			ans[step] = <span class="number">0</span>; <span class="comment">//抹除值</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; r;</span><br><span class="line">	dfs(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Maven基础</title>
     <url>/2024/07/31/Maven%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><blockquote>
@@ -581,45 +616,31 @@
 <p>好好好，现教，还是在PicGo里面，按如下设置</p>
 <p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451333.png" alt="image-20240621174648320"></p>
 <p>到现在就完结咯。<br>P（20240718补充）：使用中发现，如果需要在第二台电脑上同步开启此服务，所用gitee无需新建仓库，但是存放图片的文件夹需要重新新建一个，比如此处path改为imgs2，否则在验证上传时一直会报object object 的模糊错误：<br><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451495.png" alt="在这里插入图片描述"></p>
-<p><img src="/./%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9/dm.jpg"> </p>
 ]]></content>
       <tags>
         <tag>工具</tag>
       </tags>
   </entry>
   <entry>
-    <title>DFS算法</title>
-    <url>/2024/07/15/DFS%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>深度优先搜索是图的一种搜索方式，以深度为优先级去进行搜索，通俗地说就是”不撞南墙不回头”，对于当前正在搜索的路径而言，只有把当前路径给搜索完了，即走到无路可走时，才回返回进而搜索另一条路。</p>
-<span id="more"></span>  
+    <title>tomcat-startup</title>
+    <url>/2024/07/30/tomcat-startup/</url>
+    <content><![CDATA[<p>Tomcat服务器安装后，点击startup.bat 无法打开，就是闪一下，失败的原因有两个</p>
+<span id="more"></span>
 
-<p>假设我们有一个二叉树，共有10个节点，以下是DFS的简单示范：<img src="/../images/DFS%E7%AE%97%E6%B3%95/1.png" alt="在这里插入图片描述"></p>
-<p>从根节点开始向下搜索<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/2.png" alt="在这里插入图片描述"></p>
-<p>然后搜索到2号节点<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/3.png" alt="在这里插入图片描述"></p>
-<p>继续不断向深层处的节点搜索，搜索到4号节点<img src="/../images/DFS%E7%AE%97%E6%B3%95/4.png" alt="在这里插入图片描述"></p>
-<p>最后搜索到7号节点<img src="/../images/DFS%E7%AE%97%E6%B3%95/5.png" alt="在这里插入图片描述"></p>
-<p>当搜索到7号节点后，我们发现无路可走了，因为7号节点是当前这条路径下最深处的节点，因此，我们需要进行回溯操作<img src="/../images/DFS%E7%AE%97%E6%B3%95/6.png" alt="在这里插入图片描述"></p>
-<p>当回溯到4号节点时，我们发现4号节点并没有另一条路，也就是说从4号节点向下搜索的话，只能搜索到7号节点，但是可是刚刚才从7号节点回溯上来诶，我们总不可能又搜索到7号，然后又回溯到4号无限下去吧……所以，我们得再次回溯，也就是跳到2号节点上。<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/7.png" alt="在这里插入图片描述"></p>
-<p>当再次跳到2号节点上时，我们发现从2号节点开始，还有另一条路可以走。那我们就走下去！<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/8.png" alt="在这里插入图片描述"></p>
-<p>此时又有两条路可以走，我们先去往8号<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/9.png" alt="在这里插入图片描述"></p>
-<p>走到8号，我们发现又走到头了，那就再对它使用回溯吧！！！<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/10.png" alt="在这里插入图片描述"></p>
-<p>这次我们选择另一条路，走到9号<img src="/../images/DFS%E7%AE%97%E6%B3%95/11.png" alt="在这里插入图片描述"></p>
-<p>然后我们发现又双走到头了，因此，再次回溯，从9号跳到5号，再跳到2号，然后再跳到1号(因为5号，2号向下的路我们已经走过了，但我们发现1号节点向下的路还有一条是我们没走过滴)<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/12.png" alt="在这里插入图片描述"></p>
-<p>接下来搜索类似，我们走到3号，然后走到6号，然后走到10号<img src="/../images/DFS%E7%AE%97%E6%B3%95/13.png" alt="在这里插入图片描述"><br><img src="/../images/DFS%E7%AE%97%E6%B3%95/14.png" alt=" "></p>
-<p><img src="/../images/DFS%E7%AE%97%E6%B3%95/15.png" alt="在这里插入图片描述"></p>
-<p>当10号走完后，这颗树的每个节点都被搜索过了，最后回溯到根节点<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/16.png" alt="在这里插入图片描述"></p>
-<p>值得一提的是，深搜作为一种算法来说，并没有像二分等这些算法有固定的模板，我更愿意把它当作一种思想。如何实现DFS呢，我们通常用栈(递归来实现)。我们做题时通常会写一个dfs函数，然后在dfs函数内部，又会不断调用dfs函数，通常像下面看到的这样：</p>
-<p>以下是自我总结的模版</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> step)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(到达目的地)</span><br><span class="line">        输出</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=方案数;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(方案可行)</span><br><span class="line">        &#123;</span><br><span class="line">		  保存路径;</span><br><span class="line">           dfs(step+<span class="number">1</span>);</span><br><span class="line">           回溯</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例题1<img src="/../images/DFS%E7%AE%97%E6%B3%95/17.png" alt="请添加图片描述"><br>题解</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> ans[<span class="number">1000010</span>];<span class="comment">//记录值</span></span><br><span class="line"><span class="type">bool</span> st[<span class="number">1000010</span>];<span class="comment">//记录是否用过这个数值</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> step)</span><span class="comment">//当前所走的步数</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (step == n + <span class="number">1</span>)<span class="comment">//当前所走的步数为总步数加一 则说明已经走完了</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//输出走的每一步的值；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//如果走的这一步没有到总步数加一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="comment">//从1号位开始搜</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (st[i] == <span class="literal">false</span>)<span class="comment">//如果i这个数没有被查到过</span></span><br><span class="line">		&#123;</span><br><span class="line">			ans[step] = i;<span class="comment">//将i的值赋值给第step步数</span></span><br><span class="line">			st[i] = <span class="literal">true</span>;<span class="comment">//标记 i 这个值已经被用过;</span></span><br><span class="line">			dfs(step + <span class="number">1</span>);<span class="comment">//向 step的下一步走;</span></span><br><span class="line">			st[i] = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	dfs(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例题2<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/18.png" alt="请添加图片描述"><br>题解</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n, r;</span><br><span class="line"><span class="type">int</span> ans[<span class="number">1000010</span>];</span><br><span class="line"><span class="type">bool</span> st[<span class="number">1000010</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> step)</span><span class="comment">//num代表当前数字的值 step代表当前的步数</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (step == r + <span class="number">1</span>)<span class="comment">//当前所走的步数为总步数加一 则说明已经走完了</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++)</span><br><span class="line">		&#123; </span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span>; <span class="comment">//输出走的每一步的值；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//如果走的这一步没有到总步数加一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = num + <span class="number">1</span>; i &lt;= n; i++) <span class="comment">// 从 i 号位开始搜</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (st[i] == <span class="literal">false</span>) <span class="comment">//如果i这个数没有被查到过</span></span><br><span class="line">		&#123;</span><br><span class="line">			ans[step] = i; <span class="comment">//将i的值赋值给ans[step]</span></span><br><span class="line">			st[i] = <span class="literal">true</span>; <span class="comment">//标记</span></span><br><span class="line">			dfs(i, step + <span class="number">1</span>); <span class="comment">//搜索下一步</span></span><br><span class="line">			st[i] = <span class="literal">false</span>; <span class="comment">//清除标记</span></span><br><span class="line">			ans[step] = <span class="number">0</span>; <span class="comment">//抹除值</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; r;</span><br><span class="line">	dfs(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<p>(一) 环境变量有误<br>1.右键 此电脑 </p>
+<p><img src="/../images/Tomcat-startup/1.png"></p>
+<p>2.选择 高级系统设置</p>
+<p><img src="/../images/Tomcat-startup/2.png"></p>
+<p> 3.点击环境变量，配置JAVA_HOME</p>
+<p><img src="/../images/Tomcat-startup/3.png"></p>
+<p>然后一直点击确定，最后重新启动 startup.bat 就可以啦~~~</p>
+<p>（二）端口被占用<br>解决方法：① 修改端口号：Tomcat根目录—&gt;cofn目录—&gt;server.xml—&gt;Connector标签—&gt;修改port属性为所需要的端口号。注意：端口号范围：165535,11023为知名端口，102449151为用户端口，4915265535为动态端口。</p>
+]]></content>
       <categories>
-        <category>算法</category>
+        <category>java</category>
       </categories>
       <tags>
-        <tag>图论</tag>
+        <tag>debug</tag>
       </tags>
   </entry>
   <entry>
@@ -1350,28 +1371,6 @@
       </categories>
       <tags>
         <tag>springboot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tomcat-startup</title>
-    <url>/2024/07/30/tomcat-startup/</url>
-    <content><![CDATA[<p>Tomcat服务器安装后，点击startup.bat 无法打开，就是闪一下，失败的原因有两个</p>
-<span id="more"></span>
-
-<p>(一) 环境变量有误<br>1.右键 此电脑 </p>
-<p><img src="/../images/Tomcat-startup/1.png"></p>
-<p>2.选择 高级系统设置</p>
-<p><img src="/../images/Tomcat-startup/2.png"></p>
-<p> 3.点击环境变量，配置JAVA_HOME</p>
-<p><img src="/../images/Tomcat-startup/3.png"></p>
-<p>然后一直点击确定，最后重新启动 startup.bat 就可以啦~~~</p>
-<p>（二）端口被占用<br>解决方法：① 修改端口号：Tomcat根目录—&gt;cofn目录—&gt;server.xml—&gt;Connector标签—&gt;修改port属性为所需要的端口号。注意：端口号范围：165535,11023为知名端口，102449151为用户端口，4915265535为动态端口。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>debug</tag>
       </tags>
   </entry>
   <entry>
@@ -2637,5 +2636,15 @@ main.js： 程序入口文件，最先执行的文件
       <tags>
         <tag>vue</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2024/08/22/%E5%A6%82%E4%BD%95%E5%9C%A8apifox%E4%B8%AD%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89token/</url>
+    <content><![CDATA[<h1 id="一、获取登录Token和设置全局变量："><a href="#一、获取登录Token和设置全局变量：" class="headerlink" title="一、获取登录Token和设置全局变量："></a>一、获取登录Token和设置全局变量：</h1><p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408182029032.png" alt="image-20240818202954847"></p>
+<p>在此 JSONPath 中的值是获取的token的路径</p>
+<h1 id="二、设置全局参数："><a href="#二、设置全局参数：" class="headerlink" title="二、设置全局参数："></a>二、设置全局参数：</h1><p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408182032450.png" alt="image-20240818203214272"></p>
+<h1 id="三、效果："><a href="#三、效果：" class="headerlink" title="三、效果："></a>三、效果：</h1><p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408182033054.png" alt="image-20240818203329874"></p>
+<p>此时的实际请求的Header中便携带了token值</p>
+]]></content>
   </entry>
 </search>
