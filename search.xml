@@ -4,17 +4,17 @@
     <title>BFS算法</title>
     <url>/2024/07/19/BFS%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<p>与迪杰斯特拉算法相似，弗洛伊德算法是一种计算最短路径的问题，与迪杰斯特拉算法不同的是，该算法可计算多源点带权图（可带负权值，但非负周期[1]）的最短路径的问题。</p>
-<p><img src="/../images/1.png" alt="在这里插入图片描述"><br>以上图为例，介绍如何手写。</p>
+<p><img src="/../images/BFS%E7%AE%97%E6%B3%95/1.png" alt="在这里插入图片描述"><br>以上图为例，介绍如何手写。</p>
 <p>首先写出该图的邻接矩阵，记作矩阵 P (-1) ：<br><img src="/../images/2.png" alt="在这里插入图片描述"><br>接下来，我们保留V1行—V1列（即，将V1作为中转结点），同时保持对角线不变（自身到自身距离总是0），记作  P (V1)：<br><img src="/../images/1.png" alt="在这里插入图片描述"><br>逐步更新：方法如下：寻找对应保留列的数字之和，若和小于上表原位置的数字，则更新，否则不更新。[2]</p>
-<p>以（V2，V3）为例：<br><img src="/images/4.png" alt="在这里插入图片描述"><br>∞+50&#x3D;∞，大于上一个表中的25，保留25，不做更新。<img src="/images/5.png" alt="在这里插入图片描述"><br>剩下的空缺均按照上述方法。得到的表如下：<img src="/../images/BFS%E7%AE%97%E6%B3%95/6.png" alt="在这里插入图片描述"><br>接下来保留V2行列，保留对角线，记作P(V2)  ：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/7.png" alt="在这里插入图片描述"><br>更新操作：和上面相同，以（V1，V3）为例：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/8.png" alt="在这里插入图片描述"><br>20+25&#x3D;45小于上图的50，故作更新<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/9.png" alt="在这里插入图片描述"><br>重复此步骤，得到下表：<img src="/../images/BFS%E7%AE%97%E6%B3%95/10.png" alt="在这里插入图片描述"><br>接下来保留V3行列，记作  P(V3)：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/11.png" alt="在这里插入图片描述"><br>按照方法执行更新；得到下表<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/12.png" alt="在这里插入图片描述"><br>继续绘制 P(V4)</p>
+<p>以（V2，V3）为例：<br><img src="/../images/4.png" alt="在这里插入图片描述"><br>∞+50&#x3D;∞，大于上一个表中的25，保留25，不做更新。<img src="/../images/5.png" alt="在这里插入图片描述"><br>剩下的空缺均按照上述方法。得到的表如下：<img src="/../images/BFS%E7%AE%97%E6%B3%95/6.png" alt="在这里插入图片描述"><br>接下来保留V2行列，保留对角线，记作P(V2)  ：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/7.png" alt="在这里插入图片描述"><br>更新操作：和上面相同，以（V1，V3）为例：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/8.png" alt="在这里插入图片描述"><br>20+25&#x3D;45小于上图的50，故作更新<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/9.png" alt="在这里插入图片描述"><br>重复此步骤，得到下表：<img src="/../images/BFS%E7%AE%97%E6%B3%95/10.png" alt="在这里插入图片描述"><br>接下来保留V3行列，记作  P(V3)：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/11.png" alt="在这里插入图片描述"><br>按照方法执行更新；得到下表<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/12.png" alt="在这里插入图片描述"><br>继续绘制 P(V4)</p>
 <p><img src="/../images/BFS%E7%AE%97%E6%B3%95/13.png" alt="继续绘制"><br> 更新：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/14.png" alt="在这里插入图片描述"><br>继续绘制P(V5) P(V6) P(V7)  ,最终得到下表：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/15.png" alt="在这里插入图片描述"><br>该矩阵即为任意两点间的最短距离矩阵。</p>
 <h2 id="模版"><a href="#模版" class="headerlink" title="模版"></a>模版</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">floyd</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;num;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=num;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=num;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i==j)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> z[i][j]=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=num;k++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=num;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=num;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                z[i][j]=min(z[i][j],z[i][k]+z[k][j]); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><img src="/../images/BFS%E7%AE%97%E6%B3%95/16.png" alt="请添加图片描述"></p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221612739.png"></p>
+<p><img src="/../images/BFS%E7%AE%97%E6%B3%95/16.png" alt="请添加图片描述"></p>
 <h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iomanip&gt;</span><span class="comment">//保留小数位数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span> <span class="comment">//c++</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span> <span class="comment">//sort排序</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span> <span class="comment">//字符串</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;math.h&gt;</span> <span class="comment">//abs等函数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span> <span class="comment">//map</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;set&gt;</span><span class="comment">//set</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long <span class="comment">//不开longlong见祖宗</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span> <span class="comment">//处理多数据时省时间</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> z[<span class="number">1110</span>][<span class="number">1110</span>];</span><br><span class="line"><span class="type">int</span> people[<span class="number">1110</span>];</span><br><span class="line"><span class="type">int</span> num;</span><br><span class="line"><span class="type">void</span> <span class="title function_">floyd</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">1</span>; k &lt;= num; k++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= num; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                z[i][j] = min(z[i][k] + z[k][j],z[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">signed</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>); <span class="comment">//cin减少时间</span></span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="number">0</span>); <span class="comment">//cout减少时间</span></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; num;</span><br><span class="line">    <span class="comment">//初始化自己到自己的距离为0 其他的都为无穷大</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= num; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == j) z[i][j] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> z[i][j] = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> a, b, c;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">        <span class="comment">//记录当前医院的人数为a</span></span><br><span class="line">        people[i] = a;</span><br><span class="line">        <span class="keyword">if</span> (b)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//双向的权值都赋值为1</span></span><br><span class="line">            z[i][b] = <span class="number">1</span>;</span><br><span class="line">            z[b][i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (c)</span><br><span class="line">        &#123;</span><br><span class="line">            z[i][c] = <span class="number">1</span>;</span><br><span class="line">            z[c][i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//使得两点的距离最小</span></span><br><span class="line">    floyd();</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0x3f3f3f3f</span>;<span class="comment">//先定义答案为无穷大</span></span><br><span class="line">    <span class="comment">//外层for循环定义结点 内层for循坏找答案</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= num; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum = sum + people[j] * z[i][j];<span class="comment">//当前结点人数=j结点人数*ij之间的距离</span></span><br><span class="line">        &#125;</span><br><span class="line">        ans = min(ans, sum);<span class="comment">//找到最小值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//cout &lt;&lt; setw(5) &lt;&lt; setfill(&#x27;0&#x27;) &lt;&lt; a &lt;&lt; b;// 输出5位，右对齐，不足补0 。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<p><img src="/../images/1.png"></p>
 ]]></content>
       <categories>
         <category>算法</category>
@@ -56,69 +56,6 @@
       </categories>
       <tags>
         <tag>图论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PicGo+Gitee+Typora实现一键上传md到csdn</title>
-    <url>/2024/08/22/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/</url>
-    <content><![CDATA[<p>在写博客时，我们通常不使用csdn直接撰写，而是在本地使用<a href="https://so.csdn.net/so/search?q=markdown%E7%BC%96%E8%BE%91%E5%99%A8&spm=1001.2101.3001.7020">markdown编辑器</a>，比如比较好用的Typora，但是在本地写完直接上传到csdn时会存在图片由于防盗链不显示的问题，本文记录如何解决该问题</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451210.png" alt="image-20240621151552547"></p>
-<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><p>将照片的<a href="https://so.csdn.net/so/search?q=%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8&spm=1001.2101.3001.7020">本地存储</a>改为线上存储，在导入后csdn通过线上访问的方式显示出来图片</p>
-<h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><h3 id="Gitee新建仓库"><a href="#Gitee新建仓库" class="headerlink" title="Gitee新建仓库"></a>Gitee新建仓库</h3><p>把图片本地存储改为线上存储，此处使用gitee进行管理访问，不适用github的原因在于github有时不方便访问</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408020925003.png" alt="image-20240621152117003"></p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408020926946.png" alt="image-20240621152052415"></p>
-<p>新建完成后我们会跳转到这里，点击图中管理</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408020927006.png" alt="image-20240621152408958"></p>
-<p>最下面的开源许可证记得自己选。我选的是MIT</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408020926943.png" alt="image-20240621152609236"></p>
-<h3 id="设置私人令牌"><a href="#设置私人令牌" class="headerlink" title="设置私人令牌"></a>设置私人令牌</h3><p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451603.png" alt="image-20240621153022512"></p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451253.png" alt="image-20240621153134936"></p>
-<p>点确定之后，会让你输一遍自己gitee的密码，正常输就行，输完之后，会有个弹窗，写着你自己的私人令牌，<strong>请妥善保存！！！请妥善保存！！！请妥善保存！！！</strong></p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408020931081.png" alt="image-20240621153530515"></p>
-<h3 id="PicGo配置"><a href="#PicGo配置" class="headerlink" title="PicGo配置"></a>PicGo配置</h3><p>PicGo: 一个用于快速上传图片并获取图片 URL 链接的工具，本文要用到</p>
-<p>这里提供山东大学镜像站下载地址，感谢广大镜像站做出的贡献</p>
-<p><a href="https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo">https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo</a></p>
-<p>进来之后，按照自己系统版本下载对应版本，我这里选择x64版本</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408020931635.png" alt="image-20240621154049697"></p>
-<p>下载之后就是正常的安装程序，自己选择路径安装就行</p>
-<p>安装好后打开软件，先在插件设置中搜索gitee，安装gitee-uploader，如图</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451297.png" alt="image-20240621154347973"></p>
-<p>可能不用javascript的朋友这里会报缺失node.js，点击是他会自动给你跳转到node.js安装界面</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451454.png" alt="image-20240621154440010"></p>
-<p>正常安装就行，然后重启PicGo继续安装插件</p>
-<p>安装成功后依次点击图床设置-gitee，</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451962.png" alt="image-20240621155705658"></p>
-<p>不知道自己仓库地址的回到刚才新建的仓库，自己看网址，比如我的是，我这里就填idle-person-east&#x2F;picgo-imgs</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451445.png" alt="image-20240621155739354"></p>
-<p>在上传区选中&lt;图片上传 - gitee &gt; 然后随便拖一个图片到上传区</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451025.png" alt="image-20240802093727734"></p>
-<p>之后随便拖入一个照片到上传区进行实验</p>
-<p>点击确定就好了</p>
-<h3 id="Typora配置"><a href="#Typora配置" class="headerlink" title="Typora配置"></a>Typora配置</h3><p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451219.png" alt="image-20240621160011905"></p>
-<p>点击验证图片上传选项</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408020932513.png" alt="image-20240621163013519"></p>
-<p>如果程序运行结果，success为false的话，就要去查看日志文件了，路线是这样的：</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451034.png" alt="image-20240621163928935"></p>
-<p>比如仓库中如果存在同样的文件的话是会报错的</p>
-<h3 id="导入测试"><a href="#导入测试" class="headerlink" title="导入测试"></a>导入测试</h3><p>时再在csdn里面导入会发现。欸，没效果啊，你这不放屁呢吗，逗我玩儿呢</p>
-<p>去到gitee的仓库里面，也只能看到刚才测试时上传的typora-icon.png，并没有自己markdown里面的图片。</p>
-<p>欸，别急嘛，肯定要带你搞好的撒。</p>
-<p>这里分两种情况：</p>
-<p>已经写好的markdown里面有的图片上传<br>就直接把你本地的图片文件夹里面的图片上传到仓库里面就行，或者在你的Typora里面，右键点击图片，挨个点击上传，然后再把markdown导入csdn，发现，欸，图片显示出来了，我不是江湖骗子，哈哈</p>
-<p>为以后更方便做准备<br>为了方便我们以后可以更加简单的复制粘贴图片，我们要打开Typora的这些设置</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451695.png" alt="image-20240621174119567"></p>
-<p>这就搞定咯，这样我们在每次插入图片时，他都会自动上传</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451651.png" alt="image-20240621174155130"></p>
-<p>有人说，</p>
-<p>——欸，我这没有弹这个啊</p>
-<p>——那你设置没打开能弹嘛</p>
-<p>——那怪你没教</p>
-<p>好好好，现教，还是在PicGo里面，按如下设置</p>
-<p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451333.png" alt="image-20240621174648320"></p>
-<p>到现在就完结咯。<br>P（20240718补充）：使用中发现，如果需要在第二台电脑上同步开启此服务，所用gitee无需新建仓库，但是存放图片的文件夹需要重新新建一个，比如此处path改为imgs2，否则在验证上传时一直会报object object 的模糊错误：<br><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408221451495.png" alt="在这里插入图片描述"></p>
-]]></content>
-      <tags>
-        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -622,6 +559,67 @@
       </categories>
       <tags>
         <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PicGo+Gitee+Typora实现一键上传md到csdn</title>
+    <url>/2024/08/22/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/</url>
+    <content><![CDATA[<p>在写博客时，我们通常不使用csdn直接撰写，而是在本地使用<a href="https://so.csdn.net/so/search?q=markdown%E7%BC%96%E8%BE%91%E5%99%A8&spm=1001.2101.3001.7020">markdown编辑器</a>，比如比较好用的Typora，但是在本地写完直接上传到csdn时会存在图片由于防盗链不显示的问题，本文记录如何解决该问题</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/1.png"></p>
+<h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><p>将照片的<a href="https://so.csdn.net/so/search?q=%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8&spm=1001.2101.3001.7020">本地存储</a>改为线上存储，在导入后csdn通过线上访问的方式显示出来图片</p>
+<h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><h3 id="Gitee新建仓库"><a href="#Gitee新建仓库" class="headerlink" title="Gitee新建仓库"></a>Gitee新建仓库</h3><p>把图片本地存储改为线上存储，此处使用gitee进行管理访问，不适用github的原因在于github有时不方便访问</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/2.png"></p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/3.png"></p>
+<p>新建完成后我们会跳转到这里，点击图中管理</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/4.png"></p>
+<p>最下面的开源许可证记得自己选。我选的是MIT</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/5.png"></p>
+<h3 id="设置私人令牌"><a href="#设置私人令牌" class="headerlink" title="设置私人令牌"></a>设置私人令牌</h3><p>5<br><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/6.png"></p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/7.png"></p>
+<p>点确定之后，会让你输一遍自己gitee的密码，正常输就行，输完之后，会有个弹窗，写着你自己的私人令牌，<strong>请妥善保存！！！请妥善保存！！！请妥善保存！！！</strong></p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/8.png"></p>
+<h3 id="PicGo配置"><a href="#PicGo配置" class="headerlink" title="PicGo配置"></a>PicGo配置</h3><p>PicGo: 一个用于快速上传图片并获取图片 URL 链接的工具，本文要用到</p>
+<p>这里提供山东大学镜像站下载地址，感谢广大镜像站做出的贡献</p>
+<p><a href="https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo">https://mirrors.sdu.edu.cn/github-release/Molunerfinn_PicGo</a></p>
+<p>进来之后，按照自己系统版本下载对应版本，我这里选择x64版本</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/9.png"></p>
+<p>下载之后就是正常的安装程序，自己选择路径安装就行</p>
+<p>安装好后打开软件，先在插件设置中搜索gitee，安装gitee-uploader，如图</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/10.png"></p>
+<p>可能不用javascript的朋友这里会报缺失node.js，点击是他会自动给你跳转到node.js安装界面</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/11.png"></p>
+<p>正常安装就行，然后重启PicGo继续安装插件</p>
+<p>安装成功后依次点击图床设置-gitee，</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/12.png"></p>
+<p>不知道自己仓库地址的回到刚才新建的仓库，自己看网址，比如我的是，我这里就填idle-person-east&#x2F;picgo-imgs</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/13.png"></p>
+<p>在上传区选中&lt;图片上传 - gitee &gt; 然后随便拖一个图片到上传区<br><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/14.png"></p>
+<p>之后随便拖入一个照片到上传区进行实验</p>
+<p>点击确定就好了</p>
+<h3 id="Typora配置"><a href="#Typora配置" class="headerlink" title="Typora配置"></a>Typora配置</h3><p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/15.png"></p>
+<p>点击验证图片上传选项<br><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/16.png"></p>
+<p>如果程序运行结果，success为false的话，就要去查看日志文件了，路线是这样的：</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/17.png"></p>
+<p>比如仓库中如果存在同样的文件的话是会报错的</p>
+<h3 id="导入测试"><a href="#导入测试" class="headerlink" title="导入测试"></a>导入测试</h3><p>时再在csdn里面导入会发现。欸，没效果啊，你这不放屁呢吗，逗我玩儿呢</p>
+<p>去到gitee的仓库里面，也只能看到刚才测试时上传的typora-icon.png，并没有自己markdown里面的图片。</p>
+<p>欸，别急嘛，肯定要带你搞好的撒。</p>
+<p>这里分两种情况：</p>
+<p>已经写好的markdown里面有的图片上传<br>就直接把你本地的图片文件夹里面的图片上传到仓库里面就行，或者在你的Typora里面，右键点击图片，挨个点击上传，然后再把markdown导入csdn，发现，欸，图片显示出来了，我不是江湖骗子，哈哈</p>
+<p>为以后更方便做准备<br>为了方便我们以后可以更加简单的复制粘贴图片，我们要打开Typora的这些设置</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/18.png"></p>
+<p>这就搞定咯，这样我们在每次插入图片时，他都会自动上传</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/19.png"></p>
+<p>有人说，</p>
+<p>——欸，我这没有弹这个啊</p>
+<p>——那你设置没打开能弹嘛</p>
+<p>——那怪你没教</p>
+<p>好好好，现教，还是在PicGo里面，按如下设置</p>
+<p><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/20.png"></p>
+<p>到现在就完结咯。<br>P（20240718补充）：使用中发现，如果需要在第二台电脑上同步开启此服务，所用gitee无需新建仓库，但是存放图片的文件夹需要重新新建一个，比如此处path改为imgs2，否则在验证上传时一直会报object object 的模糊错误：<br><img src="/../images/PicGo+Gitee+Typora%E5%AE%9E%E7%8E%B0%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0md%E5%88%B0csdn/21.png"></p>
+]]></content>
+      <tags>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -1187,28 +1185,6 @@
       </categories>
       <tags>
         <tag>Springboot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tomcat-startup</title>
-    <url>/2024/07/30/tomcat-startup/</url>
-    <content><![CDATA[<p>Tomcat服务器安装后，点击startup.bat 无法打开，就是闪一下，失败的原因有两个</p>
-<span id="more"></span>
-
-<p>(一) 环境变量有误<br>1.右键 此电脑 </p>
-<p><img src="/../images/Tomcat-startup/1.png"></p>
-<p>2.选择 高级系统设置</p>
-<p><img src="/../images/Tomcat-startup/2.png"></p>
-<p> 3.点击环境变量，配置JAVA_HOME</p>
-<p><img src="/../images/Tomcat-startup/3.png"></p>
-<p>然后一直点击确定，最后重新启动 startup.bat 就可以啦~~~</p>
-<p>（二）端口被占用<br>解决方法：① 修改端口号：Tomcat根目录—&gt;cofn目录—&gt;server.xml—&gt;Connector标签—&gt;修改port属性为所需要的端口号。注意：端口号范围：165535,11023为知名端口，102449151为用户端口，4915265535为动态端口。</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>debug</tag>
       </tags>
   </entry>
   <entry>
@@ -1942,6 +1918,28 @@
       </tags>
   </entry>
   <entry>
+    <title>tomcat-startup</title>
+    <url>/2024/07/30/tomcat-startup/</url>
+    <content><![CDATA[<p>Tomcat服务器安装后，点击startup.bat 无法打开，就是闪一下，失败的原因有两个</p>
+<span id="more"></span>
+
+<p>(一) 环境变量有误<br>1.右键 此电脑 </p>
+<p><img src="/../images/Tomcat-startup/1.png"></p>
+<p>2.选择 高级系统设置</p>
+<p><img src="/../images/Tomcat-startup/2.png"></p>
+<p> 3.点击环境变量，配置JAVA_HOME</p>
+<p><img src="/../images/Tomcat-startup/3.png"></p>
+<p>然后一直点击确定，最后重新启动 startup.bat 就可以啦~~~</p>
+<p>（二）端口被占用<br>解决方法：① 修改端口号：Tomcat根目录—&gt;cofn目录—&gt;server.xml—&gt;Connector标签—&gt;修改port属性为所需要的端口号。注意：端口号范围：165535,11023为知名端口，102449151为用户端口，4915265535为动态端口。</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>debug</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue基础知识1</title>
     <url>/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/</url>
     <content><![CDATA[<p>这里是vue学习过程中第一天的知识点</p>
@@ -2231,16 +2229,6 @@
       <tags>
         <tag>vue</tag>
       </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2024/08/22/%E5%A6%82%E4%BD%95%E5%9C%A8apifox%E4%B8%AD%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89token/</url>
-    <content><![CDATA[<h1 id="一、获取登录Token和设置全局变量："><a href="#一、获取登录Token和设置全局变量：" class="headerlink" title="一、获取登录Token和设置全局变量："></a>一、获取登录Token和设置全局变量：</h1><p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408182029032.png" alt="image-20240818202954847"></p>
-<p>在此 JSONPath 中的值是获取的token的路径</p>
-<h1 id="二、设置全局参数："><a href="#二、设置全局参数：" class="headerlink" title="二、设置全局参数："></a>二、设置全局参数：</h1><p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408182032450.png" alt="image-20240818203214272"></p>
-<h1 id="三、效果："><a href="#三、效果：" class="headerlink" title="三、效果："></a>三、效果：</h1><p><img src="https://gitee.com/ntostudy/picgo-md/raw/master/img/202408182033054.png" alt="image-20240818203329874"></p>
-<p>此时的实际请求的Header中便携带了token值</p>
-]]></content>
   </entry>
   <entry>
     <title>尚品汇总结</title>
