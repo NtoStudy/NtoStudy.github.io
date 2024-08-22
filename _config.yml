@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 欢迎来到牛牛的世界
-subtitle: 'Do you love me'
+title: 望远山而前行
+subtitle: '万语难尽涩于口 祈尔繁芜胜常春'
 description: ''
 keywords: 记录日常学习
 author: NtoStudy
@@ -125,7 +125,7 @@ search:
 
 
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: hexo-theme-matery
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
