@@ -125,7 +125,7 @@ search:
 
 
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: reimu
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -137,3 +137,19 @@ deploy:
 markdown: redcarpet
 redcarpet:
     extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]
+
+algolia:
+  appId: "2K1UK7WERJ"
+  apiKey: "95c5041c7c22051bf1ad933b07ea1a76"
+  adminApiKey: "87988f77af9cf7b363dce3bc7480d9d8"
+  indexName: "Uied fovik"
+  chunkSize: 5000
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - permalink
+    - photos
+    - slug
+    - tags
+    - title

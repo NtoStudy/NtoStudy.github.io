@@ -1,7 +1,7 @@
 ---
 title: DFS算法
 date: 2024-07-15 18:44:01
-tags: 算法
+tags: 图论
 category: 算法
 ---
 

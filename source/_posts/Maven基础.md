@@ -2,6 +2,7 @@
 title: Maven基础
 date: 2024-07-31 15:46:48
 tags: Maven
+category: java
 ---
 
 # Maven

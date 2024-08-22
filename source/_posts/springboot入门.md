@@ -2,6 +2,7 @@
 title: Springboot入门
 date: 2024-07-31 16:12:50
 tags: Springboot
+category: java
 ---
 
 # Springboot基础 

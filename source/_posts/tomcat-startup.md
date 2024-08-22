@@ -2,6 +2,7 @@
 title: tomcat-startup
 date: 2024-07-30 22:58:52
 tags: debug
+category: java
 ---
 
 Tomcat服务器安装后，点击startup.bat 无法打开，就是闪一下，失败的原因有两个

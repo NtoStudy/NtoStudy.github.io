@@ -1,7 +1,7 @@
 ---
 title: vue基础知识1
 date: 2024-06-22 09:23:13
-tags: vue基础知识
+tags: vue
 category: 前端
 ---
 

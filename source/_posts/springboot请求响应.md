@@ -2,6 +2,7 @@
 title: springboot请求响应
 date: 2024-07-31 16:13:02
 tags: springboot
+category: java
 ---
 
 # SpringBootWeb请求响应
