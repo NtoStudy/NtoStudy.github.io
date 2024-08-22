@@ -1,61 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>BFS算法</title>
-    <url>/2024/07/19/BFS%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>与迪杰斯特拉算法相似，弗洛伊德算法是一种计算最短路径的问题，与迪杰斯特拉算法不同的是，该算法可计算多源点带权图（可带负权值，但非负周期[1]）的最短路径的问题。</p>
-<span id="more"></span>
-
-<p><img src="/../images/BFS%E7%AE%97%E6%B3%95/1.png" alt="在这里插入图片描述"><br>以上图为例，介绍如何手写。</p>
-<p>首先写出该图的邻接矩阵，记作矩阵 P (-1) ：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/2.png" alt="在这里插入图片描述"><br>接下来，我们保留V1行—V1列（即，将V1作为中转结点），同时保持对角线不变（自身到自身距离总是0），记作  P (V1)：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/3.png" alt="在这里插入图片描述"><br>逐步更新：方法如下：寻找对应保留列的数字之和，若和小于上表原位置的数字，则更新，否则不更新。[2]</p>
-<p>以（V2，V3）为例：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/4.png" alt="在这里插入图片描述"><br>∞+50&#x3D;∞，大于上一个表中的25，保留25，不做更新。<img src="/../images/BFS%E7%AE%97%E6%B3%95/5.png" alt="在这里插入图片描述"><br>剩下的空缺均按照上述方法。得到的表如下：<img src="/../images/BFS%E7%AE%97%E6%B3%95/6.png" alt="在这里插入图片描述"><br>接下来保留V2行列，保留对角线，记作P(V2)  ：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/7.png" alt="在这里插入图片描述"><br>更新操作：和上面相同，以（V1，V3）为例：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/8.png" alt="在这里插入图片描述"><br>20+25&#x3D;45小于上图的50，故作更新<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/9.png" alt="在这里插入图片描述"><br>重复此步骤，得到下表：<img src="/../images/BFS%E7%AE%97%E6%B3%95/10.png" alt="在这里插入图片描述"><br>接下来保留V3行列，记作  P(V3)：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/11.png" alt="在这里插入图片描述"><br>按照方法执行更新；得到下表<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/12.png" alt="在这里插入图片描述"><br>继续绘制 P(V4)</p>
-<p><img src="/../images/BFS%E7%AE%97%E6%B3%95/13.png" alt="继续绘制"><br> 更新：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/14.png" alt="在这里插入图片描述"><br>继续绘制P(V5) P(V6) P(V7)  ,最终得到下表：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/15.png" alt="在这里插入图片描述"><br>该矩阵即为任意两点间的最短距离矩阵。</p>
-<h2 id="模版"><a href="#模版" class="headerlink" title="模版"></a>模版</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">floyd</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;num;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=num;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=num;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i==j)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> z[i][j]=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=num;k++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=num;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=num;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                z[i][j]=min(z[i][j],z[i][k]+z[k][j]); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><img src="/../images/BFS%E7%AE%97%E6%B3%95/16.png" alt="请添加图片描述"></p>
-<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iomanip&gt;</span><span class="comment">//保留小数位数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span> <span class="comment">//c++</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span> <span class="comment">//sort排序</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span> <span class="comment">//字符串</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;math.h&gt;</span> <span class="comment">//abs等函数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span> <span class="comment">//map</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;set&gt;</span><span class="comment">//set</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long <span class="comment">//不开longlong见祖宗</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span> <span class="comment">//处理多数据时省时间</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> z[<span class="number">1110</span>][<span class="number">1110</span>];</span><br><span class="line"><span class="type">int</span> people[<span class="number">1110</span>];</span><br><span class="line"><span class="type">int</span> num;</span><br><span class="line"><span class="type">void</span> <span class="title function_">floyd</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">1</span>; k &lt;= num; k++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= num; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                z[i][j] = min(z[i][k] + z[k][j],z[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">signed</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>); <span class="comment">//cin减少时间</span></span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="number">0</span>); <span class="comment">//cout减少时间</span></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; num;</span><br><span class="line">    <span class="comment">//初始化自己到自己的距离为0 其他的都为无穷大</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= num; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == j) z[i][j] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> z[i][j] = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> a, b, c;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">        <span class="comment">//记录当前医院的人数为a</span></span><br><span class="line">        people[i] = a;</span><br><span class="line">        <span class="keyword">if</span> (b)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//双向的权值都赋值为1</span></span><br><span class="line">            z[i][b] = <span class="number">1</span>;</span><br><span class="line">            z[b][i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (c)</span><br><span class="line">        &#123;</span><br><span class="line">            z[i][c] = <span class="number">1</span>;</span><br><span class="line">            z[c][i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//使得两点的距离最小</span></span><br><span class="line">    floyd();</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0x3f3f3f3f</span>;<span class="comment">//先定义答案为无穷大</span></span><br><span class="line">    <span class="comment">//外层for循环定义结点 内层for循坏找答案</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= num; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum = sum + people[j] * z[i][j];<span class="comment">//当前结点人数=j结点人数*ij之间的距离</span></span><br><span class="line">        &#125;</span><br><span class="line">        ans = min(ans, sum);<span class="comment">//找到最小值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//cout &lt;&lt; setw(5) &lt;&lt; setfill(&#x27;0&#x27;) &lt;&lt; a &lt;&lt; b;// 输出5位，右对齐，不足补0 。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>图论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DFS算法</title>
-    <url>/2024/07/15/DFS%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>深度优先搜索是图的一种搜索方式，以深度为优先级去进行搜索，通俗地说就是”不撞南墙不回头”，对于当前正在搜索的路径而言，只有把当前路径给搜索完了，即走到无路可走时，才回返回进而搜索另一条路。</p>
-<span id="more"></span>  
-
-<p>假设我们有一个二叉树，共有10个节点，以下是DFS的简单示范：<img src="/../images/DFS%E7%AE%97%E6%B3%95/1.png" alt="在这里插入图片描述"></p>
-<p>从根节点开始向下搜索<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/2.png" alt="在这里插入图片描述"></p>
-<p>然后搜索到2号节点<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/3.png" alt="在这里插入图片描述"></p>
-<p>继续不断向深层处的节点搜索，搜索到4号节点<img src="/../images/DFS%E7%AE%97%E6%B3%95/4.png" alt="在这里插入图片描述"></p>
-<p>最后搜索到7号节点<img src="/../images/DFS%E7%AE%97%E6%B3%95/5.png" alt="在这里插入图片描述"></p>
-<p>当搜索到7号节点后，我们发现无路可走了，因为7号节点是当前这条路径下最深处的节点，因此，我们需要进行回溯操作<img src="/../images/DFS%E7%AE%97%E6%B3%95/6.png" alt="在这里插入图片描述"></p>
-<p>当回溯到4号节点时，我们发现4号节点并没有另一条路，也就是说从4号节点向下搜索的话，只能搜索到7号节点，但是可是刚刚才从7号节点回溯上来诶，我们总不可能又搜索到7号，然后又回溯到4号无限下去吧……所以，我们得再次回溯，也就是跳到2号节点上。<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/7.png" alt="在这里插入图片描述"></p>
-<p>当再次跳到2号节点上时，我们发现从2号节点开始，还有另一条路可以走。那我们就走下去！<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/8.png" alt="在这里插入图片描述"></p>
-<p>此时又有两条路可以走，我们先去往8号<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/9.png" alt="在这里插入图片描述"></p>
-<p>走到8号，我们发现又走到头了，那就再对它使用回溯吧！！！<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/10.png" alt="在这里插入图片描述"></p>
-<p>这次我们选择另一条路，走到9号<img src="/../images/DFS%E7%AE%97%E6%B3%95/11.png" alt="在这里插入图片描述"></p>
-<p>然后我们发现又双走到头了，因此，再次回溯，从9号跳到5号，再跳到2号，然后再跳到1号(因为5号，2号向下的路我们已经走过了，但我们发现1号节点向下的路还有一条是我们没走过滴)<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/12.png" alt="在这里插入图片描述"></p>
-<p>接下来搜索类似，我们走到3号，然后走到6号，然后走到10号<img src="/../images/DFS%E7%AE%97%E6%B3%95/13.png" alt="在这里插入图片描述"><br><img src="/../images/DFS%E7%AE%97%E6%B3%95/14.png" alt=" "></p>
-<p><img src="/../images/DFS%E7%AE%97%E6%B3%95/15.png" alt="在这里插入图片描述"></p>
-<p>当10号走完后，这颗树的每个节点都被搜索过了，最后回溯到根节点<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/16.png" alt="在这里插入图片描述"></p>
-<p>值得一提的是，深搜作为一种算法来说，并没有像二分等这些算法有固定的模板，我更愿意把它当作一种思想。如何实现DFS呢，我们通常用栈(递归来实现)。我们做题时通常会写一个dfs函数，然后在dfs函数内部，又会不断调用dfs函数，通常像下面看到的这样：</p>
-<p>以下是自我总结的模版</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> step)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(到达目的地)</span><br><span class="line">        输出</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=方案数;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(方案可行)</span><br><span class="line">        &#123;</span><br><span class="line">		  保存路径;</span><br><span class="line">           dfs(step+<span class="number">1</span>);</span><br><span class="line">           回溯</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例题1<img src="/../images/DFS%E7%AE%97%E6%B3%95/17.png" alt="请添加图片描述"><br>题解</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> ans[<span class="number">1000010</span>];<span class="comment">//记录值</span></span><br><span class="line"><span class="type">bool</span> st[<span class="number">1000010</span>];<span class="comment">//记录是否用过这个数值</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> step)</span><span class="comment">//当前所走的步数</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (step == n + <span class="number">1</span>)<span class="comment">//当前所走的步数为总步数加一 则说明已经走完了</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//输出走的每一步的值；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//如果走的这一步没有到总步数加一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="comment">//从1号位开始搜</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (st[i] == <span class="literal">false</span>)<span class="comment">//如果i这个数没有被查到过</span></span><br><span class="line">		&#123;</span><br><span class="line">			ans[step] = i;<span class="comment">//将i的值赋值给第step步数</span></span><br><span class="line">			st[i] = <span class="literal">true</span>;<span class="comment">//标记 i 这个值已经被用过;</span></span><br><span class="line">			dfs(step + <span class="number">1</span>);<span class="comment">//向 step的下一步走;</span></span><br><span class="line">			st[i] = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	dfs(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>例题2<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/18.png" alt="请添加图片描述"><br>题解</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n, r;</span><br><span class="line"><span class="type">int</span> ans[<span class="number">1000010</span>];</span><br><span class="line"><span class="type">bool</span> st[<span class="number">1000010</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> step)</span><span class="comment">//num代表当前数字的值 step代表当前的步数</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (step == r + <span class="number">1</span>)<span class="comment">//当前所走的步数为总步数加一 则说明已经走完了</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++)</span><br><span class="line">		&#123; </span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span>; <span class="comment">//输出走的每一步的值；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//如果走的这一步没有到总步数加一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = num + <span class="number">1</span>; i &lt;= n; i++) <span class="comment">// 从 i 号位开始搜</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (st[i] == <span class="literal">false</span>) <span class="comment">//如果i这个数没有被查到过</span></span><br><span class="line">		&#123;</span><br><span class="line">			ans[step] = i; <span class="comment">//将i的值赋值给ans[step]</span></span><br><span class="line">			st[i] = <span class="literal">true</span>; <span class="comment">//标记</span></span><br><span class="line">			dfs(i, step + <span class="number">1</span>); <span class="comment">//搜索下一步</span></span><br><span class="line">			st[i] = <span class="literal">false</span>; <span class="comment">//清除标记</span></span><br><span class="line">			ans[step] = <span class="number">0</span>; <span class="comment">//抹除值</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; r;</span><br><span class="line">	dfs(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>图论</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Maven基础</title>
     <url>/2024/07/31/Maven%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="课程内容"><a href="#课程内容" class="headerlink" title="课程内容"></a>课程内容</h2><blockquote>
@@ -556,6 +501,61 @@
       </categories>
       <tags>
         <tag>Maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BFS算法</title>
+    <url>/2024/07/19/BFS%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>与迪杰斯特拉算法相似，弗洛伊德算法是一种计算最短路径的问题，与迪杰斯特拉算法不同的是，该算法可计算多源点带权图（可带负权值，但非负周期[1]）的最短路径的问题。</p>
+<span id="more"></span>
+
+<p><img src="/../images/BFS%E7%AE%97%E6%B3%95/1.png" alt="在这里插入图片描述"><br>以上图为例，介绍如何手写。</p>
+<p>首先写出该图的邻接矩阵，记作矩阵 P (-1) ：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/2.png" alt="在这里插入图片描述"><br>接下来，我们保留V1行—V1列（即，将V1作为中转结点），同时保持对角线不变（自身到自身距离总是0），记作  P (V1)：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/3.png" alt="在这里插入图片描述"><br>逐步更新：方法如下：寻找对应保留列的数字之和，若和小于上表原位置的数字，则更新，否则不更新。[2]</p>
+<p>以（V2，V3）为例：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/4.png" alt="在这里插入图片描述"><br>∞+50&#x3D;∞，大于上一个表中的25，保留25，不做更新。<img src="/../images/BFS%E7%AE%97%E6%B3%95/5.png" alt="在这里插入图片描述"><br>剩下的空缺均按照上述方法。得到的表如下：<img src="/../images/BFS%E7%AE%97%E6%B3%95/6.png" alt="在这里插入图片描述"><br>接下来保留V2行列，保留对角线，记作P(V2)  ：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/7.png" alt="在这里插入图片描述"><br>更新操作：和上面相同，以（V1，V3）为例：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/8.png" alt="在这里插入图片描述"><br>20+25&#x3D;45小于上图的50，故作更新<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/9.png" alt="在这里插入图片描述"><br>重复此步骤，得到下表：<img src="/../images/BFS%E7%AE%97%E6%B3%95/10.png" alt="在这里插入图片描述"><br>接下来保留V3行列，记作  P(V3)：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/11.png" alt="在这里插入图片描述"><br>按照方法执行更新；得到下表<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/12.png" alt="在这里插入图片描述"><br>继续绘制 P(V4)</p>
+<p><img src="/../images/BFS%E7%AE%97%E6%B3%95/13.png" alt="继续绘制"><br> 更新：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/14.png" alt="在这里插入图片描述"><br>继续绘制P(V5) P(V6) P(V7)  ,最终得到下表：<br><img src="/../images/BFS%E7%AE%97%E6%B3%95/15.png" alt="在这里插入图片描述"><br>该矩阵即为任意两点间的最短距离矩阵。</p>
+<h2 id="模版"><a href="#模版" class="headerlink" title="模版"></a>模版</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">floyd</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;num;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=num;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=num;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i==j)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> z[i][j]=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">1</span>;k&lt;=num;k++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=num;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=num;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                z[i][j]=min(z[i][j],z[i][k]+z[k][j]); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><img src="/../images/BFS%E7%AE%97%E6%B3%95/16.png" alt="请添加图片描述"></p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iomanip&gt;</span><span class="comment">//保留小数位数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span> <span class="comment">//c++</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span> <span class="comment">//sort排序</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span> <span class="comment">//字符串</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;math.h&gt;</span> <span class="comment">//abs等函数</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span> <span class="comment">//map</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;set&gt;</span><span class="comment">//set</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long <span class="comment">//不开longlong见祖宗</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span> <span class="comment">//处理多数据时省时间</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> z[<span class="number">1110</span>][<span class="number">1110</span>];</span><br><span class="line"><span class="type">int</span> people[<span class="number">1110</span>];</span><br><span class="line"><span class="type">int</span> num;</span><br><span class="line"><span class="type">void</span> <span class="title function_">floyd</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">1</span>; k &lt;= num; k++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= num; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                z[i][j] = min(z[i][k] + z[k][j],z[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">signed</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>); <span class="comment">//cin减少时间</span></span><br><span class="line">    <span class="built_in">cout</span>.tie(<span class="number">0</span>); <span class="comment">//cout减少时间</span></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; num;</span><br><span class="line">    <span class="comment">//初始化自己到自己的距离为0 其他的都为无穷大</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= num; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == j) z[i][j] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> z[i][j] = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> a, b, c;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">        <span class="comment">//记录当前医院的人数为a</span></span><br><span class="line">        people[i] = a;</span><br><span class="line">        <span class="keyword">if</span> (b)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//双向的权值都赋值为1</span></span><br><span class="line">            z[i][b] = <span class="number">1</span>;</span><br><span class="line">            z[b][i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (c)</span><br><span class="line">        &#123;</span><br><span class="line">            z[i][c] = <span class="number">1</span>;</span><br><span class="line">            z[c][i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//使得两点的距离最小</span></span><br><span class="line">    floyd();</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0x3f3f3f3f</span>;<span class="comment">//先定义答案为无穷大</span></span><br><span class="line">    <span class="comment">//外层for循环定义结点 内层for循坏找答案</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= num; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum = sum + people[j] * z[i][j];<span class="comment">//当前结点人数=j结点人数*ij之间的距离</span></span><br><span class="line">        &#125;</span><br><span class="line">        ans = min(ans, sum);<span class="comment">//找到最小值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//cout &lt;&lt; setw(5) &lt;&lt; setfill(&#x27;0&#x27;) &lt;&lt; a &lt;&lt; b;// 输出5位，右对齐，不足补0 。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DFS算法</title>
+    <url>/2024/07/15/DFS%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>深度优先搜索是图的一种搜索方式，以深度为优先级去进行搜索，通俗地说就是”不撞南墙不回头”，对于当前正在搜索的路径而言，只有把当前路径给搜索完了，即走到无路可走时，才回返回进而搜索另一条路。</p>
+<span id="more"></span>  
+
+<p>假设我们有一个二叉树，共有10个节点，以下是DFS的简单示范：<img src="/../images/DFS%E7%AE%97%E6%B3%95/1.png" alt="在这里插入图片描述"></p>
+<p>从根节点开始向下搜索<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/2.png" alt="在这里插入图片描述"></p>
+<p>然后搜索到2号节点<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/3.png" alt="在这里插入图片描述"></p>
+<p>继续不断向深层处的节点搜索，搜索到4号节点<img src="/../images/DFS%E7%AE%97%E6%B3%95/4.png" alt="在这里插入图片描述"></p>
+<p>最后搜索到7号节点<img src="/../images/DFS%E7%AE%97%E6%B3%95/5.png" alt="在这里插入图片描述"></p>
+<p>当搜索到7号节点后，我们发现无路可走了，因为7号节点是当前这条路径下最深处的节点，因此，我们需要进行回溯操作<img src="/../images/DFS%E7%AE%97%E6%B3%95/6.png" alt="在这里插入图片描述"></p>
+<p>当回溯到4号节点时，我们发现4号节点并没有另一条路，也就是说从4号节点向下搜索的话，只能搜索到7号节点，但是可是刚刚才从7号节点回溯上来诶，我们总不可能又搜索到7号，然后又回溯到4号无限下去吧……所以，我们得再次回溯，也就是跳到2号节点上。<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/7.png" alt="在这里插入图片描述"></p>
+<p>当再次跳到2号节点上时，我们发现从2号节点开始，还有另一条路可以走。那我们就走下去！<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/8.png" alt="在这里插入图片描述"></p>
+<p>此时又有两条路可以走，我们先去往8号<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/9.png" alt="在这里插入图片描述"></p>
+<p>走到8号，我们发现又走到头了，那就再对它使用回溯吧！！！<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/10.png" alt="在这里插入图片描述"></p>
+<p>这次我们选择另一条路，走到9号<img src="/../images/DFS%E7%AE%97%E6%B3%95/11.png" alt="在这里插入图片描述"></p>
+<p>然后我们发现又双走到头了，因此，再次回溯，从9号跳到5号，再跳到2号，然后再跳到1号(因为5号，2号向下的路我们已经走过了，但我们发现1号节点向下的路还有一条是我们没走过滴)<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/12.png" alt="在这里插入图片描述"></p>
+<p>接下来搜索类似，我们走到3号，然后走到6号，然后走到10号<img src="/../images/DFS%E7%AE%97%E6%B3%95/13.png" alt="在这里插入图片描述"><br><img src="/../images/DFS%E7%AE%97%E6%B3%95/14.png" alt=" "></p>
+<p><img src="/../images/DFS%E7%AE%97%E6%B3%95/15.png" alt="在这里插入图片描述"></p>
+<p>当10号走完后，这颗树的每个节点都被搜索过了，最后回溯到根节点<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/16.png" alt="在这里插入图片描述"></p>
+<p>值得一提的是，深搜作为一种算法来说，并没有像二分等这些算法有固定的模板，我更愿意把它当作一种思想。如何实现DFS呢，我们通常用栈(递归来实现)。我们做题时通常会写一个dfs函数，然后在dfs函数内部，又会不断调用dfs函数，通常像下面看到的这样：</p>
+<p>以下是自我总结的模版</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> step)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(到达目的地)</span><br><span class="line">        输出</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>;i&lt;=方案数;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(方案可行)</span><br><span class="line">        &#123;</span><br><span class="line">		  保存路径;</span><br><span class="line">           dfs(step+<span class="number">1</span>);</span><br><span class="line">           回溯</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例题1<img src="/../images/DFS%E7%AE%97%E6%B3%95/17.png" alt="请添加图片描述"><br>题解</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> ans[<span class="number">1000010</span>];<span class="comment">//记录值</span></span><br><span class="line"><span class="type">bool</span> st[<span class="number">1000010</span>];<span class="comment">//记录是否用过这个数值</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> step)</span><span class="comment">//当前所走的步数</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (step == n + <span class="number">1</span>)<span class="comment">//当前所走的步数为总步数加一 则说明已经走完了</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//输出走的每一步的值；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//如果走的这一步没有到总步数加一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="comment">//从1号位开始搜</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (st[i] == <span class="literal">false</span>)<span class="comment">//如果i这个数没有被查到过</span></span><br><span class="line">		&#123;</span><br><span class="line">			ans[step] = i;<span class="comment">//将i的值赋值给第step步数</span></span><br><span class="line">			st[i] = <span class="literal">true</span>;<span class="comment">//标记 i 这个值已经被用过;</span></span><br><span class="line">			dfs(step + <span class="number">1</span>);<span class="comment">//向 step的下一步走;</span></span><br><span class="line">			st[i] = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	dfs(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例题2<br><img src="/../images/DFS%E7%AE%97%E6%B3%95/18.png" alt="请添加图片描述"><br>题解</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> n, r;</span><br><span class="line"><span class="type">int</span> ans[<span class="number">1000010</span>];</span><br><span class="line"><span class="type">bool</span> st[<span class="number">1000010</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> step)</span><span class="comment">//num代表当前数字的值 step代表当前的步数</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (step == r + <span class="number">1</span>)<span class="comment">//当前所走的步数为总步数加一 则说明已经走完了</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= r; i++)</span><br><span class="line">		&#123; </span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; ans[i] &lt;&lt; <span class="string">&quot; &quot;</span>; <span class="comment">//输出走的每一步的值；</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//如果走的这一步没有到总步数加一</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = num + <span class="number">1</span>; i &lt;= n; i++) <span class="comment">// 从 i 号位开始搜</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (st[i] == <span class="literal">false</span>) <span class="comment">//如果i这个数没有被查到过</span></span><br><span class="line">		&#123;</span><br><span class="line">			ans[step] = i; <span class="comment">//将i的值赋值给ans[step]</span></span><br><span class="line">			st[i] = <span class="literal">true</span>; <span class="comment">//标记</span></span><br><span class="line">			dfs(i, step + <span class="number">1</span>); <span class="comment">//搜索下一步</span></span><br><span class="line">			st[i] = <span class="literal">false</span>; <span class="comment">//清除标记</span></span><br><span class="line">			ans[step] = <span class="number">0</span>; <span class="comment">//抹除值</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; r;</span><br><span class="line">	dfs(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>图论</tag>
       </tags>
   </entry>
   <entry>
@@ -1876,297 +1876,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vue基础知识1</title>
-    <url>/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/</url>
-    <content><![CDATA[<p>这里是vue学习过程中第一天的知识点</p>
-<span id="more"></span>    
-
-<h1 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h1><h2 id="一、为什么要学习Vue"><a href="#一、为什么要学习Vue" class="headerlink" title="一、为什么要学习Vue"></a>一、为什么要学习Vue</h2><p>1.前端必备技能</p>
-<p>2.岗位多，绝大互联网公司都在使用Vue</p>
-<p>3.提高开发效率</p>
-<p>4.高薪必备技能（Vue2+Vue3）</p>
-<h2 id="二、什么是Vue"><a href="#二、什么是Vue" class="headerlink" title="二、什么是Vue"></a>二、什么是Vue</h2><p>概念：Vue (读音 &#x2F;vjuː&#x2F;，类似于 view) 是一套 **构建用户界面 ** 的 <strong>渐进式</strong> <strong>框架</strong></p>
-<p>Vue2官网：<a href="https://v2.cn.vuejs.org/">https://v2.cn.vuejs.org/</a></p>
-<h3 id="1-什么是构建用户界面"><a href="#1-什么是构建用户界面" class="headerlink" title="1.什么是构建用户界面"></a>1.什么是构建用户界面</h3><p><strong>基于数据</strong>渲染出用户可以看到的<strong>界面</strong></p>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681875887026.png"></p>
-<h3 id="2-什么是渐进式"><a href="#2-什么是渐进式" class="headerlink" title="2.什么是渐进式"></a>2.什么是渐进式</h3><p>所谓渐进式就是循序渐进，不一定非得把Vue中的所有API都学完才能开发Vue，可以学一点开发一点</p>
-<h4 id="Vue的两种开发方式："><a href="#Vue的两种开发方式：" class="headerlink" title="Vue的两种开发方式："></a>Vue的两种开发方式：</h4><ol>
-<li><p>Vue核心包开发</p>
-<p>场景：局部模块改造</p>
-</li>
-<li><p>Vue核心包&amp;Vue插件&amp;工程化</p>
-<p>场景：整站开发</p>
-</li>
-</ol>
-<h3 id="3-什么是框架"><a href="#3-什么是框架" class="headerlink" title="3.什么是框架"></a>3.什么是框架</h3><p>所谓框架：就是一套完整的解决方案</p>
-<p><strong>举个栗子</strong>	</p>
-<p>如果把一个完整的项目比喻为一个装修好的房子，那么框架就是一个毛坯房。</p>
-<p>我们只需要在“毛坯房”的基础上，增加功能代码即可。</p>
-<p>提到框架，不得不提一下库。</p>
-<ul>
-<li>库，类似工具箱，是一堆方法的集合，比如 axios、lodash、echarts等</li>
-<li>框架，是一套完整的解决方案，实现了大部分功能，我们只需要按照一定的规则去编码即可。</li>
-</ul>
-<p>下图是 库 和 框架的对比。</p>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681876620277.png"></p>
-<p>框架的特点：有一套必须让开发者遵守的<strong>规则</strong>或者<strong>约束</strong></p>
-<p>咱们学框架就是学习的这些规则 <a href="https://v2.cn.vuejs.org/">官网</a></p>
-<h3 id="总结：什么是Vue？"><a href="#总结：什么是Vue？" class="headerlink" title="总结：什么是Vue？"></a>总结：什么是Vue？</h3><p>Vue是什么：</p>
-<p>什么是构建用户界面：</p>
-<p>什么是渐进式：</p>
-<p>什么是框架：</p>
-<h2 id="三、创建Vue实例"><a href="#三、创建Vue实例" class="headerlink" title="三、创建Vue实例"></a>三、创建Vue实例</h2><p>我们已经知道了Vue框架可以 基于数据帮助我们渲染出用户界面，那应该怎么做呢？</p>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681877190137.png"></p>
-<p>比如就上面这个数据，基于提供好的msg 怎么渲染后右侧可展示的数据呢？</p>
-<p><strong>核心步骤（4步）：</strong></p>
-<ol>
-<li>准备容器</li>
-<li>引包（官网） — 开发版本&#x2F;生产版本</li>
-<li>创建Vue实例  new Vue()</li>
-<li>指定配置项，渲染数据<ol>
-<li>el:指定挂载点</li>
-<li>data提供数据</li>
-</ol>
-</li>
-</ol>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681877405007.png"></p>
-<p><strong>总结：创建Vue实例需要执行哪4步</strong></p>
-<h2 id="四、插值表达式"><a href="#四、插值表达式" class="headerlink" title="四、插值表达式 { { } }"></a>四、插值表达式 { { } }</h2><p>插值表达式是一种Vue的模板语法</p>
-<p>我们可以用插值表达式渲染出Vue提供的数据</p>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681886494417.png"></p>
-<h3 id="1-作用：利用表达式进行插值，渲染到页面中"><a href="#1-作用：利用表达式进行插值，渲染到页面中" class="headerlink" title="1.作用：利用表达式进行插值，渲染到页面中"></a>1.作用：利用表达式进行插值，渲染到页面中</h3><p>表达式：是可以被求值的代码，JS引擎会讲其计算出一个结果</p>
-<p>以下的情况都是表达式：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">money + <span class="number">100</span></span><br><span class="line">money - <span class="number">100</span></span><br><span class="line">money * <span class="number">10</span></span><br><span class="line">money / <span class="number">10</span> </span><br><span class="line">price &gt;= <span class="number">100</span> ? <span class="string">&#x27;真贵&#x27;</span>:<span class="string">&#x27;还行&#x27;</span></span><br><span class="line">obj.<span class="property">name</span></span><br><span class="line">arr[<span class="number">0</span>]</span><br><span class="line"><span class="title function_">fn</span>()</span><br><span class="line">obj.<span class="title function_">fn</span>()</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h3><p>插值表达式语法：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;h3&gt;&#123;&#123;title&#125;&#125;&lt;h3&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;nickName.toUpperCase()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;age &gt;= 18 ? &#x27;成年&#x27;:&#x27;未成年&#x27;&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;obj.name&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;fn()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3-错误用法"><a href="#3-错误用法" class="headerlink" title="3.错误用法"></a>3.错误用法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>在插值表达式中使用的数据 必须在data中进行了提供</span><br><span class="line">&lt;p&gt;&#123;&#123;hobby&#125;&#125;&lt;<span class="regexp">/p&gt;  /</span>/如果在data中不存在 则会报错</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>支持的是表达式，而非语句，比如：<span class="keyword">if</span>   <span class="keyword">for</span> ...</span><br><span class="line">&lt;p&gt;&#123;&#123;<span class="keyword">if</span>&#125;&#125;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>不能在标签属性中使用 &#123;&#123;  &#125;&#125; 插值 (插值表达式只能标签中间使用)</span><br><span class="line">&lt;p title=<span class="string">&quot;&#123;&#123;username&#125;&#125;&quot;</span>&gt;我是P标签&lt;/p&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>1.插值表达式的作用是什么</p>
-<p>2.语法是什么</p>
-<p>3.插值表达式的注意事项</p>
-<h2 id="五、响应式特性"><a href="#五、响应式特性" class="headerlink" title="五、响应式特性"></a>五、响应式特性</h2><h3 id="1-什么是响应式？"><a href="#1-什么是响应式？" class="headerlink" title="1.什么是响应式？"></a>1.什么是响应式？</h3><p>​	简单理解就是数据变，视图对应变。 </p>
-<h3 id="2-如何访问-和-修改-data中的数据（响应式演示）"><a href="#2-如何访问-和-修改-data中的数据（响应式演示）" class="headerlink" title="2.如何访问 和 修改 data中的数据（响应式演示）"></a>2.如何访问 和 修改 data中的数据（响应式演示）</h3><p>data中的数据, 最终会被添加到实例上</p>
-<p>① 访问数据： “实例.属性名”</p>
-<p>② 修改数据： “实例.属性名”&#x3D; “值”</p>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681888539340.png"></p>
-<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><ol>
-<li>什么是响应式</li>
-<li>如何访问和修改data中的数据呢</li>
-</ol>
-<h2 id="六、Vue开发者工具安装"><a href="#六、Vue开发者工具安装" class="headerlink" title="六、Vue开发者工具安装"></a>六、Vue开发者工具安装</h2><ol>
-<li>通过谷歌应用商店安装（国外网站）</li>
-<li>极简插件下载（推荐） <a href="https://chrome.zzzmh.cn/index">https://chrome.zzzmh.cn/index</a></li>
-</ol>
-<p>安装步骤：</p>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681889302166.png"></p>
-<p>安装之后可以F12后看到多一个Vue的调试面板</p>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681889390406.png"></p>
-<h2 id="七、Vue中的常用指令"><a href="#七、Vue中的常用指令" class="headerlink" title="七、Vue中的常用指令"></a>七、Vue中的常用指令</h2><p><strong>概念：</strong>指令（Directives）是 Vue 提供的带有 <strong>v- 前缀</strong> 的 特殊 标签<strong>属性</strong>。</p>
-<p>为啥要学：提高程序员操作 DOM 的效率。</p>
-<p>vue 中的指令按照不同的用途可以分为如下 6 大类：</p>
-<ul>
-<li>内容渲染指令（v-html、v-text）</li>
-<li>条件渲染指令（v-show、v-if、v-else、v-else-if）</li>
-<li>事件绑定指令（v-on）</li>
-<li>属性绑定指令 （v-bind）</li>
-<li>双向绑定指令（v-model）</li>
-<li>列表渲染指令（v-for）</li>
-</ul>
-<p>指令是 vue 开发中最基础、最常用、最简单的知识点。</p>
-<h2 id="八、内容渲染指令"><a href="#八、内容渲染指令" class="headerlink" title="八、内容渲染指令"></a>八、内容渲染指令</h2><p>内容渲染指令用来辅助开发者渲染 DOM 元素的文本内容。常用的内容渲染指令有如下2 个：</p>
-<ul>
-<li><p>v-text（类似innerText）</p>
-</li>
-<li><ul>
-<li>使用语法：<code>&lt;p v-text=&quot;uname&quot;&gt;hello&lt;/p&gt;</code>，意思是将 uame 值渲染到 p 标签中</li>
-<li>类似 innerText，使用该语法，会覆盖 p 标签原有内容</li>
-</ul>
-</li>
-<li><p>v-html（类似 innerHTML）</p>
-</li>
-<li><ul>
-<li>使用语法：<code>&lt;p v-html=&quot;intro&quot;&gt;hello&lt;/p&gt;</code>，意思是将 intro 值渲染到 p 标签中</li>
-<li>类似 innerHTML，使用该语法，会覆盖 p 标签原有内容</li>
-<li>类似 innerHTML，使用该语法，能够将HTML标签的样式呈现出来。</li>
-</ul>
-</li>
-</ul>
-<p>代码演示：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">  &lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>个人信息<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="comment">// 既然指令是vue提供的特殊的html属性，所以咱们写的时候就当成属性来用即可</span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-text</span>=<span class="string">&quot;uname&quot;</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span> </span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-html</span>=<span class="string">&quot;intro&quot;</span>&gt;</span>简介：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  &lt;/div&gt; </span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">        const app = new Vue(&#123;</span><br><span class="line">            el:&#x27;#app&#x27;,</span><br><span class="line">            data:&#123;</span><br><span class="line">                uname:&#x27;张三&#x27;,</span><br><span class="line">                intro:&#x27;&lt;h2&gt;这是一个&lt;strong&gt;非常优秀&lt;/strong&gt;的boy&lt;h2&gt;&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="九、条件渲染指令"><a href="#九、条件渲染指令" class="headerlink" title="九、条件渲染指令"></a>九、条件渲染指令</h2><p>条件判断指令，用来辅助开发者按需控制 DOM 的显示与隐藏。条件渲染指令有如下两个，分别是：</p>
-<ol>
-<li><p>v-show</p>
-<ol>
-<li>作用：  控制元素显示隐藏</li>
-<li>语法：  v-show &#x3D; “表达式”   表达式值为 true 显示， false 隐藏</li>
-<li>原理：  切换 display:none 控制显示隐藏</li>
-<li>场景：频繁切换显示隐藏的场景</li>
-</ol>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681891228284.png"></p>
-</li>
-<li><p>v-if</p>
-<ol>
-<li>作用：  控制元素显示隐藏（条件渲染）</li>
-<li>语法：  v-if&#x3D; “表达式”          表达式值 true显示， false 隐藏</li>
-<li>原理：  基于条件判断，是否创建 或 移除元素节点</li>
-<li>场景：  要么显示，要么隐藏，不频繁切换的场景</li>
-</ol>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681891237750.png"></p>
-<p>示例代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>我是v-show控制的盒子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>我是v-if控制的盒子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">flag</span>: <span class="literal">false</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>v-else 和 v-else-if</p>
-<ol>
-<li>作用：辅助v-if进行判断渲染</li>
-<li>语法：v-else  v-else-if&#x3D;”表达式”</li>
-<li>需要紧接着v-if使用</li>
-</ol>
-</li>
-</ol>
-<p>示例代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>性别：♂ 男<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>性别：♀ 女<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  &lt;hr&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>成绩评定A：奖励电脑一台<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>成绩评定B：奖励周末郊游<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>成绩评定C：奖励零食礼包<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>成绩评定D：惩罚一周不能玩手机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">gender</span>: <span class="number">2</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">score</span>: <span class="number">95</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="十、事件绑定指令"><a href="#十、事件绑定指令" class="headerlink" title="十、事件绑定指令"></a>十、事件绑定指令</h2><p>使用Vue时，如需为DOM注册事件，及其的简单，语法如下：</p>
-<ul>
-<li>&lt;button v-on:事件名&#x3D;”内联语句”&gt;按钮</button></li>
-<li>&lt;button v-on:事件名&#x3D;”处理函数”&gt;按钮</button></li>
-<li>&lt;button v-on:事件名&#x3D;”处理函数(实参)”&gt;按钮</button></li>
-<li><code>v-on:</code> 简写为 <strong>@</strong></li>
-</ul>
-<ol>
-<li><p>内联语句</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;count--&quot;</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;count++&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">count</span>: <span class="number">100</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>事件处理函数</p>
-<p>注意：</p>
-<ul>
-<li>事件处理函数应该写到一个跟data同级的配置项（methods）中</li>
-<li>methods中的函数内部的this都指向Vue实例</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>切换显示隐藏<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-show</span>=<span class="string">&quot;isShow&quot;</span>&gt;</span>黑马程序员<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">isShow</span>: <span class="literal">true</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<p>  3.给事件处理函数传参</p>
-<ul>
-<li><p>如果不传递任何参数，则方法无需加小括号；methods方法中可以直接使用 e 当做事件对象</p>
-</li>
-<li><p>如果传递了参数，则实参 <code>$event</code> 表示事件对象，固定用法。</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">   .<span class="property">box</span> &#123;</span><br><span class="line">     <span class="attr">border</span>: 3px solid #<span class="number">000000</span>;</span><br><span class="line">     border-<span class="attr">radius</span>: 10px;</span><br><span class="line">     <span class="attr">padding</span>: 20px;</span><br><span class="line">     <span class="attr">margin</span>: 20px;</span><br><span class="line">     <span class="attr">width</span>: 200px;</span><br><span class="line">   &#125;</span><br><span class="line">   h3 &#123;</span><br><span class="line">     <span class="attr">margin</span>: 10px <span class="number">0</span> 20px <span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   p &#123;</span><br><span class="line">     <span class="attr">margin</span>: 20px;</span><br><span class="line">   &#125;</span><br><span class="line"> &lt;/style&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">h3</span>&gt;</span>小黑自动售货机<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">button</span>&gt;</span>可乐5元<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">button</span>&gt;</span>咖啡10元<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">button</span>&gt;</span>牛奶8元<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>银行卡余额：&#123;&#123; money &#125;&#125;元<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="attr">money</span>: <span class="number">100</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="十一、属性绑定指令"><a href="#十一、属性绑定指令" class="headerlink" title="十一、属性绑定指令"></a>十一、属性绑定指令</h2><ol>
-<li><strong>作用：</strong>动态设置html的标签属性 比如：src、url、title</li>
-<li><strong>语法</strong>：**v-bind:**属性名&#x3D;“表达式”</li>
-<li>**v-bind:**可以简写成 &#x3D;&gt;   <strong>:</strong></li>
-</ol>
-<p>比如，有一个图片，它的 <code>src</code> 属性值，是一个图片地址。这个地址在数据 data 中存储。</p>
-<p>则可以这样设置属性值：</p>
-<ul>
-<li><code>&lt;img v-bind:src=&quot;url&quot; /&gt;</code></li>
-<li><code>&lt;img :src=&quot;url&quot; /&gt;</code>   （v-bind可以省略）</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">&quot;imgUrl&quot;</span> <span class="attr">v-bind:title</span>=<span class="string">&quot;msg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">&quot;imgUrl&quot;</span> <span class="attr">:title</span>=<span class="string">&quot;msg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">imgUrl</span>: <span class="string">&#x27;./imgs/10-02.png&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">msg</span>: <span class="string">&#x27;hello 波仔&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="十二、小案例-波仔的学习之旅"><a href="#十二、小案例-波仔的学习之旅" class="headerlink" title="十二、小案例-波仔的学习之旅"></a>十二、小案例-波仔的学习之旅</h2><p>需求：默认展示数组中的第一张图片，点击上一页下一页来回切换数组中的图片</p>
-<p>实现思路：</p>
-<p>1.数组存储图片路径 [‘url1’,’url2’,’url3’，…]</p>
-<p>2.可以准备个下标index 去数组中取图片地址。</p>
-<p>3.通过v-bind给src绑定当前的图片地址</p>
-<p>4.点击上一页下一页只需要修改下标的值即可</p>
-<p>5.当展示第一张的时候，上一页按钮应该隐藏。展示最后一张的时候，下一页按钮应该隐藏</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">   <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>上一页<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">   <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;<span class="name">button</span>&gt;</span>下一页<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="attr">list</span>: [</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-00.gif&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-01.gif&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-02.gif&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-03.gif&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-04.png&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-05.png&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       ]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="十三、列表渲染指令"><a href="#十三、列表渲染指令" class="headerlink" title="十三、列表渲染指令"></a>十三、列表渲染指令</h2><p>Vue 提供了 v-for 列表渲染指令，用来辅助开发者基于一个数组来循环渲染一个列表结构。</p>
-<p>v-for 指令需要使用 <code>(item, index) in arr</code> 形式的特殊语法，其中：</p>
-<ul>
-<li>item 是数组中的每一项</li>
-<li>index 是每一项的索引，不需要可以省略</li>
-<li>arr 是被遍历的数组</li>
-</ul>
-<p>此语法也可以遍历<strong>对象和数字</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//遍历对象</span></span><br><span class="line">&lt;div v-<span class="keyword">for</span>=<span class="string">&quot;(value, key, index) in object&quot;</span>&gt;&#123;&#123;value&#125;&#125;&lt;/div&gt;</span><br><span class="line"><span class="attr">value</span>:对象中的值</span><br><span class="line"><span class="attr">key</span>:对象中的键</span><br><span class="line"><span class="attr">index</span>:遍历索引从<span class="number">0</span>开始</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历数字</span></span><br><span class="line">&lt;p v-<span class="keyword">for</span>=<span class="string">&quot;item in 10&quot;</span>&gt;&#123;&#123;item&#125;&#125;&lt;/p&gt;</span><br><span class="line">item从<span class="number">1</span> 开始</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="十四、小案例-小黑的书架"><a href="#十四、小案例-小黑的书架" class="headerlink" title="十四、小案例-小黑的书架"></a>十四、小案例-小黑的书架</h2><p>需求：</p>
-<p>1.根据左侧数据渲染出右侧列表（v-for）</p>
-<p>2.点击删除按钮时，应该把当前行从列表中删除（获取当前行的id，利用filter进行过滤）</p>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681896632672.png"></p>
-<h2 id="十五、v-for中的key"><a href="#十五、v-for中的key" class="headerlink" title="十五、v-for中的key"></a>十五、v-for中的key</h2><p><strong>语法：</strong> key&#x3D;”唯一值”</p>
-<p><strong>作用：</strong>给列表项添加的<strong>唯一标识</strong>。便于Vue进行列表项的<strong>正确排序复用</strong>。</p>
-<p><strong>为什么加key：</strong>Vue 的默认行为会尝试原地修改元素（<strong>就地复用</strong>）</p>
-<p>实例代码：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in booksList&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.id&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; item.name &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; item.author &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;del(item.id)&quot;</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ol>
-<li>key 的值只能是字符串 或 数字类型</li>
-<li>key 的值必须具有唯一性</li>
-<li>推荐使用  id 作为 key（唯一），不推荐使用 index 作为 key（会变化，不对应）</li>
-</ol>
-<h2 id="十六、双向绑定指令"><a href="#十六、双向绑定指令" class="headerlink" title="十六、双向绑定指令"></a>十六、双向绑定指令</h2><p>所谓双向绑定就是：</p>
-<ol>
-<li>数据改变后，呈现的页面结果会更新</li>
-<li>页面结果更新后，数据也会随之而变</li>
-</ol>
-<p><strong>作用：</strong> 给<strong>表单元素</strong>（input、radio、select）使用，双向绑定数据，可以快速 <strong>获取</strong> 或 <strong>设置</strong> 表单元素内容</p>
-<p><strong>语法：</strong>v-model&#x3D;”变量”</p>
-<p><strong>需求：</strong>使用双向绑定实现以下需求</p>
-<ol>
-<li>点击登录按钮获取表单中的内容</li>
-<li>点击重置按钮清空表单中的内容</li>
-</ol>
-<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681913125738.png"></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    账户：&lt;input type=<span class="string">&quot;text&quot;</span>&gt; &lt;br&gt;&lt;br&gt;</span><br><span class="line">    密码：&lt;input type=<span class="string">&quot;password&quot;</span>&gt; &lt;br&gt;&lt;br&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">username</span>: <span class="string">&#x27;&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">password</span>: <span class="string">&#x27;&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>尚品汇总结</title>
     <url>/2024/07/17/%E5%B0%9A%E5%93%81%E6%B1%87%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1 id="前端Vue核心"><a href="#前端Vue核心" class="headerlink" title="前端Vue核心"></a>前端Vue核心</h1><p>开发一个前端模块可以概括为以下几个步骤：<br>（1）写静态页面、拆分为静态组件；<br>（2）发请求（API）；<br>（3）vuex（actions、mutations、state三连操作）；<br>（4）组件获取仓库数据，动态展示；</p>
@@ -2566,6 +2275,297 @@ main.js： 程序入口文件，最先执行的文件
 </blockquote>
 <p>箭头所指内容就是子组件通过插槽传递给父组件的信息。接受的数据是键值对的形式。<br><img src="/../images/%E5%B0%9A%E5%93%81%E6%B1%87%E6%80%BB%E7%BB%93/33.png" alt="在这里插入图片描述"></p>
 <p><a href="https://cn.vuejs.org/v2/guide/components-slots.html#%E6%8F%92%E6%A7%BD%E5%86%85%E5%AE%B9">插槽官方链接</a></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue基础知识1</title>
+    <url>/2024/06/22/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/</url>
+    <content><![CDATA[<p>这里是vue学习过程中第一天的知识点</p>
+<span id="more"></span>    
+
+<h1 id="day01"><a href="#day01" class="headerlink" title="day01"></a>day01</h1><h2 id="一、为什么要学习Vue"><a href="#一、为什么要学习Vue" class="headerlink" title="一、为什么要学习Vue"></a>一、为什么要学习Vue</h2><p>1.前端必备技能</p>
+<p>2.岗位多，绝大互联网公司都在使用Vue</p>
+<p>3.提高开发效率</p>
+<p>4.高薪必备技能（Vue2+Vue3）</p>
+<h2 id="二、什么是Vue"><a href="#二、什么是Vue" class="headerlink" title="二、什么是Vue"></a>二、什么是Vue</h2><p>概念：Vue (读音 &#x2F;vjuː&#x2F;，类似于 view) 是一套 **构建用户界面 ** 的 <strong>渐进式</strong> <strong>框架</strong></p>
+<p>Vue2官网：<a href="https://v2.cn.vuejs.org/">https://v2.cn.vuejs.org/</a></p>
+<h3 id="1-什么是构建用户界面"><a href="#1-什么是构建用户界面" class="headerlink" title="1.什么是构建用户界面"></a>1.什么是构建用户界面</h3><p><strong>基于数据</strong>渲染出用户可以看到的<strong>界面</strong></p>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681875887026.png"></p>
+<h3 id="2-什么是渐进式"><a href="#2-什么是渐进式" class="headerlink" title="2.什么是渐进式"></a>2.什么是渐进式</h3><p>所谓渐进式就是循序渐进，不一定非得把Vue中的所有API都学完才能开发Vue，可以学一点开发一点</p>
+<h4 id="Vue的两种开发方式："><a href="#Vue的两种开发方式：" class="headerlink" title="Vue的两种开发方式："></a>Vue的两种开发方式：</h4><ol>
+<li><p>Vue核心包开发</p>
+<p>场景：局部模块改造</p>
+</li>
+<li><p>Vue核心包&amp;Vue插件&amp;工程化</p>
+<p>场景：整站开发</p>
+</li>
+</ol>
+<h3 id="3-什么是框架"><a href="#3-什么是框架" class="headerlink" title="3.什么是框架"></a>3.什么是框架</h3><p>所谓框架：就是一套完整的解决方案</p>
+<p><strong>举个栗子</strong>	</p>
+<p>如果把一个完整的项目比喻为一个装修好的房子，那么框架就是一个毛坯房。</p>
+<p>我们只需要在“毛坯房”的基础上，增加功能代码即可。</p>
+<p>提到框架，不得不提一下库。</p>
+<ul>
+<li>库，类似工具箱，是一堆方法的集合，比如 axios、lodash、echarts等</li>
+<li>框架，是一套完整的解决方案，实现了大部分功能，我们只需要按照一定的规则去编码即可。</li>
+</ul>
+<p>下图是 库 和 框架的对比。</p>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681876620277.png"></p>
+<p>框架的特点：有一套必须让开发者遵守的<strong>规则</strong>或者<strong>约束</strong></p>
+<p>咱们学框架就是学习的这些规则 <a href="https://v2.cn.vuejs.org/">官网</a></p>
+<h3 id="总结：什么是Vue？"><a href="#总结：什么是Vue？" class="headerlink" title="总结：什么是Vue？"></a>总结：什么是Vue？</h3><p>Vue是什么：</p>
+<p>什么是构建用户界面：</p>
+<p>什么是渐进式：</p>
+<p>什么是框架：</p>
+<h2 id="三、创建Vue实例"><a href="#三、创建Vue实例" class="headerlink" title="三、创建Vue实例"></a>三、创建Vue实例</h2><p>我们已经知道了Vue框架可以 基于数据帮助我们渲染出用户界面，那应该怎么做呢？</p>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681877190137.png"></p>
+<p>比如就上面这个数据，基于提供好的msg 怎么渲染后右侧可展示的数据呢？</p>
+<p><strong>核心步骤（4步）：</strong></p>
+<ol>
+<li>准备容器</li>
+<li>引包（官网） — 开发版本&#x2F;生产版本</li>
+<li>创建Vue实例  new Vue()</li>
+<li>指定配置项，渲染数据<ol>
+<li>el:指定挂载点</li>
+<li>data提供数据</li>
+</ol>
+</li>
+</ol>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681877405007.png"></p>
+<p><strong>总结：创建Vue实例需要执行哪4步</strong></p>
+<h2 id="四、插值表达式"><a href="#四、插值表达式" class="headerlink" title="四、插值表达式 { { } }"></a>四、插值表达式 { { } }</h2><p>插值表达式是一种Vue的模板语法</p>
+<p>我们可以用插值表达式渲染出Vue提供的数据</p>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681886494417.png"></p>
+<h3 id="1-作用：利用表达式进行插值，渲染到页面中"><a href="#1-作用：利用表达式进行插值，渲染到页面中" class="headerlink" title="1.作用：利用表达式进行插值，渲染到页面中"></a>1.作用：利用表达式进行插值，渲染到页面中</h3><p>表达式：是可以被求值的代码，JS引擎会讲其计算出一个结果</p>
+<p>以下的情况都是表达式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">money + <span class="number">100</span></span><br><span class="line">money - <span class="number">100</span></span><br><span class="line">money * <span class="number">10</span></span><br><span class="line">money / <span class="number">10</span> </span><br><span class="line">price &gt;= <span class="number">100</span> ? <span class="string">&#x27;真贵&#x27;</span>:<span class="string">&#x27;还行&#x27;</span></span><br><span class="line">obj.<span class="property">name</span></span><br><span class="line">arr[<span class="number">0</span>]</span><br><span class="line"><span class="title function_">fn</span>()</span><br><span class="line">obj.<span class="title function_">fn</span>()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h3><p>插值表达式语法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;h3&gt;&#123;&#123;title&#125;&#125;&lt;h3&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;nickName.toUpperCase()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;age &gt;= 18 ? &#x27;成年&#x27;:&#x27;未成年&#x27;&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;obj.name&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;fn()&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-错误用法"><a href="#3-错误用法" class="headerlink" title="3.错误用法"></a>3.错误用法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>在插值表达式中使用的数据 必须在data中进行了提供</span><br><span class="line">&lt;p&gt;&#123;&#123;hobby&#125;&#125;&lt;<span class="regexp">/p&gt;  /</span>/如果在data中不存在 则会报错</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>支持的是表达式，而非语句，比如：<span class="keyword">if</span>   <span class="keyword">for</span> ...</span><br><span class="line">&lt;p&gt;&#123;&#123;<span class="keyword">if</span>&#125;&#125;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>不能在标签属性中使用 &#123;&#123;  &#125;&#125; 插值 (插值表达式只能标签中间使用)</span><br><span class="line">&lt;p title=<span class="string">&quot;&#123;&#123;username&#125;&#125;&quot;</span>&gt;我是P标签&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>1.插值表达式的作用是什么</p>
+<p>2.语法是什么</p>
+<p>3.插值表达式的注意事项</p>
+<h2 id="五、响应式特性"><a href="#五、响应式特性" class="headerlink" title="五、响应式特性"></a>五、响应式特性</h2><h3 id="1-什么是响应式？"><a href="#1-什么是响应式？" class="headerlink" title="1.什么是响应式？"></a>1.什么是响应式？</h3><p>​	简单理解就是数据变，视图对应变。 </p>
+<h3 id="2-如何访问-和-修改-data中的数据（响应式演示）"><a href="#2-如何访问-和-修改-data中的数据（响应式演示）" class="headerlink" title="2.如何访问 和 修改 data中的数据（响应式演示）"></a>2.如何访问 和 修改 data中的数据（响应式演示）</h3><p>data中的数据, 最终会被添加到实例上</p>
+<p>① 访问数据： “实例.属性名”</p>
+<p>② 修改数据： “实例.属性名”&#x3D; “值”</p>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681888539340.png"></p>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><ol>
+<li>什么是响应式</li>
+<li>如何访问和修改data中的数据呢</li>
+</ol>
+<h2 id="六、Vue开发者工具安装"><a href="#六、Vue开发者工具安装" class="headerlink" title="六、Vue开发者工具安装"></a>六、Vue开发者工具安装</h2><ol>
+<li>通过谷歌应用商店安装（国外网站）</li>
+<li>极简插件下载（推荐） <a href="https://chrome.zzzmh.cn/index">https://chrome.zzzmh.cn/index</a></li>
+</ol>
+<p>安装步骤：</p>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681889302166.png"></p>
+<p>安装之后可以F12后看到多一个Vue的调试面板</p>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681889390406.png"></p>
+<h2 id="七、Vue中的常用指令"><a href="#七、Vue中的常用指令" class="headerlink" title="七、Vue中的常用指令"></a>七、Vue中的常用指令</h2><p><strong>概念：</strong>指令（Directives）是 Vue 提供的带有 <strong>v- 前缀</strong> 的 特殊 标签<strong>属性</strong>。</p>
+<p>为啥要学：提高程序员操作 DOM 的效率。</p>
+<p>vue 中的指令按照不同的用途可以分为如下 6 大类：</p>
+<ul>
+<li>内容渲染指令（v-html、v-text）</li>
+<li>条件渲染指令（v-show、v-if、v-else、v-else-if）</li>
+<li>事件绑定指令（v-on）</li>
+<li>属性绑定指令 （v-bind）</li>
+<li>双向绑定指令（v-model）</li>
+<li>列表渲染指令（v-for）</li>
+</ul>
+<p>指令是 vue 开发中最基础、最常用、最简单的知识点。</p>
+<h2 id="八、内容渲染指令"><a href="#八、内容渲染指令" class="headerlink" title="八、内容渲染指令"></a>八、内容渲染指令</h2><p>内容渲染指令用来辅助开发者渲染 DOM 元素的文本内容。常用的内容渲染指令有如下2 个：</p>
+<ul>
+<li><p>v-text（类似innerText）</p>
+</li>
+<li><ul>
+<li>使用语法：<code>&lt;p v-text=&quot;uname&quot;&gt;hello&lt;/p&gt;</code>，意思是将 uame 值渲染到 p 标签中</li>
+<li>类似 innerText，使用该语法，会覆盖 p 标签原有内容</li>
+</ul>
+</li>
+<li><p>v-html（类似 innerHTML）</p>
+</li>
+<li><ul>
+<li>使用语法：<code>&lt;p v-html=&quot;intro&quot;&gt;hello&lt;/p&gt;</code>，意思是将 intro 值渲染到 p 标签中</li>
+<li>类似 innerHTML，使用该语法，会覆盖 p 标签原有内容</li>
+<li>类似 innerHTML，使用该语法，能够将HTML标签的样式呈现出来。</li>
+</ul>
+</li>
+</ul>
+<p>代码演示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">  &lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>个人信息<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="comment">// 既然指令是vue提供的特殊的html属性，所以咱们写的时候就当成属性来用即可</span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-text</span>=<span class="string">&quot;uname&quot;</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span> </span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-html</span>=<span class="string">&quot;intro&quot;</span>&gt;</span>简介：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  &lt;/div&gt; </span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">        const app = new Vue(&#123;</span><br><span class="line">            el:&#x27;#app&#x27;,</span><br><span class="line">            data:&#123;</span><br><span class="line">                uname:&#x27;张三&#x27;,</span><br><span class="line">                intro:&#x27;&lt;h2&gt;这是一个&lt;strong&gt;非常优秀&lt;/strong&gt;的boy&lt;h2&gt;&#x27;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="九、条件渲染指令"><a href="#九、条件渲染指令" class="headerlink" title="九、条件渲染指令"></a>九、条件渲染指令</h2><p>条件判断指令，用来辅助开发者按需控制 DOM 的显示与隐藏。条件渲染指令有如下两个，分别是：</p>
+<ol>
+<li><p>v-show</p>
+<ol>
+<li>作用：  控制元素显示隐藏</li>
+<li>语法：  v-show &#x3D; “表达式”   表达式值为 true 显示， false 隐藏</li>
+<li>原理：  切换 display:none 控制显示隐藏</li>
+<li>场景：频繁切换显示隐藏的场景</li>
+</ol>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681891228284.png"></p>
+</li>
+<li><p>v-if</p>
+<ol>
+<li>作用：  控制元素显示隐藏（条件渲染）</li>
+<li>语法：  v-if&#x3D; “表达式”          表达式值 true显示， false 隐藏</li>
+<li>原理：  基于条件判断，是否创建 或 移除元素节点</li>
+<li>场景：  要么显示，要么隐藏，不频繁切换的场景</li>
+</ol>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681891237750.png"></p>
+<p>示例代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>我是v-show控制的盒子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>我是v-if控制的盒子<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">flag</span>: <span class="literal">false</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>v-else 和 v-else-if</p>
+<ol>
+<li>作用：辅助v-if进行判断渲染</li>
+<li>语法：v-else  v-else-if&#x3D;”表达式”</li>
+<li>需要紧接着v-if使用</li>
+</ol>
+</li>
+</ol>
+<p>示例代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>性别：♂ 男<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>性别：♀ 女<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  &lt;hr&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>成绩评定A：奖励电脑一台<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>成绩评定B：奖励周末郊游<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>成绩评定C：奖励零食礼包<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>成绩评定D：惩罚一周不能玩手机<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">gender</span>: <span class="number">2</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">score</span>: <span class="number">95</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="十、事件绑定指令"><a href="#十、事件绑定指令" class="headerlink" title="十、事件绑定指令"></a>十、事件绑定指令</h2><p>使用Vue时，如需为DOM注册事件，及其的简单，语法如下：</p>
+<ul>
+<li>&lt;button v-on:事件名&#x3D;”内联语句”&gt;按钮</button></li>
+<li>&lt;button v-on:事件名&#x3D;”处理函数”&gt;按钮</button></li>
+<li>&lt;button v-on:事件名&#x3D;”处理函数(实参)”&gt;按钮</button></li>
+<li><code>v-on:</code> 简写为 <strong>@</strong></li>
+</ul>
+<ol>
+<li><p>内联语句</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;count--&quot;</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;count++&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">count</span>: <span class="number">100</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>事件处理函数</p>
+<p>注意：</p>
+<ul>
+<li>事件处理函数应该写到一个跟data同级的配置项（methods）中</li>
+<li>methods中的函数内部的this都指向Vue实例</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>切换显示隐藏<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-show</span>=<span class="string">&quot;isShow&quot;</span>&gt;</span>黑马程序员<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">isShow</span>: <span class="literal">true</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>  3.给事件处理函数传参</p>
+<ul>
+<li><p>如果不传递任何参数，则方法无需加小括号；methods方法中可以直接使用 e 当做事件对象</p>
+</li>
+<li><p>如果传递了参数，则实参 <code>$event</code> 表示事件对象，固定用法。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">   .<span class="property">box</span> &#123;</span><br><span class="line">     <span class="attr">border</span>: 3px solid #<span class="number">000000</span>;</span><br><span class="line">     border-<span class="attr">radius</span>: 10px;</span><br><span class="line">     <span class="attr">padding</span>: 20px;</span><br><span class="line">     <span class="attr">margin</span>: 20px;</span><br><span class="line">     <span class="attr">width</span>: 200px;</span><br><span class="line">   &#125;</span><br><span class="line">   h3 &#123;</span><br><span class="line">     <span class="attr">margin</span>: 10px <span class="number">0</span> 20px <span class="number">0</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   p &#123;</span><br><span class="line">     <span class="attr">margin</span>: 20px;</span><br><span class="line">   &#125;</span><br><span class="line"> &lt;/style&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">h3</span>&gt;</span>小黑自动售货机<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">button</span>&gt;</span>可乐5元<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">button</span>&gt;</span>咖啡10元<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">button</span>&gt;</span>牛奶8元<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>银行卡余额：&#123;&#123; money &#125;&#125;元<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="attr">money</span>: <span class="number">100</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="十一、属性绑定指令"><a href="#十一、属性绑定指令" class="headerlink" title="十一、属性绑定指令"></a>十一、属性绑定指令</h2><ol>
+<li><strong>作用：</strong>动态设置html的标签属性 比如：src、url、title</li>
+<li><strong>语法</strong>：**v-bind:**属性名&#x3D;“表达式”</li>
+<li>**v-bind:**可以简写成 &#x3D;&gt;   <strong>:</strong></li>
+</ol>
+<p>比如，有一个图片，它的 <code>src</code> 属性值，是一个图片地址。这个地址在数据 data 中存储。</p>
+<p>则可以这样设置属性值：</p>
+<ul>
+<li><code>&lt;img v-bind:src=&quot;url&quot; /&gt;</code></li>
+<li><code>&lt;img :src=&quot;url&quot; /&gt;</code>   （v-bind可以省略）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">&quot;imgUrl&quot;</span> <span class="attr">v-bind:title</span>=<span class="string">&quot;msg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">&quot;imgUrl&quot;</span> <span class="attr">:title</span>=<span class="string">&quot;msg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">imgUrl</span>: <span class="string">&#x27;./imgs/10-02.png&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">msg</span>: <span class="string">&#x27;hello 波仔&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="十二、小案例-波仔的学习之旅"><a href="#十二、小案例-波仔的学习之旅" class="headerlink" title="十二、小案例-波仔的学习之旅"></a>十二、小案例-波仔的学习之旅</h2><p>需求：默认展示数组中的第一张图片，点击上一页下一页来回切换数组中的图片</p>
+<p>实现思路：</p>
+<p>1.数组存储图片路径 [‘url1’,’url2’,’url3’，…]</p>
+<p>2.可以准备个下标index 去数组中取图片地址。</p>
+<p>3.通过v-bind给src绑定当前的图片地址</p>
+<p>4.点击上一页下一页只需要修改下标的值即可</p>
+<p>5.当展示第一张的时候，上一页按钮应该隐藏。展示最后一张的时候，下一页按钮应该隐藏</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">   <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>上一页<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">   <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;<span class="name">button</span>&gt;</span>下一页<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="attr">list</span>: [</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-00.gif&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-01.gif&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-02.gif&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-03.gif&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-04.png&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="string">&#x27;./imgs/11-05.png&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       ]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="十三、列表渲染指令"><a href="#十三、列表渲染指令" class="headerlink" title="十三、列表渲染指令"></a>十三、列表渲染指令</h2><p>Vue 提供了 v-for 列表渲染指令，用来辅助开发者基于一个数组来循环渲染一个列表结构。</p>
+<p>v-for 指令需要使用 <code>(item, index) in arr</code> 形式的特殊语法，其中：</p>
+<ul>
+<li>item 是数组中的每一项</li>
+<li>index 是每一项的索引，不需要可以省略</li>
+<li>arr 是被遍历的数组</li>
+</ul>
+<p>此语法也可以遍历<strong>对象和数字</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//遍历对象</span></span><br><span class="line">&lt;div v-<span class="keyword">for</span>=<span class="string">&quot;(value, key, index) in object&quot;</span>&gt;&#123;&#123;value&#125;&#125;&lt;/div&gt;</span><br><span class="line"><span class="attr">value</span>:对象中的值</span><br><span class="line"><span class="attr">key</span>:对象中的键</span><br><span class="line"><span class="attr">index</span>:遍历索引从<span class="number">0</span>开始</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历数字</span></span><br><span class="line">&lt;p v-<span class="keyword">for</span>=<span class="string">&quot;item in 10&quot;</span>&gt;&#123;&#123;item&#125;&#125;&lt;/p&gt;</span><br><span class="line">item从<span class="number">1</span> 开始</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="十四、小案例-小黑的书架"><a href="#十四、小案例-小黑的书架" class="headerlink" title="十四、小案例-小黑的书架"></a>十四、小案例-小黑的书架</h2><p>需求：</p>
+<p>1.根据左侧数据渲染出右侧列表（v-for）</p>
+<p>2.点击删除按钮时，应该把当前行从列表中删除（获取当前行的id，利用filter进行过滤）</p>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681896632672.png"></p>
+<h2 id="十五、v-for中的key"><a href="#十五、v-for中的key" class="headerlink" title="十五、v-for中的key"></a>十五、v-for中的key</h2><p><strong>语法：</strong> key&#x3D;”唯一值”</p>
+<p><strong>作用：</strong>给列表项添加的<strong>唯一标识</strong>。便于Vue进行列表项的<strong>正确排序复用</strong>。</p>
+<p><strong>为什么加key：</strong>Vue 的默认行为会尝试原地修改元素（<strong>就地复用</strong>）</p>
+<p>实例代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in booksList&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;item.id&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; item.name &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; item.author &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;del(item.id)&quot;</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ol>
+<li>key 的值只能是字符串 或 数字类型</li>
+<li>key 的值必须具有唯一性</li>
+<li>推荐使用  id 作为 key（唯一），不推荐使用 index 作为 key（会变化，不对应）</li>
+</ol>
+<h2 id="十六、双向绑定指令"><a href="#十六、双向绑定指令" class="headerlink" title="十六、双向绑定指令"></a>十六、双向绑定指令</h2><p>所谓双向绑定就是：</p>
+<ol>
+<li>数据改变后，呈现的页面结果会更新</li>
+<li>页面结果更新后，数据也会随之而变</li>
+</ol>
+<p><strong>作用：</strong> 给<strong>表单元素</strong>（input、radio、select）使用，双向绑定数据，可以快速 <strong>获取</strong> 或 <strong>设置</strong> 表单元素内容</p>
+<p><strong>语法：</strong>v-model&#x3D;”变量”</p>
+<p><strong>需求：</strong>使用双向绑定实现以下需求</p>
+<ol>
+<li>点击登录按钮获取表单中的内容</li>
+<li>点击重置按钮清空表单中的内容</li>
+</ol>
+<p><img src="/../images/vue%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/1681913125738.png"></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    账户：&lt;input type=<span class="string">&quot;text&quot;</span>&gt; &lt;br&gt;&lt;br&gt;</span><br><span class="line">    密码：&lt;input type=<span class="string">&quot;password&quot;</span>&gt; &lt;br&gt;&lt;br&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">el</span>: <span class="string">&#x27;#app&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      <span class="attr">data</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">username</span>: <span class="string">&#x27;&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">password</span>: <span class="string">&#x27;&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">      &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ]]></content>
       <categories>
         <category>前端</category>
