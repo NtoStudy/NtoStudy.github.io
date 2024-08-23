@@ -5,9 +5,9 @@
 # Site
 title: 望远山而前行
 subtitle: '万语难尽涩于口 祈尔繁芜胜常春'
-description: ''
+description: 
 keywords: 记录日常学习
-author: NtoStudy
+author: Unid fovik
 language: zh-CN
 timezone: 'Asia/Shanghai'
 
@@ -61,16 +61,16 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 #主页每页显示文章数
 index_generator:
-    per_page: 10
+    per_page: 8
 #archive分页每页显示文章数
 archive_generator:
-    per_page: 10
+    per_page: 8
 #tag分页每页显示文章数
 tag_generator:
-    per_page: 10
+    per_page: 8
 #category分页每页显示文章数
 category_generator: 
-    per_page: 10
+    per_page: 8
     
 # Category & Tag
 default_category: uncategorized
